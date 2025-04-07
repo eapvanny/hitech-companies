@@ -49,71 +49,78 @@
         }
 
         .navbar-brand {
-    color: white;
-    font-weight: bold;
-    font-size: 24px;
-}
+            color: white;
+            font-weight: bold;
+            font-size: 24px;
+        }
 
-.navbar-nav .nav-link.active,
-.navbar-nav .nav-link.show {
-    color: #ffffff;
-}
+        .navbar-nav .nav-link.active,
+        .navbar-nav .nav-link.show {
+            color: #ffffff;
+        }
 
-.navbar-brand img {
-    height: 50px;
-}
+        .navbar-brand img {
+            height: 50px;
+        }
 
-.nav-link {
-    color: white;
-    font-weight: bold;
-    text-transform: uppercase;
-    text-decoration: none;
-    position: relative;
-    padding: 0.5rem 1rem;
-    transition: color 0.3s ease;
-    display: inline-block; /* Ensures the element respects its content width */
-}
+        .nav-link {
+            color: white;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-decoration: none;
+            position: relative;
+            padding: 0.5rem 1rem;
+            transition: color 0.3s ease;
+            display: inline-block;
+            /* Ensures the element respects its content width */
+        }
 
-.nav-link:hover {
-    color: white;
-}
+        .nav-link:hover {
+            color: white;
+        }
 
-.nav-link::after {
-    content: '';
-    position: absolute;
-    width: 0; /* Start with 0 width */
-    height: 10px;
-    bottom: -5px;
-    left: 50%;
-    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 10"><path d="M0 5 Q 5 0, 10 5 T 20 5 T 30 5 T 40 5 T 50 5 T 60 5" stroke="white" stroke-width="3" fill="none"/></svg>') repeat-x;
-    background-size: 45px 10px; /* Adjusted for a more frequent wave */
-    transform: translateX(-50%);
-}
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            /* Start with 0 width */
+            height: 10px;
+            bottom: -5px;
+            left: 50%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 10"><path d="M0 5 Q 5 0, 10 5 T 20 5 T 30 5 T 40 5 T 50 5 T 60 5" stroke="white" stroke-width="3" fill="none"/></svg>') repeat-x;
+            background-size: 45px 10px;
+            /* Adjusted for a more frequent wave */
+            transform: translateX(-50%);
+        }
 
-.nav-link:hover::after,
-.nav-link.active::after {
-    width: calc(100% - 2rem); /* Subtract the padding (1rem left + 1rem right) to match the text width */
-    animation: wave 3s linear infinite; /* Apply the wave animation */
-}
+        .nav-link:hover::after{
+            width: calc(100% - 1rem);
+            /* Subtract the padding (1rem left + 1rem right) to match the text width */
+            animation: wave 3s linear infinite;
+            /* Apply the wave animation */
+        }
+        .nav-link.active::after{
+            width: calc(100% - 1rem);
+        }
+        @keyframes wave {
+            0% {
+                background-position-x: 0;
+            }
 
-@keyframes wave {
-    0% {
-        background-position-x: 0;
-    }
-    100% {
-        background-position-x: 75px;
-    }
-}
+            100% {
+                background-position-x: 75px;
+            }
+        }
 
-.nav-link.active {
-    color: #fff;
-}
+        .nav-link.active {
+            color: #fff;
+        }
 
-.language-switcher {
-    color: white;
-    display: flex;
-    align-items: center;
-}
+        .language-switcher {
+            color: white;
+            display: flex;
+            align-items: center;
+        }
 
         .language-switcher img {
             height: 20px;
@@ -131,7 +138,7 @@
             position: relative;
             /* For overlay positioning */
             background: linear-gradient(to bottom, #e0f7fa, #ffffff);
-            
+
 
             /* Path to your image */
             background-size: cover;
@@ -492,11 +499,13 @@
 
         /* Default behavior for other devices (mobile) */
         @media (max-width: 767.98px) {
+
             .decorative-banner-left,
             .decorative-banner-right {
                 display: block;
                 margin-top: 75px
             }
+
             .navbar {
                 flex-direction: row;
                 align-items: center;
@@ -522,15 +531,14 @@
                 padding: 10px 0;
             }
 
-            .navbar-nav .nav-link {
-                color: white !important;
-                margin-left: 5px;
+            .nav-link:hover::after{
+                width: calc(100% - 2rem);
+                /* Subtract the padding (1rem left + 1rem right) to match the text width */
+                animation: wave 3s linear infinite;
+                /* Apply the wave animation */
             }
-
-            .navbar-nav .nav-link.active {
-                color: #fff !important;
-                border-bottom: 2px solid white;
-                width: fit-content;
+            .nav-link.active::after{
+                width: calc(100% - 2rem);
             }
 
             .navbar-nav .nav-item {
@@ -573,10 +581,12 @@
 <body>
     <!-- Decorative Banners -->
     @if (!empty(@$theme->decor))
-    <img src="{{ asset(@$theme->decor) }}" alt="Decorative Banner Left" class="decorative-banner-left" loading="lazy">
-    <img src="{{ asset(@$theme->decor) }}" alt="Decorative Banner Right" class="decorative-banner-right" loading="lazy">
+        <img src="{{ asset(@$theme->decor) }}" alt="Decorative Banner Left" class="decorative-banner-left"
+            loading="lazy">
+        <img src="{{ asset(@$theme->decor) }}" alt="Decorative Banner Right" class="decorative-banner-right"
+            loading="lazy">
     @endif
-    
+
 
     <!-- Header -->
     <nav class="navbar navbar-expand-md fixed-top">
@@ -584,8 +594,7 @@
             <!-- Logo -->
             <a class="navbar-brand order-md-1" href="{{ url('/') }}">
                 {{-- <img style="width: auto;" src="{{ asset('images/Hi-Tech-Water Logo-blue.png') }}" --}}
-                <img style="width: auto;" src="{{ asset($companyInfo->logo) }}"
-                    alt="Hi-Tech Water Logo">
+                <img style="width: auto;" src="{{ asset($companyInfo->logo) }}" alt="Hi-Tech Water Logo">
             </a>
 
             <!-- Language Dropdown -->
@@ -633,7 +642,7 @@
             <div class="collapse navbar-collapse order-md-2" id="navbarNav">
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}"
+                        <a class="nav-link {{ request()->routeIs('user.home') ? 'active' : '' }}"
                             href="{{ url('/') }}">{{ __('lang.home') }}</a>
                     </li>
                     <li class="nav-item">
@@ -642,7 +651,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('about') ? 'active' : '' }}"
-                            href="{{ url('/about') }}"> {{ __('lang.aboutus')}} </a>
+                            href="{{ url('/about') }}"> {{ __('lang.aboutus') }} </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('blog') ? 'active' : '' }}"
@@ -665,11 +674,9 @@
     @yield('content')
 
     <!-- Footer -->
-            
+
     <footer class="footer"
-        @if( ! empty(@$theme->footer_decor))
-        style="background-image: url({{ asset(@$theme->footer_decor) }})"
-        @endif>
+        @if (!empty(@$theme->footer_decor)) style="background-image: url({{ asset(@$theme->footer_decor) }})" @endif>
         <div class="container">
             <div class="row">
                 <div class="col-md-5 col-sm-5 col-lg-5">
@@ -684,15 +691,15 @@
             </div>
             <div class="row">
                 <div class="col-md-3">
-                    <h5> {{ __("lang.contactus") }} </h5>
-                    <a href="{{ $companyInfo->location_link	 }}" target="_blank"> 
+                    <h5> {{ __('lang.contactus') }} </h5>
+                    <a href="{{ $companyInfo->location_link }}" target="_blank">
                         <p><i class="bi bi-geo-alt-fill"></i> {{ $companyInfo->address }}
                     </a>
                     </p>
                     <p><i class="bi bi-envelope-fill"></i> {{ $companyInfo->company_email }}</p>
                 </div>
                 <div class="col-md-3">
-                    <h5> {{ __("lang.Hi-Tech Water") }} </h5>
+                    <h5> {{ __('lang.Hi-Tech Water') }} </h5>
                     <ul class="list-unstyled">
 
                         <li><a href="{{ url('/water') }}">{{ __('lang.water') }}</a></li>
@@ -700,7 +707,7 @@
                         <li><a href="{{ url('/blog') }}">{{ __('lang.blog') }}</a></li>
                         <li><a href="{{ url('/career') }}">{{ __('lang.career') }}</a></li>
                         <li><a href="{{ url('/contact') }}">{{ __('lang.contactus') }}</a></li>
-                        
+
                     </ul>
                 </div>
                 <div class="col-md-3">
@@ -708,7 +715,7 @@
                     <ul class="list-unstyled">
                         <li><a href="#"> {{ __('lang.deliveryService') }} </a></li>
                         <li><a href="#">{{ __('lang.Terms of Use') }}</a></li>
-                        <li><a href="#"> {{ __("lang.Privacy Policy") }} </a></li>
+                        <li><a href="#"> {{ __('lang.Privacy Policy') }} </a></li>
                     </ul>
                 </div>
                 <div class="col-md-3">
@@ -716,19 +723,20 @@
                     <div class="social-icons">
                         @php
                             $socialMedia = DB::table('socials')
-                                            ->orderBy('id', 'desc')
-                                            ->where('active_status', 1)
-                                            ->get();
+                                ->orderBy('id', 'desc')
+                                ->where('active_status', 1)
+                                ->get();
                         @endphp
                         @foreach ($socialMedia as $s)
-                            <a href="{{ $s->link_social }}" target="_blank"><i class="bi bi-{{ $s->social }}"></i></a>
+                            <a href="{{ $s->link_social }}" target="_blank"><i
+                                    class="bi bi-{{ $s->social }}"></i></a>
                         @endforeach
                         {{-- <a href="#"><i class="bi bi-instagram"></i></a> --}}
                     </div>
                 </div>
             </div>
             <div class="text-center footer-copyright">
-                <p>{{$companyInfo->copy_right}}</p>
+                <p>{{ $companyInfo->copy_right }}</p>
             </div>
         </div>
     </footer>

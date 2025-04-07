@@ -75,6 +75,12 @@
     .about-text {
         width: 50%;
     }
+    .about-text h2{
+        color: #0056b3;
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+        font-weight: bold;      
+    }
     .about-image {
         width: 45%;
     }
@@ -221,7 +227,8 @@
     }
     .society-item img {
         width: 100%;
-        height: auto;
+        height: 370px;
+        object-fit: cover;
         border-radius: 10px;
     }
     .society-item h3 {
@@ -570,13 +577,13 @@
                         @if ($w->bottle == '250ml')
                             <img src="{{ asset('hitech-bottle/waters/250ml.png') }}" alt="HI-TECH Water Bottle">
                         @elseif ($w->bottle == '350ml')
-                            <img src="{{ asset('hitech-bottle/waters/350ml.png') }}" alt="HI-TECH Water Bottle">
+                            <img src="{{ asset('hitech-bottle/waters/bottle-350ml.png') }}" alt="HI-TECH Water Bottle">
                         @elseif ($w->bottle == '600ml')
-                            <img src="{{ asset('hitech-bottle/waters/600ml.png') }}" alt="HI-TECH Water Bottle">
+                            <img src="{{ asset('hitech-bottle/waters/bottle-600ml.png') }}" alt="HI-TECH Water Bottle">
                         @elseif ($w->bottle == '1500ml')
-                            <img src="{{ asset('hitech-bottle/waters/1500ml.png') }}" alt="HI-TECH Water Bottle">
+                            <img src="{{ asset('hitech-bottle/waters/bottle-1500ml.png') }}" alt="HI-TECH Water Bottle">
                         @else
-                            <img src="{{ asset('hitech-bottle/waters/20l.png') }}" alt="HI-TECH Water Bottle">
+                            <img src="{{ asset('hitech-bottle/waters/bottle-20L-3-2.png') }}" alt="HI-TECH Water Bottle">
                         @endif
                         <h3>
                             {{ $w->bottle }}

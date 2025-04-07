@@ -3,12 +3,12 @@
 @section('title', 'About Us')
 
 @section('seo')
-<meta property="og:title" content="About hitech water" />
-<meta property="twitter:title" content=" About hitech water " />
-<meta property="og:description" content=" {{ $ourcomapny->description_en }} " />
-<meta property="og:description" content=" {{ $ourcomapny->description_kh }} " />
-<meta property="twitter:description" content=" {{ $ourcomapny->description_en }} " />
-<meta property="twitter:description" content=" {{ $ourcomapny->description_kh }} " />
+    <meta property="og:title" content="About hitech water" />
+    <meta property="twitter:title" content=" About hitech water " />
+    <meta property="og:description" content=" {{ $ourcomapny->description_en }} " />
+    <meta property="og:description" content=" {{ $ourcomapny->description_kh }} " />
+    <meta property="twitter:description" content=" {{ $ourcomapny->description_en }} " />
+    <meta property="twitter:description" content=" {{ $ourcomapny->description_kh }} " />
 
 @endsection
 
@@ -124,6 +124,9 @@
             font-weight: bold;
             position: relative;
             text-transform: uppercase;
+            display: inline-block;
+            word-spacing: 5px;
+            /* Added to make the width match content */
         }
 
         .commitment-text h2::after {
@@ -131,8 +134,8 @@
             position: absolute;
             left: 0;
             bottom: -5px;
-            width: min(470px, 100%);
-            /* Prevents overflow */
+            width: 100%;
+            /* Changed to 100% to match the h2 text width */
             height: 3px;
             background-color: #1a6aa8;
         }
@@ -289,14 +292,16 @@
         }
 
         /* Specific colors for each core value item based on the image */
-        .core-value-item:first-child{
+        .core-value-item:first-child {
             border-color: #D32F2F;
 
         }
-        .core-value-item:nth-child(even){
+
+        .core-value-item:nth-child(even) {
             border-color: #FBC02D;
         }
-        .core-value-item{
+
+        .core-value-item {
             border-color: #4DA8DA;
         }
 
@@ -358,9 +363,11 @@
             flex: 0 0 clamp(200px, 33%, 400px);
             text-align: center;
         }
-        .accreditation-image p{
+
+        .accreditation-image p {
             font-weight: bold
         }
+
         .accreditation-image img {
             max-width: 100%;
             height: auto;
@@ -370,9 +377,9 @@
         /* Updated Media Queries */
         @media (max-width: 1200px) {
             /* .about-section {
-                padding: 180px 0;
-                height: 60vh;
-            } */
+                    padding: 180px 0;
+                    height: 60vh;
+                } */
 
             .about-content p {
                 font-size: clamp(0.8rem, 2.5vw, 1rem);
@@ -384,23 +391,27 @@
             .commitment-text h2::after {
                 width: 100%;
                 /* Full width on smaller screens */
-            }  
-            .accreditation-content h2{
+            }
+
+            .accreditation-content h2 {
                 font-size: 30px;
             }
+
             .accreditation-image img {
                 max-width: 300px;
             }
-            .accreditation-image p{
+
+            .accreditation-image p {
                 font-weight: bold;
             }
-           
+
         }
-        
+
         @media (max-width: 1024px) {
             .about-section {
                 height: 60vh;
             }
+
             .commitment-content {
                 flex-direction: row;
                 text-align: center;
@@ -409,13 +420,8 @@
             .commitment-text h2 {
                 font-size: 1em
             }
-
-            .commitment-text h2::after {
-                left: 50%;
-                transform: translateX(-76%);
-                width: 300px;
-            }
         }
+
         @media (max-width: 992px) {
             .about-section {
                 padding: 150px 0;
@@ -445,12 +451,6 @@
                 font-size: 1em
             }
 
-            .commitment-text h2::after {
-                left: 50%;
-                transform: translateX(-57.5%);
-                width: 300px;
-            }
-
             .vision-text .logo {
                 margin-top: 0;
             }
@@ -466,40 +466,26 @@
                 border-width: 5px;
             }
         }
+
         @media (max-width: 992px) {
             .commitment-text h2 {
                 font-size: 1em
             }
-
-            .commitment-text h2::after {
-                left: 50%;
-                transform: translateX(-66.5%);
-                width: 300px;
-            }
         }
+
         @media (max-width: 853px) {
             .commitment-text h2 {
                 font-size: 1em
             }
-
-            .commitment-text h2::after {
-                left: 50%;
-                transform: translateX(-60.5%);
-                width: 300px;
-            }
         }
+
         @media (max-width: 820px) {
             .about-section {
                 height: 60vh;
             }
+
             .commitment-text h2 {
                 font-size: 0.9rem
-            }
-
-            .commitment-text h2::after {
-                left: 50%;
-                transform: translateX(-65.5%);
-                width: 270px;
             }
         }
 
@@ -507,18 +493,13 @@
             .about-section {
                 height: 60vh;
             }
+
             .about-section {
                 padding: 120px 0;
             }
 
             .commitment-text h2 {
                 font-size: 0.9rem
-            }
-
-            .commitment-text h2::after {
-                left: 50%;
-                transform: translateX(-61%);
-                width: 270px;
             }
 
             .core-values-grid {
@@ -567,12 +548,6 @@
                 font-size: 1em
             }
 
-            .commitment-text h2::after {
-                left: 50%;
-                transform: translateX(-76.5%);
-                width: 300px;
-            }
-
             .vision-text .logo {
                 margin-top: 0;
             }
@@ -582,6 +557,7 @@
             .about-section {
                 height: 60vh;
             }
+
             .about-container {
                 margin-top: -20px;
             }
@@ -596,17 +572,13 @@
                 font-size: 13px;
             }
 
-            .commitment-text h2::after {
-                left: 50%;
-                transform: translateX(-58%);
-                width: 300px;
-            }
         }
 
         @media (max-width:414px) {
             .about-section {
                 height: 60vh;
             }
+
             .about-container {
                 margin-top: -20px;
             }
@@ -621,11 +593,6 @@
                 font-size: 13px;
             }
 
-            .commitment-text h2::after {
-                left: 50%;
-                transform: translateX(-55.5%);
-                width: 300px;
-            }
         }
 
         /* Ultra-small screens (e.g., old phones < 400px) */
@@ -633,6 +600,7 @@
             .about-section {
                 height: 60vh;
             }
+
             .about-content {
                 padding: 0 10px;
             }
@@ -646,11 +614,6 @@
                 font-size: 1em
             }
 
-            .commitment-text h2::after {
-                left: 50%;
-                transform: translateX(-51.5%);
-                width: 300px;
-            }
 
             .commitment-name {
                 font-size: 0.9rem;
@@ -690,12 +653,6 @@
             .commitment-text h2 {
                 font-size: .9rem
             }
-
-            .commitment-text h2::after {
-                left: 50%;
-                transform: translateX(-54.5%);
-                width: 270px;
-            }
         }
 
         @media (max-width: 360px) {
@@ -723,22 +680,19 @@
             .commitment-text h2 {
                 font-size: .9rem
             }
-
-            .commitment-text h2::after {
-                left: 50%;
-                transform: translateX(-51.5%);
-                width: 270px;
-            }
         }
+
         @media (max-width: 344px) {
             .about-section {
                 padding: 120px 0;
                 height: 45vh;
             }
+
             .about-content {
                 max-width: 700px;
                 margin-left: -70px
             }
+
             .about-content h1 {
                 font-size: 22px;
             }
@@ -749,17 +703,12 @@
                 color: #FFFFFF;
                 margin-top: 10px;
             }
+
             .commitment-text h2 {
                 font-size: 0.8rem
             }
 
-            .commitment-text h2::after {
-                left: 50%;
-                transform: translateX(-55%);
-                width: 240px;
-            }
         }
-        
     </style>
 @endsection
 
@@ -769,7 +718,7 @@
         <div class="container">
             <div class="about-container">
                 <div class="about-content">
-                    <h1>{{__('lang.ourcompany')}}</h1>
+                    <h1>{{ __('lang.ourcompany') }}</h1>
                     @if (session()->has('user_lang') && session('user_lang') == 'en')
                         {!! $ourcomapny->description_en !!}
                     @else
@@ -814,14 +763,13 @@
                 <div class="commitment-container">
                     <div class="commitment-content">
                         <div class="commitment-image">
-                            <img src="{{ asset($m->img) }}"
-                                alt=" {{ $m->em_name }} ">
+                            <img src="{{ asset($m->img) }}" alt=" {{ $m->em_name }} ">
                             <div class="commitment-name">
                                 <p>{{ $m->em_name }}</p>
                             </div>
                         </div>
                         <div class="commitment-text">
-                            <h2>{{__('lang.messageem')}}</h2>
+                            <h2>{{ __('lang.messageem') }}</h2>
                             @if (session()->has('user_lang') && session('user_lang') == 'en')
                                 {!! $m->message_en !!}
                             @else
@@ -869,25 +817,23 @@
                 <h2> {{ __('lang.corevalue') }} </h2>
                 <div class="core-values-grid">
                     @foreach ($corevalues as $corevalue)
-                        
-                    <div class="core-value-item">
-                        <p>
-                            <strong>
+                        <div class="core-value-item">
+                            <p>
+                                <strong>
+                                    @if (session()->has('user_lang') && session('user_lang') == 'en')
+                                        {{ $corevalue->title_en }}
+                                    @else
+                                        {{ $corevalue->title_kh }}
+                                    @endif
+                                </strong>
+                                <br><br>
                                 @if (session()->has('user_lang') && session('user_lang') == 'en')
-                                    {{ $corevalue->title_en }}
+                                    {{ $corevalue->description_en }}
                                 @else
-                                    {{ $corevalue->title_kh }}
+                                    {{ $corevalue->description_kh }}
                                 @endif
-                            </strong>
-                            <br><br>
-                            @if (session()->has('user_lang') && session('user_lang') == 'en')
-                                {{ $corevalue->description_en }}
-                            @else
-                                {{ $corevalue->description_kh }}
-                            @endif
-                        </p>
-                    </div>
-
+                            </p>
+                        </div>
                     @endforeach
 
                     {{-- <div class="core-value-item teamwork">
@@ -905,7 +851,7 @@
                     <div class="core-value-item accountability">
                         <p><strong>ACCOUNTABILITY</strong><br><br>Taking ownership of one’s actions</p>
                     </div> --}}
-                    
+
                 </div>
             </div>
         </div>
@@ -922,14 +868,13 @@
                     <div class="accreditation-images">
                         @foreach ($accreditations as $acc)
                             <div class="accreditation-image">
-                                <img src="{{ asset($acc->logo) }}"
-                                    alt="Accreditation Certificate">
+                                <img src="{{ asset($acc->logo) }}" alt="Accreditation Certificate">
                                 <p>
-                                @if (session()->has('user_lang') && session('user_lang') == 'en')
-                                    {{ $acc->name_en }}
-                                @else
-                                    {{ $acc->name_kh }}
-                                @endif
+                                    @if (session()->has('user_lang') && session('user_lang') == 'en')
+                                        {{ $acc->name_en }}
+                                    @else
+                                        {{ $acc->name_kh }}
+                                    @endif
                                 </p>
                             </div>
                         @endforeach
@@ -945,7 +890,7 @@
                             <p>Certificate of FOOD QUALITY MANAGEMENT SYSTEM</p>
                         </div> --}}
                     </div>
-                    
+
                 </div>
             </div>
         </div>

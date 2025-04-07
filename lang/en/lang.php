@@ -13,7 +13,7 @@ return [
     'products' => 'PRODUCTS',
     'producttitle' => 'We produce high quality water because  your health is of the utmost importance.',
     'ourcompany' => 'OUR COMPANY',
-    'messageem' => 'Message from Executive Manager',
+    'messageem' => 'Message from Executive Director',
     'corevalue' => 'Core Values',
     'accreditation' => 'Accreditations',
     'blog' => 'BLOGS',

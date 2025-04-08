@@ -23,7 +23,7 @@
 @section('styles')
     <style>
         .water-section {
-            background-image: url('https://hitech.com.kh/wp-content/uploads/2022/04/water-image-header-2.jpg');
+            background-image: url({{asset('images/water-image-header-2.jpg')}});
             background-size: cover;
             background-position: center;
             height: 100vh;

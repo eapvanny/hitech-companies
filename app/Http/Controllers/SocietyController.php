@@ -98,7 +98,7 @@ class SocietyController extends Controller
     public function edit($id){
         $check = Society::findOrFail($id);
 
-        $data['data'] = $check->get()->first();
+        $data['data'] = $check;
         return view('admin.societies.edit-society', $data);
     }
     

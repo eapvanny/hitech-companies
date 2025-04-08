@@ -25,7 +25,7 @@
         /* Existing About Section Styles */
         .about-section {
             padding: 220px 0;
-            background-image: url(https://hitech.com.kh/wp-content/uploads/2022/03/about-image-header.jpg);
+            background-image: url({{asset('images/about-image-header.jpg')}});
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -47,12 +47,13 @@
             justify-content: flex-end;
             align-items: center;
             min-height: 100%;
-            padding: 20px;
+            /* padding: 20px; */
         }
 
         .about-content {
             max-width: 500px;
             text-align: left;
+            margin-top: -30px;
         }
 
         .about-content h1 {
@@ -102,14 +103,14 @@
 
         .commitment-name {
             position: absolute;
-            bottom: 60px;
+            bottom: 40px;
             left: -40px;
             background-color: #1a6aa8;
             color: #fff;
             font-size: clamp(1rem, 2vw, 1.2rem);
             font-weight: bold;
             padding: 8px 20px;
-            box-shadow: 8px 8px 0px 0px #EDC932;
+            /* box-shadow: 8px 8px 0px 0px #EDC932; */
         }
 
         .commitment-text {
@@ -406,12 +407,14 @@
             }
 
         }
-
         @media (max-width: 1024px) {
             .about-section {
                 height: 60vh;
             }
-
+            .commitment-name {
+                margin-left: 20px;
+                width: 300px;
+            }
             .commitment-content {
                 flex-direction: row;
                 text-align: center;
@@ -421,7 +424,11 @@
                 font-size: 1em
             }
         }
-
+        /* @media (max-width: 1024px) {
+            .about-section {
+                height: 100vh;
+            }
+        } */
         @media (max-width: 992px) {
             .about-section {
                 padding: 150px 0;
@@ -467,9 +474,20 @@
             }
         }
 
-        @media (max-width: 992px) {
+        @media (max-width: 912px) {
+            .about-section {
+                height: 50vh;
+            }
+            .about-section p{
+                line-height: 1.5rem;
+                font-size: 18px;
+            }
             .commitment-text h2 {
                 font-size: 1em
+            }
+            .commitment-name {
+                margin-left: -19%;
+                width: 300px;
             }
         }
 
@@ -483,7 +501,10 @@
             .about-section {
                 height: 60vh;
             }
-
+            .commitment-name {
+                width: 240px;
+                margin-left: -21%;
+            }
             .commitment-text h2 {
                 font-size: 0.9rem
             }
@@ -497,7 +518,10 @@
             .about-section {
                 padding: 120px 0;
             }
-
+            .commitment-name {
+                width: 220px;
+                margin-left: -21%;
+            }
             .commitment-text h2 {
                 font-size: 0.9rem
             }
@@ -552,14 +576,13 @@
                 margin-top: 0;
             }
         }
-
-        @media (max-width:430px) {
+        @media (max-width: 576px) {
             .about-section {
                 height: 60vh;
             }
 
             .about-container {
-                margin-top: -20px;
+                margin-top: 40px;
             }
 
             .about-content h1 {
@@ -570,6 +593,33 @@
                 margin-left: 20px;
                 line-height: 1rem;
                 font-size: 13px;
+            }
+            .commitment-name {
+                width: 250px;
+                margin-left: -27%;
+            }
+        }
+        @media (max-width:430px) {
+            .about-section {
+                height: 60vh;
+            }
+
+            .about-container {
+                margin-top: 70px;
+            }
+
+            .about-content h1 {
+                margin-left: 20px;
+            }
+
+            .about-content p {
+                margin-left: 20px;
+                line-height: 1.3rem;
+                font-size: 14px;
+            }
+            .commitment-name {
+                width: 240px;
+                margin-left: -21%;
             }
 
         }
@@ -580,7 +630,7 @@
             }
 
             .about-container {
-                margin-top: -20px;
+                margin-top: 30px;
             }
 
             .about-content h1 {
@@ -589,8 +639,12 @@
 
             .about-content p {
                 margin-left: 20px;
-                line-height: 1rem;
-                font-size: 13px;
+                line-height: 1.3rem;
+                font-size: 14px;
+            }
+            .commitment-name {
+                width: 230px;
+                margin-left: -21%;
             }
 
         }
@@ -627,19 +681,45 @@
                 border-width: 5px;
             }
         }
-
-        @media (max-width: 375px) {
+        @media (max-width:390px) {
             .about-section {
-                padding: 180px 0;
-                height: 65vh;
+                height: 60vh;
             }
 
             .about-container {
-                margin-top: -100px;
+                margin-top: 30px;
             }
 
             .about-content h1 {
-                margin-left: 50px;
+                margin-left: 20px;
+            }
+
+            .about-content p {
+                margin-left: 20px;
+                line-height: 1.1rem;
+                font-size: 13.5px;
+            }
+            .commitment-name {
+                width: 220px;
+                margin-left: -21%;
+            }
+            .commitment-text h2 {
+                font-size: .9rem
+            }
+
+        }
+        @media (max-width: 375px) {
+            .about-section {
+                height: 70vh;
+            }
+
+            .about-container {
+                margin-top: 20px;
+
+            }
+
+            .about-content h1 {
+                margin-left: 5px;
             }
 
             .about-content p {
@@ -647,9 +727,16 @@
                 line-height: 0.9rem;
                 color: #FFFFFF;
                 margin-top: 10px;
-                margin-left: 50px;
+                margin-left: 5px;
             }
-
+            .commitment-name {
+                width: 200px;
+                margin-left: -20%;
+            }
+            .commitment-content {
+                flex-direction: column;
+                text-align: center;
+            }
             .commitment-text h2 {
                 font-size: .9rem
             }
@@ -657,40 +744,38 @@
 
         @media (max-width: 360px) {
             .about-section {
-                padding: 180px 0;
-                height: 65vh;
+                height: 62vh;
             }
 
             .about-container {
-                margin-top: -70px;
+                margin-top: 30px;
             }
 
             .about-content h1 {
-                margin-left: 50px;
+                margin-left: 0px;
             }
 
             .about-content p {
-                font-size: 9px;
-                line-height: 0.9rem;
+                font-size: 11px;
+                line-height: 1.1rem;
                 color: #FFFFFF;
                 margin-top: 10px;
-                margin-left: 50px;
+                margin-left: 0px;
             }
 
             .commitment-text h2 {
-                font-size: .9rem
+                font-size: .8rem
             }
         }
 
         @media (max-width: 344px) {
             .about-section {
-                padding: 120px 0;
-                height: 45vh;
+                /* padding: 120px 0; */
+                height: 50vh;
             }
 
             .about-content {
                 max-width: 700px;
-                margin-left: -70px
             }
 
             .about-content h1 {
@@ -701,7 +786,7 @@
                 font-size: 11px;
                 line-height: 0.9rem;
                 color: #FFFFFF;
-                margin-top: 10px;
+                /* margin-top: 10px; */
             }
 
             .commitment-text h2 {
@@ -720,9 +805,9 @@
                 <div class="about-content">
                     <h1>{{ __('lang.ourcompany') }}</h1>
                     @if (session()->has('user_lang') && session('user_lang') == 'en')
-                        {!! $ourcomapny->description_en !!}
+                       <P> {!! $ourcomapny->description_en !!}</P>
                     @else
-                        {!! $ourcomapny->description_kh !!}
+                <P>{!! $ourcomapny->description_kh !!}</P>
                     @endif
                 </div>
             </div>
@@ -790,7 +875,7 @@
             <div class="vision-container">
                 <div class="vision-content">
                     <div class="vision-image">
-                        <img src="https://hitech.com.kh/wp-content/uploads/2022/03/hi-tech-3.png"
+                        <img src="{{asset('images/hi-tech-3.png')}}"
                             alt="HI-TECH Water Bottles">
                     </div>
                     <div class="vision-text">

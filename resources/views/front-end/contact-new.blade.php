@@ -24,7 +24,7 @@
         /* Background Image Section */
         .contact-section {
             position: relative;
-            background-image: url('https://hitech.com.kh/wp-content/uploads/2022/03/contact-image.jpg');
+            background-image: url({{asset('images/contact-image.jpg')}});
             background-size: cover;
             background-position: center;
             min-height: 100vh;

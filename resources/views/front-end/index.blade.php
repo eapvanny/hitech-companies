@@ -23,7 +23,7 @@
     .hero {
         height: 100vh;
         background: linear-gradient(to bottom, #0000004f 0%, rgba(0, 0, 0, 0.134) 30%, rgba(0, 0, 0, 0.151) 70%), 
-                    url('https://hitech.com.kh/wp-content/uploads/2022/03/bg-image-1.jpg') no-repeat center center;
+                    url({{asset('images/bg-image-1.jpg')}}) no-repeat center center;
         background-size: cover;
         color: white;
         text-align: left;
@@ -556,8 +556,9 @@
                 @endif   
             </div>
             <div class="about-image">
-                <img src="{{asset($overview->img)}}" alt="HI-TECH bottling facility with staff">
+                <iframe src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2Fhitechforhealth%2Fvideos%2F846104387666224%2F&show_text=false&width=560&t=0" width="560" height="314" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
             </div>
+            
         </div>
     </section>
     <section class="our-water-theme" 
@@ -672,7 +673,7 @@
     <section class="delivery">
         <div class="delivery-content">
             <div class="delivery-image">
-                <img src="https://hitech.com.kh/wp-content/uploads/2022/04/deliverytruck-2.jpg" alt="Delivery Truck" data-src="path-to-delivery-image.jpg">
+                <img src="{{asset('images/Truck.png')}}" alt="Delivery Truck" data-src="path-to-delivery-image.jpg">
             </div>
             <div class="delivery-text">
                 <h3>{{__('lang.contacttitle')}}</h3>

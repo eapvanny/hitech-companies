@@ -42,7 +42,7 @@
         }
 
         .single-post-header {
-            background: #fff url('https://hitech.com.kh/wp-content/uploads/2022/03/profile-pattern.png') bottom center no-repeat;
+            background: #fff url({{asset('images/profile-pattern.png')}}) bottom center no-repeat;
             background-size: 100%;
             padding: 40px 20px 100px;
             text-align: center;
@@ -70,20 +70,20 @@
         .author {
             position: absolute;
             bottom: 20px;
+            /* top: 50%; */
             left: 50%;
-            transform: translateX(-50%);
+            transform: translate(-50%,70%);
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 15px;
             width: 100%;
-            top: 160px
         }
 
         .author-image img {
             border-radius: 50%;
-            width: clamp(80px, 20vw, 160px);
-            height: clamp(80px, 20vw, 160px);
+            width: clamp(80px, 20vw, 140px);
+            height: clamp(80px, 20vw, 140px);
         }
 
         .blog-content-section {
@@ -244,8 +244,10 @@
                 font-size: 16px
             }
             .author{
-                margin-top: auto;
-            }   
+                position: absolute;
+                left: 50%;
+                transform: translate(-50%,75%);
+            } 
         }
         @media (max-width: 414px) {
             .single-post-header {
@@ -259,9 +261,10 @@
                 font-size: 16px
             }
             .author{
-                margin-top: auto;
+                position: absolute;
+                left: 50%;
+                transform: translate(-50%,75%);
             }
-            
         }
         @media (max-width: 360px) {
             .single-post-header {

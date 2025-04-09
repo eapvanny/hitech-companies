@@ -156,7 +156,7 @@
                         @endif    
                     </p>
                     <span class="date">
-                        {{ \Carbon\Carbon::parse($blog->created_at)->format('d-M-Y - H:i:s') }}
+                        {{ \Carbon\Carbon::parse($blog->created_at)->format('d-M-Y') }}
                     </span>
                 </a>
 

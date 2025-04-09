@@ -75,7 +75,7 @@
     .about-text {
         width: 50%;
     }
-    .about-text h2{
+    .about-text h2 {
         color: #0056b3;
         font-size: 2.5rem;
         margin-bottom: 10px;
@@ -84,9 +84,19 @@
     .about-image {
         width: 45%;
     }
-    .about-image img {
+    .about-image .video-wrapper {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 aspect ratio (314/560 ≈ 56.25%) */
+        height: 0;
+        overflow: hidden;
+    }
+    .about-image .video-wrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
         width: 100%;
-        height: auto;
+        height: 100%;
+        border: none;
         border-radius: 10px;
     }
 
@@ -101,15 +111,7 @@
         position: relative;
         color: #fff;
         background: linear-gradient(to bottom, #87CEEB, #E0F6FF);
-
     }
-    /* .our-water {
-        padding: 50px;
-        text-align: center;
-        background: linear-gradient(to bottom, #87CEEB, #E0F6FF);
-        min-height: 400px;
-        position: relative;
-    } */
     .water-content h2 {
         color: #0056b3;
         font-size: 2.5rem;
@@ -158,14 +160,12 @@
     }
     .water-item h3 {
         font-size: 1.5rem;
-        /* color: #0056b3; */
         color: #ffffff;
         margin-bottom: 5px;
         font-weight: bold;
     }
     .water-item p {
         font-size: 1rem;
-        /* color: #666; */
         color: #dbdbdb;
         margin-bottom: 10px;
     }
@@ -262,7 +262,7 @@
     .delivery-image img {
         width: 100%;
         height: auto;
-        border-radius: 10px;
+        border-radiusplaat: 10px;
     }
     .delivery-text {
         width: 50%;
@@ -336,13 +336,13 @@
 
         /* Our Water Section */
         .water-item {
-            flex: 0 0 50%; /* Show 2 items per row */
+            flex: 0 0 50%;
             max-width: 50%;
         }
 
         /* Society Section */
         .society-item {
-            width: 100%; /* Stack items in a single column */
+            width: 100%;
             padding: 15px;
         }
         .society h2 {
@@ -376,7 +376,7 @@
         }
         .hero {
             padding-left: 30px;
-            height: 50vh; /* Reduce height for smaller screens */
+            height: 50vh;
         }
         .hero-text h1 {
             font-size: 28px;
@@ -394,7 +394,7 @@
         }
 
         /* Our Water Section */
-        .our-water {
+        .our-water-theme {
             padding: 30px;
         }
         .water-content h2 {
@@ -404,7 +404,7 @@
             font-size: 1rem;
         }
         .water-item {
-            flex: 0 0 100%; /* Show 1 item per row */
+            flex: 0 0 100%;
             max-width: 100%;
         }
         .water-item h3 {
@@ -451,7 +451,7 @@
         }
         .hero {
             padding-left: 15px;
-            height: 50vh; /* Further reduce height */
+            height: 50vh;
         }
         .hero-text h1 {
             font-size: 24px;
@@ -469,7 +469,7 @@
         }
 
         /* Our Water Section */
-        .our-water {
+        .our-water-theme {
             padding: 20px;
         }
         .water-content h2 {
@@ -548,17 +548,21 @@
         <div class="about-content">
             <div class="about-text">
                 <h2>{{__('lang.aboutus')}}</h2>
-
                 @if (session()->has('user_lang') && session('user_lang') == 'en')
                     {!! $overview->title_en !!}
                 @else
-                    {!!  $overview->title_kh !!}
+                    {!! $overview->title_kh !!}
                 @endif   
             </div>
             <div class="about-image">
-                <iframe src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2Fhitechforhealth%2Fvideos%2F846104387666224%2F&show_text=false&width=560&t=0" width="560" height="314" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
+                <div class="video-wrapper">
+                    <iframe src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2Fhitechforhealth%2Fvideos%2F846104387666224%2F&show_text=false&width=560&t=0" 
+                            scrolling="no" 
+                            frameborder="0" 
+                            allowfullscreen="true" 
+                            allow="clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                </div>
             </div>
-            
         </div>
     </section>
     <section class="our-water-theme" 

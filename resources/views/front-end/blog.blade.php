@@ -25,7 +25,7 @@
 
         .blog-section {
             padding: 50px 20px;
-            background: url('https://hitech.com.kh/wp-content/uploads/2022/03/blog-bg.jpg') no-repeat center center/cover;
+            background: url({{asset('images/blog-bg.jpg')}}) no-repeat center center/cover;
             /* Replace with your background image */
             position: relative;
             /* margin-top: 60px; */

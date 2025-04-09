@@ -21,7 +21,12 @@
             padding: 0;
             box-sizing: border-box;
         }
-
+        h1,h2,p{
+            line-height: 2rem;
+        }
+        h1{
+            margin-bottom: 20px;
+        }
         /* Existing About Section Styles */
         .about-section {
             padding: 220px 0;
@@ -411,6 +416,10 @@
             .about-section {
                 height: 60vh;
             }
+            .about-section p{
+                line-height: 2rem;
+                font-size: 18px;
+            }
             .commitment-name {
                 margin-left: 20px;
                 width: 300px;
@@ -482,6 +491,12 @@
                 line-height: 1.5rem;
                 font-size: 18px;
             }
+            .about-content{
+                margin-top: 30px;
+            }
+            .about-content p{
+                line-height: 1.7rem;
+            }
             .commitment-text h2 {
                 font-size: 1em
             }
@@ -492,14 +507,17 @@
         }
 
         @media (max-width: 853px) {
-            .commitment-text h2 {
-                font-size: 1em
+            .about-content{
+                margin-top: auto
             }
         }
 
         @media (max-width: 820px) {
             .about-section {
                 height: 60vh;
+            }
+            .about-content{
+                margin-top: 30px;
             }
             .commitment-name {
                 width: 240px;
@@ -517,6 +535,9 @@
 
             .about-section {
                 padding: 120px 0;
+            }
+            .about-content{
+                margin-top: auto;
             }
             .commitment-name {
                 width: 220px;
@@ -597,6 +618,14 @@
             .commitment-name {
                 width: 250px;
                 margin-left: -27%;
+            }
+        }
+        @media (max-width: 540px) {
+            .about-content{
+                margin-top: -40px;
+            }
+            .about-content p{
+                line-height: 1.4rem;
             }
         }
         @media (max-width:430px) {
@@ -724,7 +753,7 @@
 
             .about-content p {
                 font-size: 9px;
-                line-height: 0.9rem;
+                line-height: 1.1rem;
                 color: #FFFFFF;
                 margin-top: 10px;
                 margin-left: 5px;
@@ -748,7 +777,7 @@
             }
 
             .about-container {
-                margin-top: 30px;
+                margin-top: 25px;
             }
 
             .about-content h1 {

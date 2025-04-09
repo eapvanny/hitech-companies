@@ -85,17 +85,23 @@
             border: 2px solid #1D3D7A;
             border-radius: 10px;
             box-sizing: border-box;
+            line-height: 1.9rem;
         }
 
         .content-item h6 {
             font-size: 16px;
             font-weight: bold;
+            line-height: 1.9rem;
+            
+
         }
 
         .content-item h2 {
             font-size: 24px;
             font-weight: bold;
             margin: 10px 0;
+            line-height: 1.9rem;
+
         }
 
         .content-item span {
@@ -107,7 +113,7 @@
         .content-item p {
             margin-top: 10px;
             font-size: 14px;
-            line-height: 1.6;
+            line-height: 1.9rem;
         }
 
         .water-details-wrapper {

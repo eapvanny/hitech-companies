@@ -12,8 +12,9 @@
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
-    <link rel="icon" href="https://hitech.com.kh/wp-content/uploads/2022/03/Hi-Tech-Water-eng-white-01.svg"
-        type="image/png">
+    {{-- <link rel="icon" href="https://hitech.com.kh/wp-content/uploads/2022/03/Hi-Tech-Water-eng-white-01.svg"
+        type="image/png"> --}}
+    <link rel="icon" href="{{ asset('backends/assets/img/logo/hitech-icon.png') }}" type="image/x-icon" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -323,7 +324,16 @@
                 margin: auto;
             }
         }
+        @media (max-width: 853px) {
 
+            .text-reset {
+                margin-left: auto;
+            }
+
+            .navbar-nav .nav-item {
+                margin: auto;
+            }
+        }
         @media (max-width: 768px) {
 
             .decorative-banner-left,

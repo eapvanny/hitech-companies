@@ -33,6 +33,9 @@
         padding-left: 100px;
         position: relative;
     }
+    h1,h2,h3,h4,h5,h6,p{
+        line-height: 2rem;
+    }
     .hero-text h1 {
         font-size: 68px;
         font-weight: bold;
@@ -74,6 +77,7 @@
     }
     .about-text {
         width: 50%;
+        line-height: 2rem;
     }
     .about-text h2 {
         color: #0056b3;

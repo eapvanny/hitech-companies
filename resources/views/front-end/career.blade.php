@@ -5,7 +5,7 @@
 @section('styles')
     <style>
         .career-section {
-            background-image: url('https://hitech.com.kh/wp-content/uploads/2022/03/career-image.jpg');
+            background-image: url('{{ asset('images/main-carre.jpeg') }}');
             background-size: cover;
             background-position: center;
             height: 100vh;

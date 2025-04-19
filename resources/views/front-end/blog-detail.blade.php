@@ -31,9 +31,9 @@
             align-items: center;
             position: relative;
         }
-        h1, h2, h3 {
+        /* h1, h2, h3 {
            line-height: 2rem;
-        }   
+        }    */
 
         .content-box {
             padding: 20px;

@@ -40,4 +40,5 @@ return [
     'Connect with Us' => 'ភ្ជាប់ជាមួយយើង',
     'Terms & Policies' => 'លក្ខខណ្ឌ និងគោលការណ៍',
     'SOCIETY' => 'សង្គម',
+    'QUALITY AWARD' => 'ពានរង្វាន់គុណភាព',
 ];

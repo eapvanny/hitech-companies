@@ -22,8 +22,8 @@
     /* Hero Section */
     .hero {
         height: 100vh;
-        background: linear-gradient(to bottom, #0000004f 0%, rgba(0, 0, 0, 0.134) 30%, rgba(0, 0, 0, 0.151) 70%), 
-                    url({{asset('images/bg-image-1.jpg')}}) no-repeat center center;
+        background: linear-gradient(to bottom, #3a3a3a4f 0%, rgba(66, 66, 66, 0.134) 30%, rgba(55, 55, 55, 0.151) 70%), 
+                    url({{asset('images/fresh-water.jpeg')}}) no-repeat center center;
         background-size: cover;
         color: white;
         text-align: left;
@@ -114,7 +114,7 @@
         min-height: 400px;
         position: relative;
         color: #fff;
-        background: linear-gradient(to bottom, #87CEEB, #E0F6FF);
+        background: linear-gradient(to bottom, #8ccbe2, #c8e1eb);
     }
     .water-content h2 {
         color: #0056b3;
@@ -164,13 +164,13 @@
     }
     .water-item h3 {
         font-size: 1.5rem;
-        color: #ffffff;
+        color: #0056b3;
         margin-bottom: 5px;
         font-weight: bold;
     }
     .water-item p {
         font-size: 1rem;
-        color: #dbdbdb;
+        color: #3975b4;
         margin-bottom: 10px;
     }
     .view-more {
@@ -191,7 +191,6 @@
         display: flex;
         justify-content: center;
         gap: 20px;
-        margin-top: 20px;
     }
     .navigation span {
         cursor: pointer;
@@ -199,16 +198,64 @@
         font-size: 1.1rem;
         padding: 5px 15px;
         font-weight: bold;
+        margin-top: 10px;
     }
     .navigation span:hover {
         color: #0056b3;
     }
-
+    /* QUALITY AWARD Section */
+    .quality-award {
+        padding: 50px;
+        text-align: center;
+        background: #f9f9f9;
+    }
+    .quality-award h2 {
+        color: #0056b3;
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+   
+    .society {
+        padding: 50px;
+        text-align: center;
+        background: #f9f9f9;
+    }
+    .quality-award-content {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+    .quality-award-item {
+        width: 95%;
+        padding: 20px;
+        text-align: left;
+        box-sizing: border-box;
+    }   
+    .quality-award-item img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-top: 15px;
+    }   
+    .quality-award-item h3 {
+        color: #0056b3;
+        font-size: 1.5rem;
+        margin: 10px 0;
+        font-weight: bold;
+        padding-top: 10px;
+    }
+    .quality-award-item p {
+        color: #666;
+        font-size: 1rem;
+    }
     /* Society Section */
     .society {
         padding: 50px;
         text-align: center;
         background: #f9f9f9;
+        margin-top: -50px;
     }
     .society h2 {
         color: #0056b3;
@@ -251,7 +298,7 @@
     .delivery {
         padding: 50px;
         text-align: center;
-        background: #e0f6ff;
+        background: #c8e1eb;
     }
     .delivery-content {
         display: flex;
@@ -343,7 +390,36 @@
             flex: 0 0 50%;
             max-width: 50%;
         }
+        /* Qualty Award Section */
+        .quality-award {
+            padding: 30px;
+        }
 
+        .quality-award h2 {
+            font-size: 2rem;
+        }
+
+        .quality-award-content {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .quality-award-item {
+            width: 95%;
+            padding: 15px;
+        }
+
+        .quality-award-item h3 {
+            font-size: 1.3rem;
+        }
+
+        .quality-award-item p {
+            font-size: 0.9rem;
+        }
+
+        .quality-award-item img {
+            margin-top: 10px;
+        }
         /* Society Section */
         .society-item {
             width: 100%;
@@ -418,6 +494,31 @@
             font-size: 0.9rem;
         }
 
+        /* Quality Award Section */
+        .quality-award {
+            padding: 20px;
+        }
+
+        .quality-award h2 {
+            font-size: 1.8rem;
+        }
+
+        .quality-award-item {
+            width: 95%;
+            padding: 10px;
+        }
+
+        .quality-award-item h3 {
+            font-size: 1.2rem;
+        }
+
+        .quality-award-item p {
+            font-size: 0.85rem;
+        }
+
+        .quality-award-item img {
+            border-radius: 8px;
+        }
         /* Society Section */
         .society {
             padding: 30px;
@@ -496,7 +597,33 @@
             font-size: 0.9rem;
             padding: 5px 10px;
         }
+        /* Quality Award Section */
+        .quality-award {
+            padding: 15px;
+        }
 
+        .quality-award h2 {
+            font-size: 1.5rem;
+        }
+
+        .quality-award-item {
+            width: 95%;
+            padding: 10px;
+        }
+
+        .quality-award-item h3 {
+            font-size: 1.1rem;
+            padding-top: 5px;
+        }
+
+        .quality-award-item p {
+            font-size: 0.8rem;
+        }
+
+        .quality-award-item img {
+            margin-top: 8px;
+            border-radius: 6px;
+        }
         /* Society Section */
         .society {
             padding: 20px;
@@ -609,31 +736,37 @@
                         <a href="{{route('water')}}"  class="view-more"> {{ __('lang.viewmore') }} </a>
                     </div>
                     @endforeach
-                    
-                    {{-- <div class="water-item">
-                        <img src="https://hitech.com.kh/wp-content/uploads/2022/03/bottle-600ml.png" alt="HI-TECH 600 ml Water Bottle">
-                        <h3>600 ml Water Bottle</h3>
-                        <p>For casual day</p>
-                        <a href="{{route('water')}}" class="view-more">VIEW MORE</a>
-                    </div>
-                    <div class="water-item">
-                        <img src="https://hitech.com.kh/wp-content/uploads/2022/03/bottle-1500ml.png" alt="HI-TECH 1500 ml Water Bottle">
-                        <h3>1500 ml Water Bottle</h3>
-                        <p>For travelling</p>
-                        <a href="{{route('water')}}" class="view-more">VIEW MORE</a>
-                    </div>
-                    <div class="water-item">
-                        <img src="https://hitech.com.kh/wp-content/uploads/2022/03/bottle-20L-3-2.png" alt="HI-TECH 20L Water">
-                        <h3>20L Water</h3>
-                        <p>For home and office</p>
-                        <a href="{{route('water')}}" class="view-more">VIEW MORE</a>
-                    </div> --}}
                 </div>
             </div>
             <div class="navigation">
                 <span class="prev" id="prev-btn"><< {{__('lang.prev')}}</span>
                 <span class="next" id="next-btn"> {{ __('lang.next') }} >></span>
             </div>
+        </div>
+    </section>
+     <!-- quality award Section -->
+     <section class="quality-award">
+        <h2>{{ __('lang.QUALITY AWARD') }}</h2>
+        <div class="quality-award-content">
+            @foreach ($awards as $s)
+            <div class="quality-award-item">
+                <img src="{{ asset($s->img) }}" alt="Quality and Price" data-src="path-to-quality-price-image.jpg">
+                <h3>
+                    @if (session()->has('user_lang') && session('user_lang') == 'en')
+                        {{ $s->title_en }}
+                    @else
+                        {{ $s->title_kh }}
+                    @endif    
+                </h3>
+                <p>
+                    @if (session()->has('user_lang') && session('user_lang') == 'en')
+                        {{ $s->description_en }}
+                    @else
+                        {{ $s->description_kh }}
+                    @endif    
+                </p>
+            </div>
+            @endforeach
         </div>
     </section>
     <!-- Society Section -->
@@ -659,22 +792,6 @@
                 </p>
             </div>
             @endforeach
-           
-            {{-- <div class="society-item">
-                <img src="https://hitech.com.kh/wp-content/uploads/elementor/thumbs/blog-image-3-1-qkisjwvdxl43w7aznxp1jlu8wvv4xus8vkiowscha4.jpg" alt="Response to Society Necessity" data-src="path-to-response-image.jpg">
-                <h3>Response to society necessity</h3>
-                <p>Due to Covid-19 widely spread, all employees are fully vaccinated to meet the requirement of government and to ensure the safety of our product to customer.</p>
-            </div>
-            <div class="society-item">
-                <img src="https://hitech.com.kh/wp-content/uploads/elementor/thumbs/hitech-qkisjwvdxl43w7aznxp1jlu8wvv4xus8vkiowscha4.jpg">
-                <h3>Corporate social responsibility</h3>
-                <p>During Covid-19 crisis, we have contributed our drinking water to Ministry of health and districts in Phnom Penh city to those who in needs and particularly Covid-19 patient. </p>
-            </div>
-            <div class="society-item">
-                <img src="https://hitech.com.kh/wp-content/uploads/elementor/thumbs/IMG_9999-6-qkisjyr2b96ojf89cyiaold63nlvd8zpjttnvc9oxo.jpg">
-                <h3>Corporate social responsibility </h3>
-                <p>To participate and show encouragement in social activities, we have constantly contributed our water to UYFC (Union of Youth Federation of Cambodia) for their social campaigns.</p>
-            </div> --}}
         </div>
     </section>
     <!-- Delivery Section -->

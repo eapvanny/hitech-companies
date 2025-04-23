@@ -517,7 +517,7 @@
 
                         <p>
                         @if (session()->has('user_lang') && session('user_lang') == 'en')
-                            {{ $w->description_en }}
+                            {{ $w->description }}
                         @else
                             {{ $w->description_kh }}
                         @endif    

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\FronEnd;
 
 use App\Http\Controllers\Controller;
 use App\Models\About;
+use App\Models\Award;
 use App\Models\Our_water;
 use App\Models\Slide;
 use App\Models\Society;
@@ -18,6 +19,7 @@ class HomController extends Controller
     public function index()
     {
         $data['slides'] = Slide::where('active_status', 1)->first();
+        $data['awards'] = Award::where('active_status', 1)->get();
         $data['overview'] = About::where('active_status', 1)->first();
         $data['waters'] = Our_water::where('active_status', 1)->get();
         $data['societys'] = Society::where('active_status', 1)->get();

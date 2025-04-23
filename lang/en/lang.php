@@ -38,6 +38,8 @@ return [
     'Terms of Use' => 'Terms of Use',
     'Privacy Policy' => 'Privacy Policy',
     'Hi-Tech Water' => 'Hi-Tech Water',
+    'Terms & Policies' => 'Terms & Policies',
+    'QUALITY AWARD' => 'QUALITY AWARD',
     'Connect with Us' => 'Connect with Us',
     'SOCIETY' => 'SOCIETY',
 ];

@@ -126,7 +126,11 @@
                                             <span class="sub-item">{{__('Slide show')}}</span>
                                         </a>
                                     </li>
-
+                                    <li class="award">
+                                        <a href="{{ route('home.award') }}">
+                                            <span class="sub-item">{{__('Award')}}</span>
+                                        </a>
+                                    </li>
                                     <li class="society">
                                         <a href="{{ route('home.society') }}">
                                             <span class="sub-item">{{__('Society')}}</span>

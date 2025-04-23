@@ -725,7 +725,7 @@
 
             .about-content p {
                 margin-left: 20px;
-                line-height: 1.1rem;
+                line-height: 1.18rem;
                 font-size: 13.5px;
             }
             .commitment-name {

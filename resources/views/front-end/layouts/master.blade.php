@@ -228,7 +228,40 @@
             font-size: 14px;
             margin-top: 30px;
         }
+    	.waves {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 100px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 100'%3E%3Cpath d='M0 50C100 80 200 20 300 50S400 80 500 50 600 20 700 50 800 80 800 50V100H0Z' fill='rgba(29, 162, 216, 0.3)'/%3E%3C/svg%3E");
+            background-size: 800px 100px;
+            animation: waves 10s linear infinite;
+            z-index: 0;
+        }
 
+        .waves:nth-child(2) {
+            height: 80px;
+            opacity: 0.5;
+            animation-duration: 9s;
+            animation-direction: reverse;
+            background-position: 200px 0;
+        }
+
+        .waves:nth-child(3) {
+            height: 60px;
+            opacity: 0.7;
+            animation-duration: 5s;
+            background-position: 400px 0;
+        }
+
+        @keyframes waves {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                background-position-x: -700px;
+            }
+        }
         /* Back to Top Button */
         .back-to-top {
             position: fixed;
@@ -690,6 +723,9 @@
 
     <footer class="footer"
         @if (!empty(@$theme->footer_decor)) style="background-image: url({{ asset(@$theme->footer_decor) }})" @endif>
+        <div class="waves"></div>
+        <div class="waves"></div>
+        <div class="waves"></div>
         <div class="container">
             <div class="row">
                 <div class="col-md-5 col-sm-5 col-lg-5">

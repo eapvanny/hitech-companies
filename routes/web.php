@@ -27,6 +27,7 @@ use App\Http\Controllers\OurcompanyController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\FronEnd\HomController;
 use App\Http\Controllers\AccrediationController;
+use App\Http\Controllers\AwardController;
 use App\Http\Controllers\VisionmissionController;
 use App\Http\Controllers\FronEnd\BlogController as FronEndBlogController;
 use App\Http\Controllers\FronEnd\ContactController as FronEndContactController;
@@ -154,6 +155,15 @@ Route::middleware('auth')->group(function () {
         Route::post('/home-page/society/post/{id}/status', [SocietyController::class, 'status'])->name('society.status');
         Route::get('/home-page/society/post/{id}/edit', [SocietyController::class, 'edit'])->name('society.edit');
         Route::post('/home-page/society/post/{id}/edit/save', [SocietyController::class, 'doEdit'])->name('society.doEdit');
+
+        Route::get('/home-page/award',[AwardController::class, 'index'])->name('home.award');
+        Route::get('/home-page/award/post',[AwardController::class, 'post'])->name('award.post');
+        Route::post('/home-page/add',[AwardController::class, 'add'])->name('award.add');
+
+        Route::post('/home-page/award/post/{id}/delete', [AwardController::class, 'delete'])->name('award.delete');
+        Route::post('/home-page/award/post/{id}/status', [AwardController::class, 'status'])->name('award.status');
+        Route::get('/home-page/award/post/{id}/edit', [AwardController::class, 'edit'])->name('award.edit');
+        Route::post('/home-page/award/post/{id}/edit/save', [AwardController::class, 'doEdit'])->name('award.doEdit');
 
         Route::get('/home-page/silde',[SlideshowController::class, 'index'])->name('home.slide');
         Route::post('/home-page/slide/post', [SlideshowController::class, 'post'])->name('slide.post');

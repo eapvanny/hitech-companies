@@ -22,7 +22,7 @@
             box-sizing: border-box;
         }
         h1,h2,p{
-            line-height: 2rem;
+            line-height: 1.65rem;
         }
         h1{
             margin-bottom: 20px;
@@ -627,6 +627,9 @@
             .about-content p{
                 line-height: 1.4rem;
             }
+            P{
+                line-height: 1.2rem;
+            }
         }
         @media (max-width:430px) {
             .about-section {
@@ -649,6 +652,9 @@
             .commitment-name {
                 width: 240px;
                 margin-left: -21%;
+            }
+            P{
+                line-height: 1.2rem;
             }
 
         }
@@ -674,6 +680,9 @@
             .commitment-name {
                 width: 230px;
                 margin-left: -21%;
+            }
+            p{
+                line-height: 1.2rem;
             }
 
         }
@@ -769,6 +778,9 @@
             .commitment-text h2 {
                 font-size: .9rem
             }
+            p{
+                line-height: 1.2rem;
+            }
         }
 
         @media (max-width: 360px) {
@@ -794,6 +806,9 @@
 
             .commitment-text h2 {
                 font-size: .8rem
+            }
+            p{
+                line-height: 1.2rem;
             }
         }
 

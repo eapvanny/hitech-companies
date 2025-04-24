@@ -9,7 +9,7 @@ return [
     'next' => 'NEXT',
     'viewmore' => 'VIEW MORE',
     'ourwater' => 'Our Water',
-    'ourtitle' => 'Start your day with our ranges of bottled water.',
+    'ourtitle' => 'Start your day with our 4 bottle sizes.',
     'products' => 'PRODUCTS',
     'producttitle' => 'We produce high quality water because  your health is of the utmost importance.',
     'ourcompany' => 'OUR COMPANY',
@@ -39,7 +39,7 @@ return [
     'Privacy Policy' => 'Privacy Policy',
     'Hi-Tech Water' => 'Hi-Tech Water',
     'Terms & Policies' => 'Terms & Policies',
-    'QUALITY AWARD' => 'QUALITY AWARD',
+    'QUALITY AWARD-MONDE SELECTION' => 'QUALITY AWARD MONDE SELECTION',
     'Connect with Us' => 'Connect with Us',
     'SOCIETY' => 'SOCIETY',
 ];

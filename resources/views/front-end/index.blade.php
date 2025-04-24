@@ -33,14 +33,19 @@
         padding-left: 100px;
         position: relative;
     }
-    h1,h2,h3,h4,h5,h6,p{
+    h1,h2,h3,h4,h5,h6{
+        line-height: 2rem;
+        font-family: 'Poppins','Kantumruy', sans-serif !important;
+    }
+    p{
         line-height: 2rem;
     }
     .hero-text h1 {
-        font-size: 68px;
+        font-size: 40px;
         font-weight: bold;
         animation: fadeIn 1s ease-in;
-        line-height: 1.2;
+        line-height: 4rem;
+        font-family: 'Poppins','Kantumruy', sans-serif !important;
     }
     .hero-image {
         position: absolute;
@@ -354,6 +359,7 @@
         }
         .hero-text h1 {
             font-size: 40px;
+            line-height: 1.2;
         }
     }
 
@@ -371,6 +377,7 @@
         }
         .hero-text h1 {
             font-size: 32px;
+            line-height: 1.2;
         }
 
         /* About Section */
@@ -460,6 +467,7 @@
         }
         .hero-text h1 {
             font-size: 28px;
+            line-height: 1.2;
         }
 
         /* About Section */
@@ -560,6 +568,7 @@
         }
         .hero-text h1 {
             font-size: 24px;
+            line-height: 1.2;
         }
 
         /* About Section */
@@ -663,7 +672,7 @@
 @section('content')
     <section class="hero">
         <div class="hero-text">
-            <h1 style="width: 50%"> 
+            <h1 style="width: 60%"> 
                 @if (session()->has('user_lang') && session('user_lang') == 'en')
                     {{ $slides->title_en }}
                 @else
@@ -746,7 +755,7 @@
     </section>
      <!-- quality award Section -->
      <section class="quality-award">
-        <h2>{{ __('lang.QUALITY AWARD') }}</h2>
+        <h2>{{ __('lang.QUALITY AWARD-MONDE SELECTION') }}</h2>
         <div class="quality-award-content">
             @foreach ($awards as $s)
             <div class="quality-award-item">

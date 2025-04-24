@@ -798,7 +798,7 @@
 
             .about-content p {
                 font-size: 11px;
-                line-height: 1.1rem;
+                line-height: 1.07rem;
                 color: #FFFFFF;
                 margin-top: 10px;
                 margin-left: 0px;

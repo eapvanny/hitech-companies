@@ -18,17 +18,23 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="{{asset('front-end/css/style.css')}}">
+    {{-- <link rel="stylesheet" href="{{asset('front-end/css/style.css')}}"> --}}
     <!-- Custom CSS -->
     <meta property="description" content="Hitech water" />
     <meta property="description" content="Hitech water" />
     @yield('seo')
     <style>
-        /* @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'); */
-        
-
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+        @font-face {
+            font-family: 'Kantumruy';
+            src: url('/fonts/KantumruyPro-Bold.ttf') format('truetype');
+        }
+        @font-face {
+            font-family: 'Kantumruy-normal';
+            src: url('/fonts/Kantumruy.ttf') format('truetype');
+        }
         body {
-            font-family: "Poppins", "Siemreap", sans-serif;
+            font-family: "Poppins", "Kantumruy-normal", sans-serif;
             overflow-x: hidden;
             background-color: #f5f5f5;
         }
@@ -45,7 +51,9 @@
         .navbar-scrolled {
             background: linear-gradient(90deg, rgba(26, 106, 168, 1) 0%, rgba(217, 36, 40, 1) 100%);
         }
-
+        .nav-item a{
+            font-size: 20px;
+        }
         .navbar-nav .nav-item {
             margin: 0 15px;
         }
@@ -336,7 +344,11 @@
             opacity: 1;
         }
 
-
+        @media (max-width: 1024px) {
+            .nav-item a{
+                font-size: 17px;
+            }
+        }
         @media (max-width: 992px) {
 
             .decorative-banner-left,
@@ -352,7 +364,9 @@
             .text-reset {
                 margin-left: 350px;
             }
-
+            .nav-item a{
+                font-size: 18px;
+            }
             .navbar-nav .nav-item {
                 margin: auto;
             }
@@ -362,7 +376,9 @@
             .text-reset {
                 margin-left: auto;
             }
-
+            .nav-item a{
+                font-size: 16px;
+            }
             .navbar-nav .nav-item {
                 margin: auto;
             }
@@ -382,7 +398,9 @@
             .text-reset {
                 margin-left: 350px;
             }
-
+            .nav-item a{
+                font-size: 14px;
+            }
             .navbar-nav .nav-item {
                 margin: auto;
             }
@@ -423,6 +441,9 @@
             .decorative-banner-right {
                 display: block;
             }
+            .nav-item a{
+                font-size: 18px;
+            }
         }
 
         @media (max-width: 414px) {
@@ -430,6 +451,9 @@
             .decorative-banner-left,
             .decorative-banner-right {
                 display: block;
+            }
+            .nav-item a{
+                font-size: 18px;
             }
         }
 
@@ -685,7 +709,7 @@
             </button>
 
             <!-- Navbar Links -->
-            <div class="collapse navbar-collapse order-md-2" id="navbarNav">
+            <div class="collapse navbar-collapse order-md-2" id="navbarNav" style="font-family: 'Poppins','Kantumruy', sans-serif">
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('user.home') ? 'active' : '' }}"

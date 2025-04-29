@@ -68,21 +68,69 @@
                                 <div class="col-12">
                                     <div class="ui form">
                                         <div class="field">
-                                            <label for="img">Upload Image <span class="text-danger">*</span></label>
-                                            <div class="ui placeholder segment">
-                                                <div class="ui icon header">
-                                                    <i class="image outline icon" id="icon"></i>
-                                                    <img src="" id="pre_img" alt="preview" class="d-none mx-auto" style="width: 40%">
-                                                    Upload image for thumbnail.
+                                            <label for="img">Upload Images <span class="text-danger">*</span></label>
+                                            <div class="ui placeholder segment" style="display: flex; flex-direction: row; gap: 20px; align-items: center;">
+                                                <!-- Image 1 Section -->
+                                                <div style="flex: 1; text-align: center;">
+                                                    <div class="ui icon header">
+                                                        <i class="image icon" id="icon1"></i>
+                                                        <img src="{{ old('img1', session('img1')) ?? '' }}" id="pre_img1" alt="preview" class="{{ session('img1') ? '' : 'd-none' }} mx-auto" style="width: 100%;">
+                                                        Upload image 1 for thumbnail.
+                                                    </div>
+                                                    <label for="img1" class="ui primary button text-white">Browse Image 1</label>
                                                 </div>
-                                                <label for="img" class="ui primary button text-white">Browse to Image</label>
+                                        
+                                                <!-- Image 2 Section -->
+                                                <div style="flex: 1; text-align: center;">
+                                                    <div class="ui icon header">
+                                                        <i class="image icon" id="icon2"></i>
+                                                        <img src="{{ old('img2', session('img2')) ?? '' }}" id="pre_img2" alt="preview" class="{{ session('img2') ? '' : 'd-none' }} mx-auto" style="width: 100%;">
+                                                        Upload image 2 for thumbnail.
+                                                    </div>
+                                                    <label for="img2" class="ui primary button text-white">Browse Image 2</label>
+                                                </div>
+                                        
+                                                <!-- Image 3 Section -->
+                                                <div style="flex: 1; text-align: center;">
+                                                    <div class="ui icon header">
+                                                        <i class="image icon" id="icon3"></i>
+                                                        <img src="{{ old('img3', session('img3')) ?? '' }}" id="pre_img3" alt="preview" class="{{ session('img3') ? '' : 'd-none' }} mx-auto" style="width: 100%;">
+                                                        Upload image 3 for thumbnail.
+                                                    </div>
+                                                    <label for="img3" class="ui primary button text-white">Browse Image 3</label>
+                                                </div>
+                                        
+                                                <!-- Image 4 Section -->
+                                                <div style="flex: 1; text-align: center;">
+                                                    <div class="ui icon header">
+                                                        <i class="image icon" id="icon4"></i>
+                                                        <img src="{{ old('img4', session('img4')) ?? '' }}" id="pre_img4" alt="preview" class="{{ session('img4') ? '' : 'd-none' }} mx-auto" style="width: 100%;">
+                                                        Upload image 4 for thumbnail.
+                                                    </div>
+                                                    <label for="img4" class="ui primary button text-white">Browse Image 4</label>
+                                                </div>
                                             </div>
-                                            <input type="file" id="img" name="img" class="d-none" accept="image/*">
-                                            @error('img')
+                                        
+                                            <!-- File inputs with unique IDs -->
+                                            <input type="file" id="img1" name="img1" class="d-none" accept="image/*">
+                                            <input type="file" id="img2" name="img2" class="d-none" accept="image/*">
+                                            <input type="file" id="img3" name="img3" class="d-none" accept="image/*">
+                                            <input type="file" id="img4" name="img4" class="d-none" accept="image/*">
+                                        
+                                            <!-- Error handling -->
+                                            @error('img1')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+                                            @error('img2')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+                                            @error('img3')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+                                            @error('img4')
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
-
                                         <h5 class="ui horizontal divider mt-4 text-warning">
                                             <i class="globe icon"></i> Khmer Text
                                         </h5>
@@ -162,19 +210,33 @@
 
 @section('js')
     <script>
-        $(document).ready(function () {
-            $('#img').on('change', function(event) {
-                const file = event.target.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        $('#pre_img').removeClass('d-none').addClass('d-block');
-                        $('#icon').addClass('d-none');
-                        $('#pre_img').attr('src', e.target.result);
-                    };
-                    reader.readAsDataURL(file);
-                }
-            });
+        $(document).ready(function() {
+            // Function to handle image preview and icon toggle
+            function handleImagePreview(inputSelector, previewSelector, iconSelector) {
+                $(inputSelector).on('change', function() {
+                    const file = this.files[0];
+                    const $preview = $(previewSelector);
+                    const $icon = $(iconSelector);
+
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            $preview.attr('src', e.target.result).removeClass('d-none'); // Show the preview image
+                            $icon.addClass('d-none'); // Hide the icon
+                        };
+                        reader.readAsDataURL(file);
+                    } else {
+                        $preview.attr('src', '').addClass('d-none'); // Hide the preview image
+                        $icon.removeClass('d-none'); // Show the icon
+                    }
+                });
+            }
+
+            // Set up previews for all three inputs
+            handleImagePreview('#img1', '#pre_img1', '#icon1');
+            handleImagePreview('#img2', '#pre_img2', '#icon2');
+            handleImagePreview('#img3', '#pre_img3', '#icon3');
+            handleImagePreview('#img4', '#pre_img4', '#icon4');
 
             $('#homepage').addClass('active');
             $('#homepagecollapse').addClass('collapse show');

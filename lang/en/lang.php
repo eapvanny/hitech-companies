@@ -3,12 +3,12 @@
 return [
     'aboutus' => 'About us',
     'contacttitle' => 'Bottle Water Delivery Service',
-    'contactdescription' => 'We have more than 100 delivery trucks to distribute our products to depot and end-user nationwide, our goal is to provide the fastest delivery service to valuable customer. Make your order and we deliver now!',
+    'contactdescription' => 'We offer fast delivery services to distribute our products to depots and customers across the country. Our goal is to provide the fastest delivery service to our clients. Once you place your order, we will deliver it as quickly as possible!',
     'contactus' => 'Contact Us',
     'prev' => 'PREV',
     'next' => 'NEXT',
     'viewmore' => 'VIEW MORE',
-    'ourwater' => 'Our Water',
+    'hitech' => 'Hi-Tech Drinking Water',
     'ourtitle' => 'Start your day with our 4 bottle sizes.',
     'products' => 'PRODUCTS',
     'producttitle' => 'We produce high quality water because  your health is of the utmost importance.',
@@ -41,5 +41,5 @@ return [
     'Terms & Policies' => 'Terms & Policies',
     'QUALITY AWARD-MONDE SELECTION' => 'QUALITY AWARD MONDE SELECTION',
     'Connect with Us' => 'Connect with Us',
-    'SOCIETY' => 'SOCIETY',
+    'SOCIETY' => 'CORPORATE SOCIAL RESPONSIBILITY',
 ];

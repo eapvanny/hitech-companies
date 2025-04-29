@@ -48,44 +48,97 @@
                 <div class="card-body">
                     <div class="chart-container" style="min-height: auto">
                         <form method="post" action="{{ route('award.doEdit', ['id'=>$data->id]) }}" autocomplete="off" enctype="multipart/form-data">
+                            @csrf
                             <div class="container">
                                 <div class="row p-4">
-                                    <div class="col-sm12 col-md-12 col-lg-12 col-xl-12">
+                                    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
                                         <div class="ui form">
                                             <div class="field">
-                                                @csrf
-                                                <label for="">Upload image <span class="text-danger">*</span></label>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        {{-- <label for="img" class="text-center p-2 label-image">
-                                                            <img src="{{ asset('backends/assets/img/placeholder-image.webp') }}" id="pre_img" alt="img-placeholder" width="10%" class="m-auto">
-                                                            <input type="file" id="img" name="img" class="w-50">
-                                                            <div class="hover-bg">
-                                                                <i class="fas fa-plus-circle fs-1"></i>
-                                                            </div>
-                                                        </label> --}}
-                                                        <div class="ui placeholder segment">
-                                                            <div class="ui icon header">
-                                                              <i class="image outline icon d-none" id="icon"></i>
-                                                              <img src="{{ asset($data->img) }}" id="pre_img" alt="pre_img" class="mx-auto d-block" style="width: 40%">
-                                                                Upload image for thumbnail.
-                                                            </div>
-                                                            <label for="img" class="ui primary button text-white">Browse to image</label>
+                                                <label for="img">Upload Images <span class="text-danger">*</span></label>
+                                                <div class="ui placeholder segment" style="display: flex; flex-direction: row; gap: 20px; align-items: center;">
+                                                    @php
+                                                        // Safely handle $data->img, default to empty array if null
+                                                        $images = is_array($data->img) ? $data->img : [];
+                                                        // Pad the array to ensure 4 elements, filling with empty strings if needed
+                                                        $images = array_pad($images, 4, '');
+                                                    @endphp
+                                            
+                                                    <!-- Image 1 Section -->
+                                                    <div style="flex: 1; text-align: center;">
+                                                        <div class="ui icon header">
+                                                            @if(empty($images[0]))
+                                                                <i class="image icon" id="icon1"></i> 
+                                                            @else
+                                                                <i class="image icon d-none" id="icon1"></i>
+                                                            @endif
+                                                            <img src="{{ $images[0] ? asset($images[0]) : '' }}" id="pre_img1" alt="preview" class="{{ $images[0] ? '' : 'd-none' }} mx-auto" style="width: 100%;">
+                                                            Upload image 1 for thumbnail.
                                                         </div>
-                                                        <input type="file" id="img" name="img" class="w-50 d-none" accept="image/*">
-                                                        {{-- <input type="hidden" name="old_img" value="{{ $data->img }}" class="d-"> --}}
+                                                        <label for="img1" class="ui primary button text-white">Browse Image 1</label>
+                                                    </div>
+                                            
+                                                    <!-- Image 2 Section -->
+                                                    <div style="flex: 1; text-align: center;">
+                                                        <div class="ui icon header">
+                                                            @if(empty($images[1]))
+                                                                <i class="image icon" id="icon2"></i>
+                                                            @else
+                                                                <i class="image icon d-none" id="icon2"></i>
+                                                            @endif
+                                                            <img src="{{ $images[1] ? asset($images[1]) : '' }}" id="pre_img2" alt="preview" class="{{ $images[1] ? '' : 'd-none' }} mx-auto" style="width: 100%;">
+                                                            Upload image 2 for thumbnail.
+                                                        </div>
+                                                        <label for="img2" class="ui primary button text-white">Browse Image 2</label>
+                                                    </div>
+                                            
+                                                    <!-- Image 3 Section -->
+                                                    <div style="flex: 1; text-align: center;">
+                                                        <div class="ui icon header">
+                                                            @if(empty($images[2]))
+                                                                <i class="image icon" id="icon3"></i>
+                                                            @else
+                                                                <i class="image icon d-none" id="icon3"></i>
+                                                            @endif
+                                                            <img src="{{ $images[2] ? asset($images[2]) : '' }}" id="pre_img3" alt="preview" class="{{ $images[2] ? '' : 'd-none' }} mx-auto" style="width: 100%;">
+                                                            Upload image 3 for thumbnail.
+                                                        </div>
+                                                        <label for="img3" class="ui primary button text-white">Browse Image 3</label>
+                                                    </div>
+                                            
+                                                    <!-- Image 4 Section -->
+                                                    <div style="flex: 1; text-align: center;">
+                                                        <div class="ui icon header">
+                                                            @if(empty($images[3]))
+                                                                <i class="image icon" id="icon4"></i>
+                                                            @else
+                                                                <i class="image icon d-none" id="icon4"></i>
+                                                            @endif
+                                                            <img src="{{ $images[3] ? asset($images[3]) : '' }}" id="pre_img4" alt="preview" class="{{ $images[3] ? '' : 'd-none' }} mx-auto" style="width: 100%;">
+                                                            Upload image 4 for thumbnail.
+                                                        </div>
+                                                        <label for="img4" class="ui primary button text-white">Browse Image 4</label>
                                                     </div>
                                                 </div>
-        
-        
-                                                {{-- <label for="bottle" class="fw-bold mt-2">Water bottle <span class="text-danger">*</span></label>
-                                                <select class="ui search dropdown" id="bottle" name="bottle">
-                                                        <option value="">Select water bottle</option>
-                                                        <option value="350ml"><i class="circle icon"></i>350 ml Water bottle</option>
-                                                        <option value="600ml"><i class="circle icon"></i>600 ml Water bottle</option>
-                                                        <option value="1500ml"><i class="circle icon"></i>1500 ml Water bottle</option>
-                                                        <option value="20L"><i class="circle icon"></i>20 L Water</option>
-                                                </select> --}}
+                                            
+                                                <!-- File inputs with unique IDs -->
+                                                <input type="file" id="img1" name="img1" class="d-none" accept="image/*">
+                                                <input type="file" id="img2" name="img2" class="d-none" accept="image/*">
+                                                <input type="file" id="img3" name="img3" class="d-none" accept="image/*">
+                                                <input type="file" id="img4" name="img4" class="d-none" accept="image/*">
+                                            
+                                                <!-- Error handling -->
+                                                @error('img1')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
+                                                @error('img2')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
+                                                @error('img3')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
+                                                @error('img4')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
                                             </div>
                                         </div>
                                         <h5 class="ui horizontal divider mt-4 text-warning">
@@ -183,23 +236,28 @@
     </script>
 
     <script>
-        $(document).ready(function () { 
-            $('#social').dropdown();
-            // var selectUpdateValue = $('.item.active.selected').val();
-            // console.log($('.item.active.selected').val());
+        $(document).ready(function () {
+            // Handle the image preview for all file input fields dynamically
+            $('input[type="file"]').on('change', function (e) {
+                var inputId = $(this).attr('id'); // Get the ID of the input field (img1, img2, img3, etc.)
+                var previewId = '#pre_' + inputId; // Corresponding preview image ID (pre_img1, pre_img2, pre_img3, etc.)
+                var iconId = '#icon' + inputId.replace('img', ''); // Corresponding icon ID (icon1, icon2, icon3, etc.)
 
+                var file = e.target.files[0]; // Get the selected file
+                var reader = new FileReader();
 
-            $('#img').on('change', function(event) {
-                const file = event.target.files[0];
+                reader.onload = function (e) {
+                    // Set the preview image source, make it visible, and hide the icon
+                    $(previewId).attr('src', e.target.result).removeClass('d-none');
+                    $(iconId).addClass('d-none'); // Hide the icon
+                };
+
                 if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        $('#pre_img').removeClass('d-none');
-                        $('#pre_img').addClass('d-block');
-                        $('#icon').addClass('d-none');
-                        $('#pre_img').attr('src', e.target.result).show();
-                    };
-                    reader.readAsDataURL(file);
+                    reader.readAsDataURL(file); // Read the file as a data URL
+                } else {
+                    // If no file is selected, reset the preview and show the icon
+                    $(previewId).attr('src', '').addClass('d-none');
+                    $(iconId).removeClass('d-none'); // Show the icon
                 }
             });
         });

@@ -16,4 +16,8 @@ class Award extends Model
         'seo_description',
         'active_status',
     ];
+
+    protected $casts = [
+        'img' => 'array', // Cast the img field as an array
+    ];
 }

@@ -19,7 +19,7 @@ class HomController extends Controller
     public function index()
     {
         $data['slides'] = Slide::where('active_status', 1)->first();
-        $data['awards'] = Award::where('active_status', 1)->get();
+        $data['awards'] = Award::where('active_status', 1)->orderBy('created_at', 'desc')->first();
         $data['overview'] = About::where('active_status', 1)->first();
         $data['waters'] = Our_water::where('active_status', 1)->get();
         $data['societys'] = Society::where('active_status', 1)->get();

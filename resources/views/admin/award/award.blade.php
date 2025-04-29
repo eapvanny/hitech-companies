@@ -70,7 +70,11 @@
                                             {{ $i++ }}
                                         </td>
                                         <td style="width: 100px">
-                                            <img src="{{ asset($social->img) }}" width="100px" alt="">
+                                            @if (!empty($social->img) && is_array($social->img) && isset($social->img[0]))
+                                                <img src="{{ asset($social->img[0]) }}" width="100px" alt="Award Image">
+                                            @else
+                                                <img src="{{ asset('images/placeholder.jpg') }}" width="100px" alt="No Image">
+                                            @endif
                                         </td>
                                         <td>
                                             {{$social->title_en}}
@@ -124,21 +128,23 @@
                                                     @endif</h1>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <img src="{{ asset($social->img) }}" alt="Thumbnail" class="mx-auto d-block" style="width:60%">
+                                                    @if (!empty($social->img) && is_array($social->img) && isset($social->img[0]))
+                                                        <img src="{{ asset('storage/' . $social->img[0]) }}" alt="Thumbnail" class="mx-auto d-block" style="width:60%">
+                                                    @else
+                                                        <img src="{{ asset('images/placeholder.jpg') }}" alt="No Image" class="mx-auto d-block" style="width:60%">
+                                                    @endif
+                                                
                                                     <div class="ui horizontal divider text-primary">
                                                         Khmer
                                                     </div>
-                                                    <p class="fw-bold fs-5">{{$social->title_kh}}</p>
-                                                    <p>{{$social->description_kh}}</p>
-
+                                                    <p class="fw-bold fs-5">{{ $social->title_kh }}</p>
+                                                    <p>{{ $social->description_kh }}</p>
+                                                
                                                     <div class="ui horizontal divider text-primary">
                                                         English
                                                     </div>
-                                                    <p class="fw-bold fs-5">{{$social->title_en}}</p>
-                                                    <p>{{$social->description_en}}</p>
-
-                                                    
-                                                    {{-- <label for="" class="fw-bold text-danger text-center w-100">Do you want to delete <span class="fs-4 text-primary d-block text-center mt-2">Bottle {{ ucfirst($social->bottle) }}</span></label> --}}
+                                                    <p class="fw-bold fs-5">{{ $social->title_en }}</p>
+                                                    <p>{{ $social->description_en }}</p>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Close</button>

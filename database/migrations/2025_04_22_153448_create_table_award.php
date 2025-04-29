@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('awards', function (Blueprint $table) {
             $table->id();
-            $table->string('img')->nullable();
+            $table->text('img')->nullable();
             $table->string('title_kh')->nullable();
             $table->string('title_en')->nullable();
             $table->text('description_kh') -> nullable();

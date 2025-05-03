@@ -146,7 +146,12 @@
                                 <p>{{ __(' Our water ') }}</p>
                             </a>
                         </li>
-
+                        {{-- <li class="nav-item" id="event">
+                            <a  href="{{ route('event.index') }}" class="collapsed">
+                                <i class="fab fa-slack"></i>
+                                <p>{{ __(' Event ') }}</p>
+                            </a>
+                        </li> --}}
                         <li class="nav-item" id="blog">
                             <a  href="{{ route('blog.index') }}" class="collapsed">
                                 <i class="fab fa-blogger-b"></i>

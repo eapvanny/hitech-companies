@@ -29,6 +29,7 @@ return [
     'contactSuccessMessage' => 'Thanks for contacting us! We will be in touch with you shortly.',
     'home' => 'Home',
     'water' => 'Water',
+    'event' => 'Event',
     'blog' => 'Blog',
     'career' => 'Career',
     // 'contac'

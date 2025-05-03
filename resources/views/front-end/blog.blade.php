@@ -29,8 +29,18 @@
             /* Replace with your background image */
             position: relative;
             /* margin-top: 60px; */
+            animation: fadeIn 1.5s ease-out;
+        }
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
         .blog-section h1 {
             text-align: center;
             font-size: 48px;

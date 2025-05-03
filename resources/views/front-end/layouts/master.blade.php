@@ -346,7 +346,7 @@
 
         @media (max-width: 1024px) {
             .nav-item a{
-                font-size: 17px;
+                font-size: 13.82px;
             }
         }
         @media (max-width: 992px) {
@@ -377,7 +377,7 @@
                 margin-left: auto;
             }
             .nav-item a{
-                font-size: 16px;
+                font-size: 11px;
             }
             .navbar-nav .nav-item {
                 margin: auto;
@@ -399,7 +399,7 @@
                 margin-left: 350px;
             }
             .nav-item a{
-                font-size: 14px;
+                font-size: 12px !important;
             }
             .navbar-nav .nav-item {
                 margin: auto;
@@ -563,6 +563,9 @@
             .navbar-toggler {
                 display: none !important;
             }
+            .nav-item a{
+                font-size: 13.81px;
+            }
         }
 
         /* Default behavior for other devices (mobile) */
@@ -719,6 +722,10 @@
                         <a class="nav-link {{ request()->routeIs('water') ? 'active' : '' }}"
                             href="{{ url('/water') }}"> {{ __('lang.water') }} </a>
                     </li>
+                    {{-- <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('event') ? 'active' : '' }}"
+                            href="{{ url('/event') }}"> {{ __('lang.event') }} </a>
+                    </li> --}}
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('about') ? 'active' : '' }}"
                             href="{{ url('/about') }}"> {{ __('lang.aboutus') }} </a>

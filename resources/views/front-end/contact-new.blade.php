@@ -33,8 +33,18 @@
             align-items: center;
             color: white;
             text-align: center;
+            animation: fadeIn 1.5s ease-out;
+        }
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
         .contact-content h1 {
             font-size: clamp(2rem, 5vw, 3rem); /* Responsive font size */
             font-weight: bold;

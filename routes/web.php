@@ -28,6 +28,7 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\FronEnd\HomController;
 use App\Http\Controllers\AccrediationController;
 use App\Http\Controllers\AwardController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\VisionmissionController;
 use App\Http\Controllers\FronEnd\BlogController as FronEndBlogController;
 use App\Http\Controllers\FronEnd\ContactController as FronEndContactController;
@@ -165,6 +166,16 @@ Route::middleware('auth')->group(function () {
         Route::get('/home-page/award/post/{id}/edit', [AwardController::class, 'edit'])->name('award.edit');
         Route::post('/home-page/award/post/{id}/edit/save', [AwardController::class, 'doEdit'])->name('award.doEdit');
 
+        Route::get('event',[EventController::class, 'index'])->name('event.index');
+        Route::get('event/post',[EventController::class, 'post'])->name('event.post');
+        Route::post('add',[EventController::class, 'add'])->name('event.add');
+
+        Route::post('event/post/{id}/delete', [EventController::class, 'delete'])->name('event.delete');
+        Route::post('event/post/{id}/status', [EventController::class, 'status'])->name('event.status');
+        Route::get('event/post/{id}/edit', [EventController::class, 'edit'])->name('event.edit');
+        Route::post('event/post/{id}/edit/save', [EventController::class, 'doEdit'])->name('event.doEdit');
+
+
         Route::get('/home-page/silde',[SlideshowController::class, 'index'])->name('home.slide');
         Route::post('/home-page/slide/post', [SlideshowController::class, 'post'])->name('slide.post');
         Route::post('/home-page/slide/{id}/delete', [SlideshowController::class, 'delete'])->name('slide.delete');
@@ -269,7 +280,11 @@ Route::middleware('auth')->group(function () {
                 $data['waters'] = Our_water::where('active_status', 1)->get();
                 return view('front-end.water', $data);
             })->name('water');
-    
+
+            Route::get('/event', function () {
+                return view('front-end.event');
+            })->name('event');
+            
             Route::get('/about', function () {
                 
                 $data['ourcomapny'] = Ourcompany::where('active_status', 1)->first();

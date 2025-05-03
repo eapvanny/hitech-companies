@@ -19,6 +19,7 @@
 
 @section('styles')
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Siemreap&display=swap');
         /* Hero Section */
         .hero {
             height: 100vh;
@@ -32,6 +33,7 @@
             justify-content: flex-start;
             padding-left: 100px;
             position: relative;
+            animation: fadeIn 1s ease-out;
         }
 
         .animated-text {
@@ -46,11 +48,22 @@
             animation: fadeIn 0.5s ease-in-out forwards;
         }
 
-        @keyframes fadeIn {
+        /* @keyframes fadeIn {
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
+        } */
+
+         /* Animations */
+         @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
 
         h1,
@@ -72,7 +85,10 @@
             font-weight: bold;
             animation: fadeIn 1s ease-in;
             line-height: 4rem;
-            font-family: 'Poppins', 'Kantumruy', sans-serif !important;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Better readability */
+            font-weight: bold;
+            margin-top: -150px;
+            font-family: 'Roboto', 'Kantumruy', sans-serif !important;
         }
 
         .hero-image {
@@ -326,7 +342,7 @@
 
         .quality-award-item img {
             width: 98%;
-            max-height: 500px;
+            max-height: 550px;
             object-fit: cover;
             /* Changed from cover to contain */
             border-radius: 10px;
@@ -494,6 +510,7 @@
             .hero-text h1 {
                 font-size: 40px;
                 line-height: 1.2;
+                margin-top: auto;
             }
         }
 
@@ -515,6 +532,7 @@
             .hero-text h1 {
                 font-size: 32px;
                 line-height: 1.2;
+                margin-top: auto;
             }
 
             /* About Section */
@@ -592,6 +610,7 @@
             .hero-text h1 {
                 font-size: 28px;
                 line-height: 1.2;
+                margin-top: auto;
             }
 
             /* About Section */
@@ -702,6 +721,7 @@
             .hero-text h1 {
                 font-size: 24px;
                 line-height: 1.2;
+                margin-top: auto;
             }
 
             /* About Section */
@@ -1055,48 +1075,48 @@
             updateItemsPerPage();
             updateSlider();
         });
-        document.addEventListener('DOMContentLoaded', function() {
-            const textElement = document.querySelector('.animated-text');
-            const text = textElement.textContent.trim();
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     const textElement = document.querySelector('.animated-text');
+        //     const text = textElement.textContent.trim();
 
-            // Function to split text into individual characters (English and Khmer)
-            function splitTextIntoCharacters(text) {
-                // Regex to match:
-                // - Khmer grapheme cluster: base character + optional modifiers + optional (coeng + base character + modifiers)
-                // - English characters individually
-                const khmerClusterRegex =
-                    /([\u1780-\u17FF\u19E0-\u19FF][\u17B6-\u17DD\u200C\u200D]*(?:\u17D2[\u1780-\u17FF\u19E0-\u19FF][\u17B6-\u17DD\u200C\u200D]*)?)|[^\u1780-\u17FF\u19E0-\u19FF]/g;
-                return text.match(khmerClusterRegex) || [];
-            }
+        //     // Function to split text into individual characters (English and Khmer)
+        //     function splitTextIntoCharacters(text) {
+        //         // Regex to match:
+        //         // - Khmer grapheme cluster: base character + optional modifiers + optional (coeng + base character + modifiers)
+        //         // - English characters individually
+        //         const khmerClusterRegex =
+        //             /([\u1780-\u17FF\u19E0-\u19FF][\u17B6-\u17DD\u200C\u200D]*(?:\u17D2[\u1780-\u17FF\u19E0-\u19FF][\u17B6-\u17DD\u200C\u200D]*)?)|[^\u1780-\u17FF\u19E0-\u19FF]/g;
+        //         return text.match(khmerClusterRegex) || [];
+        //     }
 
-            // Split the text into individual characters
-            const segments = splitTextIntoCharacters(text);
+        //     // Split the text into individual characters
+        //     const segments = splitTextIntoCharacters(text);
 
-            function runAnimation() {
-                // Clear the current content
-                textElement.textContent = '';
+        //     function runAnimation() {
+        //         // Clear the current content
+        //         textElement.textContent = '';
 
-                // Animate each character
-                segments.forEach((char, index) => {
-                    const span = document.createElement('span');
-                    span.textContent = char;
-                    span.style.animationDelay = `${index * 0.2}s`;
-                    textElement.appendChild(span);
-                });
+        //         // Animate each character
+        //         segments.forEach((char, index) => {
+        //             const span = document.createElement('span');
+        //             span.textContent = char;
+        //             span.style.animationDelay = `${index * 0.2}s`;
+        //             textElement.appendChild(span);
+        //         });
 
-                // Calculate total animation time
-                const totalTime = (segments.length * 0.2 + 0.5) * 1000;
+        //         // Calculate total animation time
+        //         const totalTime = (segments.length * 0.2 + 0.5) * 1000;
 
-                // Clear the text and restart animation
-                setTimeout(() => {
-                    textElement.textContent = '';
-                    runAnimation();
-                }, totalTime);
-            }
+        //         // Clear the text and restart animation
+        //         setTimeout(() => {
+        //             textElement.textContent = '';
+        //             runAnimation();
+        //         }, totalTime);
+        //     }
 
-            // Start the animation
-            runAnimation();
-        });
+        //     // Start the animation
+        //     runAnimation();
+        // });
 
         document.addEventListener('DOMContentLoaded', function() {
             const slider = document.getElementById('awardSlider');

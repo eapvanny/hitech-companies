@@ -33,6 +33,7 @@
             justify-content: space-between;
             padding: 0 50px;
             /* margin-top: 40px; */
+            animation: fadeIn 1s ease-out;
         }
 
         .water-section .text-content {
@@ -162,6 +163,17 @@
         .navigation span.disabled {
             opacity: 0.3;
             cursor: not-allowed;
+        }
+
+         /* Animations */
+         @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
 
         @media (max-width: 1280px) {
@@ -309,7 +321,7 @@
         }
         @media (max-width: 768px) {
             .water-section {
-                height: 35vh;
+                height: 40vh;
             }
 
             .water-section .text-content {

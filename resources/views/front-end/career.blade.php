@@ -15,6 +15,17 @@
             padding: 20px 50px;
             color: white;
             text-shadow: 1px 1px 2px rgba(98, 98, 98, 0.7);
+            animation: fadeIn 1.5s ease-out;
+        }
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
         .career-section .h1{
             font-weight: bold;

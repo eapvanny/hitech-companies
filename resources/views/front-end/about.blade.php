@@ -38,8 +38,18 @@
             height: 110vh;
             color: #fff;
             margin-top: -68px;
+            animation: fadeIn 1.5s ease-out;
+        }
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
         p {
             margin-top: 0;
             margin-bottom: 0;

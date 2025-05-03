@@ -34,7 +34,9 @@
         /* h1, h2, h3 {
            line-height: 2rem;
         }    */
-
+        h6{
+            line-height: 2rem;
+        }
         .content-box {
             padding: 20px;
             width: 90%;
@@ -68,6 +70,7 @@
             font-weight: bold;
             color: #333;
             margin-bottom: 20px;
+            /* line-height: 5rem; */
         }
 
         .author {
@@ -124,11 +127,13 @@
 
         .blog-content p {
             font-size: 1rem;
-            line-height: 1.6;
+            line-height: 2rem;
             color: #555;
             margin-bottom: 20px;
         }
-
+        .blog-content span{
+            line-height: 2rem;
+        }
         .blog-content h2 {
             font-size: clamp(1.2rem, 3vw, 1.5rem);
             font-weight: bold;
@@ -337,13 +342,15 @@
                     {{ $blog->short_text_kh }}
                 @endif    
             </p>
-            @if (session()->has('user_lang') && session('user_lang') == 'en')
-                {{-- {{ $blog->short_text }} --}}
-                {!! $blog->description !!}
-            @else
-                {{-- {{ $blog->short_text_kh }} --}}
-                {!! $blog->description_kh !!}
-            @endif    
+            <span>
+                @if (session()->has('user_lang') && session('user_lang') == 'en')
+                    {{-- {{ $blog->short_text }} --}}
+                    {!! $blog->description !!}
+                @else
+                    {{-- {{ $blog->short_text_kh }} --}}
+                    {!! $blog->description_kh !!}
+                @endif   
+            </span> 
         </div>
     </section>
 @endsection

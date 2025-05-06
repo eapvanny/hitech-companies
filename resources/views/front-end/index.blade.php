@@ -13,13 +13,13 @@
     <meta property="twitter:description" content="Hi tech home page" />
     <meta name="description" content="{{ $overview->title_en }}">
     <meta name="description" content="{{ $overview->title_kh }}">
-
 @endsection
-
 
 @section('styles')
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Siemreap&display=swap');
+        /* @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Siemreap&display=swap'); */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+        
         /* Hero Section */
         .hero {
             height: 100vh;
@@ -36,27 +36,29 @@
             animation: fadeIn 1s ease-out;
         }
 
-        .animated-text {
-            display: inline-block;
+        .hero-text h1 {
+            font-size: 4.3em;
+            font-family: 'Times New Roman','Kantumruy', sans-serif !important;
+            -webkit-text-stroke: 1px #fff;
+            color: transparent;
+            background: url({{ asset('images/fresh-water.jpeg') }});
+            -webkit-background-clip: text;
+            background-position: 0 0;
+            animation: backText 20s linear infinite alternate;  
+            text-shadow: none;
+            margin-top: -150px;
+            width: 58%;
+            font-weight: 999;
+            line-height: 1.3;
         }
 
-        .animated-text span {
-            opacity: 0;
-            display: inline-block;
-            margin-right: 2px;
-            transform: translateY(10px);
-            animation: fadeIn 0.5s ease-in-out forwards;
-        }
-
-        /* @keyframes fadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
+        @keyframes backText {
+            100% {
+                background-position: 2000px 0;
             }
-        } */
+        }
 
-         /* Animations */
-         @keyframes fadeIn {
+        @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
@@ -66,29 +68,13 @@
             to { transform: translateY(0); opacity: 1; }
         }
 
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
+        h1, h2, h3, h4, h5, h6 {
             line-height: 2rem;
             font-family: 'Poppins', 'Kantumruy', sans-serif !important;
         }
 
         p {
             line-height: 2rem;
-        }
-
-        .hero-text h1 {
-            font-size: 40px;
-            font-weight: bold;
-            animation: fadeIn 1s ease-in;
-            line-height: 4rem;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Better readability */
-            font-weight: bold;
-            margin-top: -150px;
-            font-family: 'Roboto', 'Kantumruy', sans-serif !important;
         }
 
         .hero-image {
@@ -110,22 +96,11 @@
             display: block;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
         @keyframes slideIn {
             from {
                 transform: translateX(100px);
                 opacity: 0;
             }
-
             to {
                 transform: translateX(0);
                 opacity: 1;
@@ -159,7 +134,6 @@
         .about-image .video-wrapper {
             position: relative;
             padding-bottom: 56.25%;
-            /* 16:9 aspect ratio (314/560 ≈ 56.25%) */
             height: 0;
             overflow: hidden;
         }
@@ -292,7 +266,6 @@
         /* QUALITY AWARD Section */
         .quality-award {
             padding: 30px 70px;
-            /* Reduced top padding from 50px to 30px */
             text-align: center;
             background: #f9f9f9;
         }
@@ -303,7 +276,6 @@
             margin-bottom: 10px;
             font-weight: bold;
             margin-top: 0;
-            /* Ensure no extra margin on heading */
         }
 
         .quality-award-content {
@@ -344,10 +316,8 @@
             width: 98%;
             max-height: 550px;
             object-fit: cover;
-            /* Changed from cover to contain */
             border-radius: 10px;
             margin-top: 0;
-            /* Remove top margin if present */
         }
 
         .slider-nav {
@@ -460,7 +430,7 @@
         .delivery-image img {
             width: 100%;
             height: auto;
-            border-radiusplaat: 10px;
+            border-radius: 10px;
         }
 
         .delivery-text {
@@ -495,8 +465,6 @@
 
         /* Responsive Adjustments */
         @media (max-width: 1200px) {
-
-            /* Hero Section */
             .hero {
                 height: 50vh;
             }
@@ -508,15 +476,13 @@
             }
 
             .hero-text h1 {
-                font-size: 40px;
+                font-size: 4em;
                 line-height: 1.2;
                 margin-top: auto;
             }
         }
 
         @media (max-width: 992px) {
-
-            /* Hero Section */
             .hero-image {
                 width: 300px !important;
                 height: 250px !important;
@@ -530,12 +496,11 @@
             }
 
             .hero-text h1 {
-                font-size: 32px;
+                font-size: 4em;
                 line-height: 1.2;
                 margin-top: auto;
             }
 
-            /* About Section */
             .about-content {
                 flex-direction: column;
                 padding: 30px;
@@ -550,18 +515,15 @@
                 margin-top: 20px;
             }
 
-            /* Our Water Section */
             .water-item {
                 flex: 0 0 50%;
                 max-width: 50%;
             }
 
-            /* Qualty Award Section */
             .quality-award-item img {
                 max-height: 400px;
             }
 
-            /* Society Section */
             .society-item {
                 width: 100%;
                 padding: 15px;
@@ -572,7 +534,6 @@
                 padding: 0 30px;
             }
 
-            /* Delivery Section */
             .delivery-content {
                 flex-direction: column;
                 padding: 0 30px;
@@ -593,8 +554,6 @@
         }
 
         @media (max-width: 768px) {
-
-            /* Hero Section */
             .hero-image {
                 width: 250px !important;
                 height: 208px !important;
@@ -608,12 +567,11 @@
             }
 
             .hero-text h1 {
-                font-size: 28px;
+                font-size: 3em;
                 line-height: 1.2;
                 margin-top: auto;
             }
 
-            /* About Section */
             .about-content {
                 padding: 20px;
             }
@@ -626,7 +584,6 @@
                 font-size: 0.9rem;
             }
 
-            /* Our Water Section */
             .our-water-theme {
                 padding: 30px;
             }
@@ -652,11 +609,6 @@
                 font-size: 0.9rem;
             }
 
-            /* Quality Award Section */
-            .quality-award {
-                padding: 20px;
-            }
-
             .quality-award {
                 padding: 20px 15px;
             }
@@ -671,7 +623,6 @@
                 margin: 0 6px;
             }
 
-            /* Society Section */
             .society {
                 padding: 30px;
             }
@@ -689,7 +640,6 @@
                 font-size: 0.9rem;
             }
 
-            /* Delivery Section */
             .delivery {
                 padding: 30px;
             }
@@ -704,8 +654,6 @@
         }
 
         @media (max-width: 576px) {
-
-            /* Hero Section */
             .hero-image {
                 width: 200px !important;
                 height: 167px !important;
@@ -719,12 +667,11 @@
             }
 
             .hero-text h1 {
-                font-size: 24px;
+                font-size: 2em;
                 line-height: 1.2;
                 margin-top: auto;
             }
 
-            /* About Section */
             .about-content {
                 padding: 15px;
             }
@@ -737,7 +684,6 @@
                 font-size: 0.85rem;
             }
 
-            /* Our Water Section */
             .our-water-theme {
                 padding: 20px;
             }
@@ -768,7 +714,6 @@
                 padding: 5px 10px;
             }
 
-            /* Quality Award Section */
             .quality-award h2 {
                 font-size: 1.5rem;
             }
@@ -791,7 +736,6 @@
                 margin: 0 5px;
             }
 
-            /* Society Section */
             .society {
                 padding: 20px;
             }
@@ -809,7 +753,6 @@
                 font-size: 0.85rem;
             }
 
-            /* Delivery Section */
             .delivery {
                 padding: 20px;
             }
@@ -837,7 +780,7 @@
 @section('content')
     <section class="hero">
         <div class="hero-text">
-            <h1 class="animated-text" style="width: 60%;">
+            <h1 style="width: {{ session('user_lang') == 'en' ? '58%' : '53.2%' }};">
                 @if (session()->has('user_lang') && session('user_lang') == 'en')
                     {{ $slides->title_en }}
                 @else
@@ -897,13 +840,11 @@
                             <h3>
                                 {{ $w->bottle }}
                                 Water Bottle</h3>
-
                             @if (session()->has('user_lang') && session('user_lang') == 'en')
                                 <p> {{ $w->title }} </p>
                             @else
                                 <p> {{ $w->title_kh }} </p>
                             @endif
-                            {{-- <p> {{ $w->title }} </p> --}}
                             <a href="{{ route('water') }}" class="view-more"> {{ __('lang.viewmore') }} </a>
                         </div>
                     @endforeach
@@ -912,11 +853,10 @@
             <div class="navigation">
                 <span class="prev" id="prev-btn">
                     << {{ __('lang.prev') }}</span>
-                        <span class="next" id="next-btn"> {{ __('lang.next') }} >></span>
+                <span class="next" id="next-btn"> {{ __('lang.next') }} >></span>
             </div>
         </div>
     </section>
-    <!-- quality award Section -->
     <section class="quality-award">
         <h2>{{ __('lang.QUALITY AWARD-MONDE SELECTION') }}</h2>
         <div class="quality-award-content">
@@ -929,7 +869,6 @@
                     @endforeach
                 </div>
                 <div class="slider-nav" id="sliderNav">
-                    <!-- Dots will be added by JavaScript -->
                 </div>
             </div>
             <span class="description">
@@ -950,8 +889,6 @@
             </span>
         </div>
     </section>
-
-    <!-- Society Section -->
     <section class="society">
         <h2>{{ __('lang.SOCIETY') }}</h2>
         <div class="society-content">
@@ -976,7 +913,6 @@
             @endforeach
         </div>
     </section>
-    <!-- Delivery Section -->
     <section class="delivery">
         <div class="delivery-content">
             <div class="delivery-image">
@@ -999,34 +935,30 @@
             const slider = document.getElementById('water-slider');
             const items = slider.querySelectorAll('.water-item');
             const totalItems = items.length;
-            let itemsPerPage = 3; // Default for large screens
+            let itemsPerPage = 3;
             let currentIndex = 0;
 
-            // Adjust items per page based on screen size
             function updateItemsPerPage() {
                 if (window.innerWidth <= 768) {
-                    itemsPerPage = 1; // 1 item per page on mobile
+                    itemsPerPage = 1;
                 } else if (window.innerWidth <= 992) {
-                    itemsPerPage = 2; // 2 items per page on tablets
+                    itemsPerPage = 2;
                 } else {
-                    itemsPerPage = 3; // 3 items per page on desktops
+                    itemsPerPage = 3;
                 }
             }
 
-            // Calculate the width of one item as a percentage
             function updateSlider() {
                 const itemWidth = 100 / itemsPerPage;
                 const translateX = -(currentIndex * itemWidth);
                 slider.style.transform = `translateX(${translateX}%)`;
             }
 
-            // Update on resize
             window.addEventListener('resize', () => {
                 updateItemsPerPage();
                 updateSlider();
             });
 
-            // Animate items based on visibility and scroll direction
             const observer = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     const waterItems = entry.target.querySelectorAll('.water-item');
@@ -1052,10 +984,8 @@
                 threshold: 0.5
             });
 
-            // observer.observe(document.querySelector('.our-water'));
             observer.observe(document.querySelector('.our-water-theme'));
 
-            // Next button click
             document.getElementById('next-btn').addEventListener('click', function() {
                 if (currentIndex < totalItems - itemsPerPage) {
                     currentIndex++;
@@ -1063,7 +993,6 @@
                 }
             });
 
-            // Prev button click
             document.getElementById('prev-btn').addEventListener('click', function() {
                 if (currentIndex > 0) {
                     currentIndex--;
@@ -1071,52 +1000,9 @@
                 }
             });
 
-            // Initial setup
             updateItemsPerPage();
             updateSlider();
         });
-        // document.addEventListener('DOMContentLoaded', function() {
-        //     const textElement = document.querySelector('.animated-text');
-        //     const text = textElement.textContent.trim();
-
-        //     // Function to split text into individual characters (English and Khmer)
-        //     function splitTextIntoCharacters(text) {
-        //         // Regex to match:
-        //         // - Khmer grapheme cluster: base character + optional modifiers + optional (coeng + base character + modifiers)
-        //         // - English characters individually
-        //         const khmerClusterRegex =
-        //             /([\u1780-\u17FF\u19E0-\u19FF][\u17B6-\u17DD\u200C\u200D]*(?:\u17D2[\u1780-\u17FF\u19E0-\u19FF][\u17B6-\u17DD\u200C\u200D]*)?)|[^\u1780-\u17FF\u19E0-\u19FF]/g;
-        //         return text.match(khmerClusterRegex) || [];
-        //     }
-
-        //     // Split the text into individual characters
-        //     const segments = splitTextIntoCharacters(text);
-
-        //     function runAnimation() {
-        //         // Clear the current content
-        //         textElement.textContent = '';
-
-        //         // Animate each character
-        //         segments.forEach((char, index) => {
-        //             const span = document.createElement('span');
-        //             span.textContent = char;
-        //             span.style.animationDelay = `${index * 0.2}s`;
-        //             textElement.appendChild(span);
-        //         });
-
-        //         // Calculate total animation time
-        //         const totalTime = (segments.length * 0.2 + 0.5) * 1000;
-
-        //         // Clear the text and restart animation
-        //         setTimeout(() => {
-        //             textElement.textContent = '';
-        //             runAnimation();
-        //         }, totalTime);
-        //     }
-
-        //     // Start the animation
-        //     runAnimation();
-        // });
 
         document.addEventListener('DOMContentLoaded', function() {
             const slider = document.getElementById('awardSlider');
@@ -1126,7 +1012,6 @@
             let currentIndex = 0;
             let autoSlideInterval;
 
-            // Create navigation dots
             slides.forEach((slide, index) => {
                 const dot = document.createElement('span');
                 dot.classList.add('slider-dot');
@@ -1149,7 +1034,6 @@
                 if (isScrolling) return;
                 isScrolling = true;
 
-                // Calculate scroll position without using scrollIntoView
                 const slide = slides[index];
                 const scrollPosition = slide.offsetLeft - slider.offsetLeft;
 
@@ -1184,7 +1068,6 @@
                     const clone = slides[0].cloneNode(true);
                     slider.appendChild(clone);
 
-                    // Scroll to the clone without affecting page scroll
                     slider.scrollTo({
                         left: slider.scrollWidth,
                         behavior: 'smooth'
@@ -1203,11 +1086,9 @@
                 }
             }
 
-            // Pause on hover
             slider.addEventListener('mouseenter', stopAutoSlide);
             slider.addEventListener('mouseleave', startAutoSlide);
 
-            // Update active dot on scroll
             slider.addEventListener('scroll', () => {
                 if (isScrolling) return;
                 const slideIndex = Math.round(slider.scrollLeft / slides[0].offsetWidth);
@@ -1217,7 +1098,6 @@
                 }
             });
 
-            // Start auto-sliding
             startAutoSlide();
         });
     </script>

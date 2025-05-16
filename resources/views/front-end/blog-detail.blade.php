@@ -90,6 +90,7 @@
             border-radius: 50%;
             width: clamp(80px, 20vw, 140px);
             height: clamp(80px, 20vw, 140px);
+            object-fit: cover;
         }
 
         .blog-content-section {
@@ -309,7 +310,7 @@
                 </h1>
                 <div class="author">
                     <div class="author-image">
-                        <img src="https://secure.gravatar.com/avatar/679d571bdb0858013ca9258ee80d8aaf?s=96&d=mm&r=g" alt="Author Image">
+                        <img src="{{asset('images/backround.jpg')}}" alt="Author Image">
                     </div>
                     <div class="author-name">
                         <p> {{ __('lang.author') }} : <strong> {{ $blog->author }} </strong></p>

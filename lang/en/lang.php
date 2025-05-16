@@ -5,6 +5,7 @@ return [
     'contacttitle' => 'Bottle Water Delivery Service',
     'contactdescription' => 'We offer fast delivery services to distribute our products to depots and customers across the country. Our goal is to provide the fastest delivery service to our clients. Once you place your order, we will deliver it as quickly as possible!',
     'contactus' => 'Contact Us',
+    'contactusNow' => 'Contact Us Now',
     'prev' => 'PREV',
     'next' => 'NEXT',
     'viewmore' => 'VIEW MORE',

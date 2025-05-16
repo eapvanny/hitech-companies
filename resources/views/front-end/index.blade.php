@@ -923,7 +923,7 @@
                 <p>
                     {{ __('lang.contactdescription') }}
                 </p>
-                <a href="{{ route('contact') }}" class="btn"> {{ __('lang.contactus') }} </a>
+                <a href="{{ route('contact') }}" class="btn"> {{ __('lang.contactusNow') }} </a>
             </div>
         </div>
     </section>

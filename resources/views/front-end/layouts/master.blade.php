@@ -286,18 +286,20 @@
             justify-content: center;
             text-decoration: none;
             opacity: 0;
-            transition: opacity 0.3s;
+            transition: opacity 0.3s ease, transform 0.3s ease;
             z-index: 100;
         }
 
         .back-to-top.visible {
             opacity: 1;
+            transform: translateY(0); 
         }
 
         .back-to-top:hover {
-            background: #1a6aa8;
+            background: #145a8c;
             color: white;
-            border-color: #1a6aa8;
+            border-color: #145a8c;
+            transform: translateY(-5px); 
         }
 
         hr {
@@ -830,32 +832,42 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
     <script>
         // Toggle navbar style on scroll
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', function () {
             const navbar = document.querySelector('.navbar');
             const backToTop = document.querySelector('.back-to-top');
             const bannerLeft = document.querySelector('.decorative-banner-left');
             const bannerRight = document.querySelector('.decorative-banner-right');
 
-            // Only apply scroll behavior for screens wider than 767.98px (non-mobile)
+            // Navbar and banner scroll behavior for non-mobile devices
             if (window.innerWidth > 767.98) {
                 if (window.scrollY > 100) {
                     navbar.classList.add('navbar-scrolled');
-                    bannerLeft.style.top = '75px';
-                    bannerRight.style.top = '75px';
+                    if (bannerLeft) bannerLeft.style.top = '75px';
+                    if (bannerRight) bannerRight.style.top = '75px';
                 } else {
                     navbar.classList.remove('navbar-scrolled');
-                    bannerLeft.style.top = '0';
-                    bannerRight.style.top = '0';
+                    if (bannerLeft) bannerLeft.style.top = '0';
+                    if (bannerRight) bannerRight.style.top = '0';
                 }
             }
 
+            // Back-to-top visibility
             if (window.scrollY > 300) {
                 backToTop.classList.add('visible');
+                console.log('Back to Top button should be visible'); // Debug log
             } else {
                 backToTop.classList.remove('visible');
             }
         });
 
+        // Smooth scroll to top when back-to-top is clicked
+        document.querySelector('.back-to-top').addEventListener('click', function (e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
         $(document).ready(function() {
             $('#test').click(function() {
                 alert('clicked');

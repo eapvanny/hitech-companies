@@ -19,12 +19,13 @@
     <style>
         /* @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Siemreap&display=swap'); */
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Hanuman:wght@100;300;400;700;900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Siemreap&display=swap');
         
         /* Hero Section */
         .hero {
             height: 100vh;
             background: linear-gradient(to bottom, #3a3a3a4f 0%, rgba(66, 66, 66, 0.134) 30%, rgba(55, 55, 55, 0.151) 70%),
-                url({{ asset('images/fresh-water.jpeg') }}) no-repeat center center;
+                url({{ asset('images/freash-water2.jpeg') }}) no-repeat center center;
             background-size: cover;
             color: white;
             text-align: left;
@@ -36,20 +37,42 @@
             animation: fadeIn 1s ease-out;
         }
 
-        .hero-text h1 {
-            font-size: 4.3em;
-            font-family: 'Times New Roman','Kantumruy', sans-serif !important;
+        /* .hero-text h1 {
+            font-size: 3em;
             -webkit-text-stroke: 1px #fff;
-            color: transparent;
-            background: url({{ asset('images/fresh-water.jpeg') }});
             -webkit-background-clip: text;
             background-position: 0 0;
-            animation: backText 20s linear infinite alternate;  
             text-shadow: none;
             margin-top: -150px;
             width: 58%;
-            font-weight: 999;
-            line-height: 1.3;
+            line-height: 1.7;
+            font-family: 'Poppins', 'Siemreap' !important;
+            color: #e3e3e3;
+            text-shadow: 0 0 10px #8a8a8a, 0 0 20px #8a8a8a, 0 0 30px #8a8a8a;
+            animation: flicker 1.5s infinite alternate;
+        } */
+
+        .hero-text h1 {
+            font-size: 3em;
+            -webkit-text-stroke: 1px #fff;
+            -webkit-background-clip: text;
+            background-position: 0 0;
+            text-shadow: none;
+            margin-top: -150px;
+            width: 58%;
+            line-height: 1.7;
+            font-family: 'Poppins', 'Siemreap' !important;
+            color: #e3e3e3;
+            text-shadow: 0 0 10px #8a8a8a, 0 0 20px #8a8a8a, 0 0 30px #8a8a8a;
+            animation: moveUpDown 1.5s ease-in-out infinite alternate;
+        }
+        @keyframes moveUpDown {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(-20px); /* Adjust this value to control the movement distance */
+            }
         }
 
         @keyframes backText {
@@ -779,7 +802,7 @@
 
 @section('content')
     <section class="hero">
-        <div class="hero-text">
+       <div class="hero-text">
             <h1 style="width: {{ session('user_lang') == 'en' ? '58%' : '53.2%' }};">
                 @if (session()->has('user_lang') && session('user_lang') == 'en')
                     {{ $slides->title_en }}

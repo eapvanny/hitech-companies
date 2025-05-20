@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -44,5 +44,111 @@
     <div class="text">
         <h1>Welcome</h1>
     </div>
+</body>
+</html> 
+!-->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neon Text Effect</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .neon-text {
+            font-size: 100px;
+            font-family: Arial, sans-serif;
+            color: #00ffff;
+            text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff;
+            text-transform: uppercase;
+            animation: flicker 1.5s infinite alternate;
+        }
+        .sub-text {
+            font-size: 20px;
+            color: #00ffff;
+            text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff;
+            margin-top: 10px;
+            text-align: center;
+        }
+        @keyframes flicker {
+            0% { opacity: 0.9; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="neon-text">NEON</div>
+    <div class="sub-text">text effect</div>
+</body>
+</html> !-->
+
+<!DOCTYPE html>
+<html lang="km">
+<head>
+  <meta charset="UTF-8">
+  <title>Typing and Deleting Animation</title>
+  <style>
+    body {
+      background-color: #111;
+      color: #0f0;
+      font-family: 'Courier New', monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .text {
+      font-size: 24px;
+      border-right: 2px solid #0f0;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="text" id="animatedText"></div>
+
+  <script>
+    const text = "Hi-Tech ដើម្បីសុខភាព និងសុខុមាលភាពរបស់អ្នក។";
+    const element = document.getElementById('animatedText');
+    let index = 0;
+    let isDeleting = false;
+
+    function typeEffect() {
+      if (!isDeleting) {
+        element.textContent = text.substring(0, index + 1);
+        index++;
+
+        if (index === text.length) {
+          setTimeout(() => isDeleting = true, 1000); // Pause before deleting
+        }
+      } else {
+        element.textContent = text.substring(0, index - 1);
+        index--;
+
+        if (index === 0) {
+          isDeleting = false;
+        }
+      }
+
+      setTimeout(typeEffect, isDeleting ? 50 : 100); // Speed: slower type, faster delete
+    }
+
+    // Start the animation
+    typeEffect();
+  </script>
+
 </body>
 </html>

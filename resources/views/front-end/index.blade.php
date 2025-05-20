@@ -17,7 +17,6 @@
 
 @section('styles')
     <style>
-        /* @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Siemreap&display=swap'); */
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Hanuman:wght@100;300;400;700;900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Siemreap&display=swap');
         
@@ -36,22 +35,6 @@
             position: relative;
             animation: fadeIn 1s ease-out;
         }
-
-        /* .hero-text h1 {
-            font-size: 3em;
-            -webkit-text-stroke: 1px #fff;
-            -webkit-background-clip: text;
-            background-position: 0 0;
-            text-shadow: none;
-            margin-top: -150px;
-            width: 58%;
-            line-height: 1.7;
-            font-family: 'Poppins', 'Siemreap' !important;
-            color: #e3e3e3;
-            text-shadow: 0 0 10px #8a8a8a, 0 0 20px #8a8a8a, 0 0 30px #8a8a8a;
-            animation: flicker 1.5s infinite alternate;
-        } */
-
         .hero-text h1 {
             font-size: 3em;
             -webkit-text-stroke: 1px #fff;
@@ -75,21 +58,21 @@
             }
         }
 
-        @keyframes backText {
+        /* @keyframes backText {
             100% {
                 background-position: 2000px 0;
             }
-        }
+        } */
 
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
 
-        @keyframes slideUp {
+        /* @keyframes slideUp {
             from { transform: translateY(50px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
-        }
+        } */
 
         h1, h2, h3, h4, h5, h6 {
             line-height: 2rem;

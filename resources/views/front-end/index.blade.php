@@ -42,6 +42,16 @@
             object-fit: cover; /* Mimics background-size: cover */
             z-index: -1; /* Place video behind all content */
         }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(66, 148, 255, 0.5)); /* Red gradient */
+            z-index: 1; /* Place gradient above video but below text and image */
+        }
 
         .hero-text, .hero-image {
             position: relative;
@@ -815,7 +825,7 @@
 @section('content')
     <section class="hero">
     <video class="hero-video" autoplay muted loop playsinline>
-        <source src="{{ asset('images/main-video.mp4') }}" type="video/mp4">
+        <source src="{{ asset('images/main-2-video.mov') }}" type="video/mp4">
     </video>
     <div class="hero-text">
         <h1 style="width: {{ session('user_lang') == 'en' ? '58%' : '53.2%' }};">

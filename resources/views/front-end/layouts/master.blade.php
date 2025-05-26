@@ -348,7 +348,7 @@
 
         @media (max-width: 1024px) {
             .nav-item a{
-                font-size: 13.82px;
+                font-size: 17px !important;
             }
         }
         @media (max-width: 992px) {
@@ -379,7 +379,10 @@
                 margin-left: auto;
             }
             .nav-item a{
-                font-size: 11px;
+                font-size: 16px !important;
+            }
+            .nav-item-en a{
+                font-size: 13px !important;
             }
             .navbar-nav .nav-item {
                 margin: auto;
@@ -401,7 +404,10 @@
                 margin-left: 350px;
             }
             .nav-item a{
-                font-size: 12px !important;
+                font-size: 15px !important;
+            }
+            .nav-item-en a{
+                font-size: 14px !important;
             }
             .navbar-nav .nav-item {
                 margin: auto;
@@ -716,35 +722,40 @@
             <!-- Navbar Links -->
             <div class="collapse navbar-collapse order-md-2" id="navbarNav" style="font-family: 'Poppins','Kantumruy', sans-serif">
                 <ul class="navbar-nav mx-auto">
-                    <li class="nav-item">
+                    @php
+                        $navClass = session('user_lang', 'kh') === 'en' ? 'nav-item-en' : 'nav-item';
+                    @endphp
+
+                    <li class="{{ $navClass }}">
                         <a class="nav-link {{ request()->routeIs('user.home') ? 'active' : '' }}"
                             href="{{ url('/') }}">{{ __('lang.home') }}</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="{{ $navClass }}">
                         <a class="nav-link {{ request()->routeIs('water') ? 'active' : '' }}"
                             href="{{ url('/water') }}"> {{ __('lang.water') }} </a>
                     </li>
-                    {{-- <li class="nav-item">
+                    {{-- <li class="{{ $navClass }}">
                         <a class="nav-link {{ request()->routeIs('event') ? 'active' : '' }}"
                             href="{{ url('/event') }}"> {{ __('lang.event') }} </a>
                     </li> --}}
-                    <li class="nav-item">
+                    <li class="{{ $navClass }}">
                         <a class="nav-link {{ request()->routeIs('about') ? 'active' : '' }}"
                             href="{{ url('/about') }}"> {{ __('lang.aboutus') }} </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="{{ $navClass }}">
                         <a class="nav-link {{ request()->routeIs('blog') ? 'active' : '' }}"
                             href="{{ url('/blog') }}"> {{ __('lang.blog') }} </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="{{ $navClass }}">
                         <a class="nav-link {{ request()->routeIs('career') ? 'active' : '' }}"
                             href="{{ url('/career') }}"> {{ __('lang.career') }} </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="{{ $navClass }}">
                         <a class="nav-link {{ request()->routeIs('contact') ? 'active' : '' }}"
                             href="{{ url('/contact') }}"> {{ __('lang.contactus') }} </a>
                     </li>
                 </ul>
+
             </div>
         </div>
     </nav>

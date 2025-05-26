@@ -521,8 +521,8 @@
             }
 
             .hero-text h1 {
-                font-size: 4em;
-                line-height: 1.2;
+                font-size: 3.7em;
+                line-height: 1.5;
                 margin-top: auto;
             }
         }
@@ -541,8 +541,8 @@
             }
 
             .hero-text h1 {
-                font-size: 4em;
-                line-height: 1.2;
+                font-size: 3em;
+                line-height: 1.5;
                 margin-top: auto;
             }
 
@@ -613,7 +613,7 @@
 
             .hero-text h1 {
                 font-size: 3em;
-                line-height: 1.2;
+                line-height: 1.4;
                 margin-top: auto;
             }
 
@@ -712,8 +712,8 @@
             }
 
             .hero-text h1 {
-                font-size: 2em;
-                line-height: 1.2;
+                font-size: 1.5rem;
+                line-height: 1.4;
                 margin-top: auto;
             }
 
@@ -817,6 +817,13 @@
             .delivery-text .btn {
                 padding: 8px 15px;
                 font-size: 0.9rem;
+            }
+        }
+        @media (max-width: 360px) {
+            .hero-text h1 {
+                font-size: 1.1rem;
+                line-height: 1.5;
+                margin-top: auto;
             }
         }
     </style>

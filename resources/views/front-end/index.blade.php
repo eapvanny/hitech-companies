@@ -22,17 +22,47 @@
         /* Hero Section */
         .hero {
             height: 100vh;
-            background: linear-gradient(to bottom, #3a3a3a4f 0%, rgba(66, 66, 66, 0.134) 30%, rgba(55, 55, 55, 0.151) 70%),
-                url({{ asset('images/freash-water2.jpeg') }}) no-repeat center center;
-            background-size: cover;
-            color: white;
-            text-align: left;
+            position: relative;
             display: flex;
             align-items: center;
             justify-content: flex-start;
             padding-left: 100px;
-            position: relative;
+            color: white;
+            text-align: left;
             animation: fadeIn 1s ease-out;
+            overflow: hidden; /* Prevent video overflow */
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Mimics background-size: cover */
+            z-index: -1; /* Place video behind all content */
+        }
+
+        .hero-text, .hero-image {
+            position: relative;
+            z-index: 100; /* Ensure text and image are above video, gradient, and red overlay */
+        }
+
+        .hero-text h1 {
+            font-size: 2.5rem; /* Adjust as needed */
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.7); /* Stronger shadow for readability over red */
+        }
+
+        .hero-image img {
+            max-width: 100%; /* Ensure image scales properly */
+            /* Add any additional styling if needed */
+            z-index: 100;
+        }
+
+        /* Fade-in animation */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
         .hero-text h1 {
             font-size: 3em;
@@ -784,20 +814,23 @@
 
 @section('content')
     <section class="hero">
-       <div class="hero-text">
-            <h1 style="width: {{ session('user_lang') == 'en' ? '58%' : '53.2%' }};">
-                @if (session()->has('user_lang') && session('user_lang') == 'en')
-                    {{ $slides->title_en }}
-                @else
-                    {{ $slides->title_kh }}
-                @endif
-            </h1>
-        </div>
-        <div class="hero-image">
-            <img fetchpriority="high" decoding="async" src="{{ asset($slides->img) }}"
-                class="attachment-full size-full wp-image-312" alt="">
-        </div>
-    </section>
+    <video class="hero-video" autoplay muted loop playsinline>
+        <source src="{{ asset('images/background-video5.mp4') }}" type="video/mp4">
+    </video>
+    <div class="hero-text">
+        <h1 style="width: {{ session('user_lang') == 'en' ? '58%' : '53.2%' }};">
+            @if (session()->has('user_lang') && session('user_lang') == 'en')
+                {{ $slides->title_en }}
+            @else
+                {{ $slides->title_kh }}
+            @endif
+        </h1>
+    </div>
+    <div class="hero-image">
+        <img fetchpriority="high" decoding="async" src="{{ asset($slides->img) }}"
+            class="attachment-full size-full wp-image-312" alt="">
+    </div>
+</section>
     <section class="about">
         <div class="about-content">
             <div class="about-text">

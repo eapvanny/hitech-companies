@@ -815,7 +815,7 @@
 @section('content')
     <section class="hero">
     <video class="hero-video" autoplay muted loop playsinline>
-        <source src="{{ asset('images/background-video5.mp4') }}" type="video/mp4">
+        <source src="{{ asset('images/main-video.mp4') }}" type="video/mp4">
     </video>
     <div class="hero-text">
         <h1 style="width: {{ session('user_lang') == 'en' ? '58%' : '53.2%' }};">

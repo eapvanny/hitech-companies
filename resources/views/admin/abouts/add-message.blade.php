@@ -45,7 +45,7 @@
                         </div>
                     </div>
                 </div>
-               
+
 
                 <div class="card-body">
                     <div class="chart-container px-2" style="min-height: auto">
@@ -53,31 +53,60 @@
                             @csrf
                             <div class="row align-items-center">
                                 {{-- <div class="col-sm-12 col-md-7 col-lg-7 col-xl-7"> --}}
-                                <h4 class="card-title mb-3">Upload image for Execute Manager</h4>
+                                <div class="row">
 
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label for="img" class="text-center p-2 label-image">
-                                                <img src="{{ asset('backends/assets/img/image-placeholder.png') }}" id="pre_img" alt="" class="m-auto">
-                                                <div class="hover-bg">
-                                                    <i class="fas fa-plus-circle fs-1"></i>
-                                                </div>
-                                            </label>
+                                    {{-- Founder  --}}
+                                    <div class="col-md-6">
+                                        <h4 class="card-title mb-3">Upload image for Founder</h4>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <label for="img_founder" class="text-center p-2 label-image">
+                                                    <img src="{{ asset('backends/assets/img/image-placeholder.png') }}" id="pre_img_founder" alt="" class="m-auto">
+                                                    <div class="hover-bg">
+                                                        <i class="fas fa-plus-circle fs-1"></i>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <input type="file" id="img_founder" name="img_founder" style="cursor: pointer; display:none;" class="" accept="image/*">
+                                        <h3 class="card-title my-3">Founder's name</h3>
+                                        <div class="ui input w-100">
+                                            <input type="text" class="w-100" name="founder_name" id="founder_name" placeholder="Founder's name">
                                         </div>
                                     </div>
-                                    <input type="file" id="img" name="img" style="cursor: pointer; display:none;" class="" accept="image/*">
+
+                                    {{-- Executive Manager --}}
+                                    <div class="col-md-6">
+                                        <h4 class="card-title mb-3">Upload image for Execute Manager</h4>
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <label for="img" class="text-center p-2 label-image">
+                                                    <img src="{{ asset('backends/assets/img/image-placeholder.png') }}" id="pre_img" alt="" class="m-auto">
+                                                    <div class="hover-bg">
+                                                        <i class="fas fa-plus-circle fs-1"></i>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <input type="file" id="img" name="img" style="cursor: pointer; display:none;" class="" accept="image/*">
+                                        <h3 class="card-title my-3">Execute Manager's name</h3>
+                                        <div class="ui input w-100">
+                                            <input type="text" class="w-100" name="em_name" id="em_name" placeholder="Execute Manager's name">
+                                        </div>
+                                    </div>
+                                </div>
+
 
                                 {{-- <input type="hidden" value="{{ $about->img }}" name="old_thumbnail"> --}}
-                                
-                                <h3 class="card-title my-3">Execute Manager's name</h3>
-                                <div class="ui input">
-                                    <input type="text" name="em_name" id="em_name" placeholder="Execute Manager's name">
-                                </div>
+
+
+
 
                                 <h3 class="card-title my-3">Message in Khmer</h3>
                                 <textarea name="message_kh" id="title_kh"></textarea>
 
-                                <h3 class="card-title my-3">Message in English</h3>   
+                                <h3 class="card-title my-3">Message in English</h3>
                                 <textarea name="message_en" id="title_en"></textarea>
                             </div>
 
@@ -96,7 +125,7 @@
             </div>
         </div>
     </div>
-    
+
 
 @endsection
 
@@ -223,27 +252,44 @@
             });
 
 
+            $(document).on('change', '#img_founder', function(event) {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        // $('#img').addClass('d-done');
+                        $('#img_founder').addClass('d-none');
+                        $('#pre_img_founder').removeClass('d-none');
+                        $('#pre_img_founder').addClass('d-block');
+                        $('#pre_img_founder').attr('src', e.target.result).show();
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            $(document).on('change', '#img', function(event) {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        // $('#img').addClass('d-done');
+                        $('#img').addClass('d-none');
+                        $('#pre_img').removeClass('d-none');
+                        $('#pre_img').addClass('d-block');
+                        $('#pre_img').attr('src', e.target.result).show();
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
 
         });
 
-        $('#img').on('change', function(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    // $('#img').addClass('d-done');
-                    $('#img').addClass('d-none');
-                    $('#pre_img').removeClass('d-none');
-                    $('#pre_img').addClass('d-block');
-                    $('#pre_img').attr('src', e.target.result).show();
-                };
-                reader.readAsDataURL(file);
-            }
-        });
+
    </script>
 
     <script>
-        $(document).ready(function () { 
+        $(document).ready(function () {
             $('#social').dropdown();
             // var selectUpdateValue = $('.item.active.selected').val();
             console.log($('.item.active.selected').val());
@@ -259,6 +305,7 @@
                     reader.readAsDataURL(file);
                 }
             });
+
         });
 
 
@@ -321,11 +368,11 @@
             $(document).ready(function(){
                 // $('#sidebar-menu li').remoeClass('active');
                 // $('#sidebar-menu li ul li').remoeClass('active collapse');
-    
+
                 $('#about').addClass('active');
                 $('#aboutpage').addClass('collapse show');
                 $('.company').addClass('active');
-    
+
             });
         </script>
 @endsection

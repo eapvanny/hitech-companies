@@ -19,8 +19,10 @@ class MessageController extends Controller
         // dd($r->input());
 
         $validate = Validator::make($r->all(),[
-            'img' => 'required',
+            'img' => 'required|image',
             'em_name' => 'required|max:255',
+            'img_founder' => 'required|image',
+            'founder_name' => 'required|max:255',
             'message_kh' => 'required',
             'message_en' => 'required',
         ]);
@@ -34,13 +36,20 @@ class MessageController extends Controller
         }else{
             $data['active_status'] = 0;
         }
+        $data['founder_name'] = $r->founder_name;
         $data['em_name'] = $r->em_name;
         $data['message_kh'] = $r->message_kh;
         $data['message_en'] = $r->message_en;
 
+
+
         if($r->hasFile('img')){
             $data['img'] = $r->file('img')->store('uploads/images/execute-managers', 'custom');
         }
+        if($r->hasFile('img_founder')){
+            $data['img_founder'] = $r->file('img_founder')->store('uploads/images/execute-managers', 'custom');
+        }
+
         $run = em_message::create($data);
         if($run == true){
             return redirect()->back()->with('success', 'Message from execute manager has posted successfully.');
@@ -78,13 +87,14 @@ class MessageController extends Controller
 
     public function edit($id){
         $data['message'] = em_message::findOrFail($id);
-        return view('admin.abouts.edit-message', $data); 
+        return view('admin.abouts.edit-message', $data);
     }
 
     public function doEdit(Request $r, $id){
         // dd($r->input());
         $message = em_message::findOrFail($id);
         $validate = Validator::make($r->all(),[
+            'founder_name' => 'required|max:255',
             'em_name' => 'required|max:255',
             'message_kh' => 'required',
             'message_en' => 'required',
@@ -97,11 +107,21 @@ class MessageController extends Controller
         if($r->hasFile('img')){
             if(File::exists($message->img)){
                 File::delete($message->img);
-            }        
+            }
             $data['img'] = $r->file('img')->store('/uploads/images/execute-managers', 'custom');
         }else{
             $data['img'] = $r->old_img;
         }
+
+        if($r->hasFile('img_founder')){
+            if(File::exists($message->img_founder)){
+                File::delete($message->img_founder);
+            }
+            $data['img_founder'] = $r->file('img_founder')->store('/uploads/images/execute-managers', 'custom');
+        }else{
+            $data['img_founder'] = $r->old_img_founder;
+        }
+        $data['founder_name'] = $r->founder_name;
         $data['em_name'] = $r->em_name;
         $data['message_kh'] = $r->message_kh;
         $data['message_en'] = $r->message_en;

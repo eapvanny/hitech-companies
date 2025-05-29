@@ -9,9 +9,7 @@
     <meta property="og:description" content=" {{ $ourcomapny->description_kh }} " />
     <meta property="twitter:description" content=" {{ $ourcomapny->description_en }} " />
     <meta property="twitter:description" content=" {{ $ourcomapny->description_kh }} " />
-
 @endsection
-
 
 @section('styles')
     <style>
@@ -62,7 +60,6 @@
             justify-content: flex-end;
             align-items: center;
             min-height: 100%;
-            /* padding: 20px; */
         }
 
         .about-content {
@@ -73,7 +70,6 @@
 
         .about-content h1 {
             font-size: clamp(1.5rem, 5vw, 2.8rem);
-            /* Dynamic font size */
             color: #FFFFFF;
             font-weight: bold;
         }
@@ -92,7 +88,7 @@
 
         .commitment-container {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
             padding: 20px;
         }
@@ -100,6 +96,7 @@
         .commitment-content {
             display: flex;
             flex-direction: row;
+            justify-content: center;
             align-items: center;
             max-width: 1200px;
             gap: 30px;
@@ -108,29 +105,40 @@
         .commitment-image {
             flex: 1;
             position: relative;
+            max-width: 500px;
         }
 
         .commitment-image img {
             width: 100%;
-            max-width: 500px;
-            height: auto;
+            height: 400px;
+            object-fit: cover;
         }
 
         .commitment-name {
             position: absolute;
             bottom: 40px;
-            left: -40px;
+            left: 0; /* Start from the left of the image container */
+            right: 0; /* End at the right of the image container */
+            margin: 0 auto;
             background-color: #1a6aa8;
             color: #fff;
             font-size: clamp(1rem, 2vw, 1.2rem);
             font-weight: bold;
             padding: 8px 20px;
-            /* box-shadow: 8px 8px 0px 0px #EDC932; */
+            text-align: center;
+            width: fit-content;
+            max-width: 90%; /* Optional: limit to 90% of parent */
+            white-space: nowrap; /* Optional: keep in one line */
+            border-radius: 4px;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
+
         .commitment-text {
-            flex: 1;
-            text-align: left;
+            max-width: 800px;
+            text-align: center;
+            margin-top: 40px;
         }
 
         .commitment-text h2 {
@@ -142,7 +150,6 @@
             text-transform: uppercase;
             display: inline-block;
             word-spacing: 5px;
-            /* Added to make the width match content */
         }
 
         .commitment-text h2::after {
@@ -151,16 +158,16 @@
             left: 0;
             bottom: -5px;
             width: 100%;
-            /* Changed to 100% to match the h2 text width */
             height: 3px;
             background-color: #1a6aa8;
         }
 
         .commitment-text p {
-            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            font-size: clamp(0.9rem, 2.5vw, 1.090rem);
             line-height: 1.7;
             color: #333;
-            margin-top: 40px;
+            margin-top: 10px;
+            text-align: start
         }
 
         /* Vision Section Styles */
@@ -180,7 +187,6 @@
             height: 30px;
             background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.29,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" fill="white"/></svg>') repeat-x;
             background-size: cover;
-            /* Better scaling */
         }
 
         .vision-container {
@@ -292,7 +298,6 @@
             position: relative;
             z-index: 2;
             width: clamp(140px, 20vw, 200px);
-            /* Scales with viewport */
             height: clamp(140px, 20vw, 200px);
             border-radius: 50%;
             display: flex;
@@ -307,10 +312,9 @@
             background-color: #fff;
         }
 
-        /* Specific colors for each core value item based on the image */
+        /* Specific colors for each core value item */
         .core-value-item:first-child {
             border-color: #D32F2F;
-
         }
 
         .core-value-item:nth-child(even) {
@@ -323,27 +327,22 @@
 
         .core-value-item.integrity {
             border-color: #4DA8DA;
-            /* Light blue */
         }
 
         .core-value-item:last-child {
             border-color: #0056B3;
-            /* Dark blue */
         }
 
         .core-value-item.respect {
             border-color: #D32F2F;
-            /* Red */
         }
 
         .core-value-item.excellence {
             border-color: #FBC02D;
-            /* Yellow */
         }
 
         .core-value-item.accountability {
             border-color: #7B1FA2;
-            /* Purple */
         }
 
         /* Accreditation Section */
@@ -381,7 +380,7 @@
         }
 
         .accreditation-image p {
-            font-weight: bold
+            font-weight: bold;
         }
 
         .accreditation-image img {
@@ -392,11 +391,6 @@
 
         /* Updated Media Queries */
         @media (max-width: 1200px) {
-            /* .about-section {
-                    padding: 180px 0;
-                    height: 60vh;
-                } */
-
             .about-content p {
                 font-size: clamp(0.8rem, 2.5vw, 1rem);
                 line-height: 1.3rem;
@@ -406,7 +400,6 @@
 
             .commitment-text h2::after {
                 width: 100%;
-                /* Full width on smaller screens */
             }
 
             .accreditation-content h2 {
@@ -416,44 +409,33 @@
             .accreditation-image img {
                 max-width: 300px;
             }
-
-            .accreditation-image p {
-                font-weight: bold;
-            }
-
         }
+
         @media (max-width: 1024px) {
             .about-section {
                 height: 60vh;
             }
-            .about-section p{
+            .about-section p {
                 line-height: 2rem;
                 font-size: 18px;
             }
-            .commitment-name {
-                margin-left: 20px;
-                width: 300px;
-            }
             .commitment-content {
                 flex-direction: row;
-                text-align: center;
+                justify-content: center;
             }
-
+            .commitment-image {
+                max-width: 45%;
+            }
             .commitment-text h2 {
-                font-size: 1em
+                font-size: 1em;
             }
         }
-        /* @media (max-width: 1024px) {
-            .about-section {
-                height: 100vh;
-            }
-        } */
+
         @media (max-width: 992px) {
             .about-section {
                 padding: 150px 0;
                 margin-top: 0;
                 height: 60vh;
-
             }
 
             .vision-content {
@@ -463,18 +445,16 @@
 
             .commitment-content {
                 flex-direction: row;
-                text-align: center;
+                justify-content: center;
             }
 
             .commitment-name {
-                left: 50%;
-                width: 350px;
-                transform: translateX(-50%);
-                bottom: 20px;
+                font-size: 0.9rem;
+                padding: 5px 10px;
             }
 
             .commitment-text h2 {
-                font-size: 1em
+                font-size: 1em;
             }
 
             .vision-text .logo {
@@ -497,28 +477,27 @@
             .about-section {
                 height: 50vh;
             }
-            .about-section p{
+            .about-section p {
                 line-height: 1.5rem;
                 font-size: 18px;
             }
-            .about-content{
+            .about-content {
                 margin-top: 30px;
             }
-            .about-content p{
+            .about-content p {
                 line-height: 1.7rem;
             }
             .commitment-text h2 {
-                font-size: 1em
+                font-size: 1em;
             }
-            .commitment-name {
-                margin-left: -19%;
-                width: 300px;
+            .commitment-image {
+                max-width: 45%;
             }
         }
 
         @media (max-width: 853px) {
-            .about-content{
-                margin-top: auto
+            .about-content {
+                margin-top: auto;
             }
         }
 
@@ -526,15 +505,14 @@
             .about-section {
                 height: 60vh;
             }
-            .about-content{
+            .about-content {
                 margin-top: 30px;
             }
-            .commitment-name {
-                width: 240px;
-                margin-left: -21%;
-            }
             .commitment-text h2 {
-                font-size: 0.9rem
+                font-size: 0.9rem;
+            }
+            .commitment-image {
+                max-width: 45%;
             }
         }
 
@@ -542,38 +520,36 @@
             .about-section {
                 height: 60vh;
             }
-
             .about-section {
                 padding: 120px 0;
             }
-            .about-content{
+            .about-content {
                 margin-top: auto;
             }
-            .commitment-name {
-                width: 220px;
-                margin-left: -21%;
+            .commitment-content {
+                flex-direction: column;
+                align-items: center;
+            }
+            .commitment-image {
+                max-width: 80%;
             }
             .commitment-text h2 {
-                font-size: 0.9rem
+                font-size: 0.9rem;
             }
-
             .core-values-grid {
                 flex-direction: row;
                 align-items: center;
                 gap: 40px;
             }
-
             .core-value-item {
                 width: 175px;
                 height: 175px;
                 padding: 10px;
                 border-width: 5px;
             }
-
             .core-value-item:nth-child(odd) {
                 transform: translateX(-20px);
             }
-
             .core-value-item:nth-child(even) {
                 transform: translateX(20px);
             }
@@ -582,146 +558,110 @@
         @media (max-width: 576px) {
             .about-section {
                 padding: 100px 0;
+                height: 60vh;
             }
-
+            .about-container {
+                margin-top: 40px;
+            }
             .about-content h1 {
                 margin-left: 20px;
             }
-
             .about-content p {
                 margin-left: 20px;
                 line-height: 1rem;
                 font-size: 13px;
             }
-
             .commitment-content {
                 flex-direction: column;
-                text-align: center;
+                align-items: center;
             }
-
+            .commitment-image {
+                max-width: 100%;
+            }
             .commitment-text h2 {
-                font-size: 1em
+                font-size: 1em;
             }
-
             .vision-text .logo {
                 margin-top: 0;
             }
         }
-        @media (max-width: 576px) {
-            .about-section {
-                height: 60vh;
-            }
 
-            .about-container {
-                margin-top: 40px;
-            }
-
-            .about-content h1 {
-                margin-left: 20px;
-            }
-
-            .about-content p {
-                margin-left: 20px;
-                line-height: 1rem;
-                font-size: 13px;
-            }
-            .commitment-name {
-                width: 250px;
-                margin-left: -27%;
-            }
-        }
         @media (max-width: 540px) {
-            .about-content{
+            .about-content {
                 margin-top: -40px;
             }
-            .about-content p{
+            .about-content p {
                 line-height: 1.4rem;
             }
-            P{
+            p {
                 line-height: 1.2rem;
             }
         }
-        @media (max-width:430px) {
+
+        @media (max-width: 430px) {
             .about-section {
                 height: 60vh;
             }
-
             .about-container {
                 margin-top: 70px;
             }
-
             .about-content h1 {
                 margin-left: 20px;
             }
-
             .about-content p {
                 margin-left: 20px;
                 line-height: 1.3rem;
                 font-size: 14px;
             }
-            .commitment-name {
-                width: 240px;
-                margin-left: -21%;
+            .commitment-text h2 {
+                font-size: 0.9rem;
             }
-            P{
+            p {
                 line-height: 1.2rem;
             }
-
         }
 
-        @media (max-width:414px) {
+        @media (max-width: 414px) {
             .about-section {
                 height: 60vh;
             }
-
             .about-container {
                 margin-top: 30px;
             }
-
             .about-content h1 {
                 margin-left: 20px;
             }
-
             .about-content p {
                 margin-left: 20px;
                 line-height: 1.24rem;
                 font-size: 14px;
             }
-            .commitment-name {
-                width: 230px;
-                margin-left: -21%;
+            .commitment-text h2 {
+                font-size: 0.9rem;
             }
-            p{
+            p {
                 line-height: 1.2rem;
             }
-
         }
 
-        /* Ultra-small screens (e.g., old phones < 400px) */
         @media (max-width: 400px) {
             .about-section {
                 height: 60vh;
             }
-
             .about-content {
                 padding: 0 10px;
             }
-
             .commitment-content {
                 flex-direction: column;
-                text-align: center;
+                align-items: center;
             }
-
             .commitment-text h2 {
-                font-size: 1em
+                font-size: 1em;
             }
-
-
             .commitment-name {
                 font-size: 0.9rem;
                 padding: 5px 10px;
             }
-
             .core-value-item {
                 width: 140px;
                 height: 140px;
@@ -729,47 +669,37 @@
                 border-width: 5px;
             }
         }
-        @media (max-width:390px) {
+
+        @media (max-width: 390px) {
             .about-section {
                 height: 60vh;
             }
-
             .about-container {
                 margin-top: 30px;
             }
-
             .about-content h1 {
                 margin-left: 20px;
             }
-
             .about-content p {
                 margin-left: 20px;
                 line-height: 1.18rem;
                 font-size: 13.5px;
             }
-            .commitment-name {
-                width: 220px;
-                margin-left: -21%;
-            }
             .commitment-text h2 {
-                font-size: .9rem
+                font-size: 0.9rem;
             }
-
         }
+
         @media (max-width: 375px) {
             .about-section {
                 height: 70vh;
             }
-
             .about-container {
                 margin-top: 20px;
-
             }
-
             .about-content h1 {
                 margin-left: 5px;
             }
-
             .about-content p {
                 font-size: 9px;
                 line-height: 1.1rem;
@@ -777,18 +707,10 @@
                 margin-top: 10px;
                 margin-left: 5px;
             }
-            .commitment-name {
-                width: 200px;
-                margin-left: -20%;
-            }
-            .commitment-content {
-                flex-direction: column;
-                text-align: center;
-            }
             .commitment-text h2 {
-                font-size: .9rem
+                font-size: 0.9rem;
             }
-            p{
+            p {
                 line-height: 1.2rem;
             }
         }
@@ -797,15 +719,12 @@
             .about-section {
                 height: 62vh;
             }
-
             .about-container {
                 margin-top: 25px;
             }
-
             .about-content h1 {
                 margin-left: 0px;
             }
-
             .about-content p {
                 font-size: 11px;
                 line-height: 1.07rem;
@@ -813,40 +732,32 @@
                 margin-top: 10px;
                 margin-left: 0px;
             }
-
             .commitment-text h2 {
-                font-size: .8rem
+                font-size: 0.8rem;
             }
-            p{
+            p {
                 line-height: 1.2rem;
             }
         }
 
         @media (max-width: 344px) {
             .about-section {
-                /* padding: 120px 0; */
                 height: 50vh;
             }
-
             .about-content {
                 max-width: 700px;
             }
-
             .about-content h1 {
                 font-size: 22px;
             }
-
             .about-content p {
                 font-size: 11px;
                 line-height: 0.9rem;
                 color: #FFFFFF;
-                /* margin-top: 10px; */
             }
-
             .commitment-text h2 {
-                font-size: 0.8rem
+                font-size: 0.8rem;
             }
-
         }
     </style>
 @endsection
@@ -859,9 +770,9 @@
                 <div class="about-content">
                     <h1>{{ __('lang.ourcompany') }}</h1>
                     @if (session()->has('user_lang') && session('user_lang') == 'en')
-                       <P> {!! $ourcomapny->description_en !!}</P>
+                       <p> {!! $ourcomapny->description_en !!}</p>
                     @else
-                <P>{!! $ourcomapny->description_kh !!}</P>
+                       <p>{!! $ourcomapny->description_kh !!}</p>
                     @endif
                 </div>
             </div>
@@ -869,59 +780,36 @@
     </section>
 
     <!-- Commitment Section -->
-    {{-- <section class="commitment-section">
-        <div class="container">
-            <div class="commitment-container">
-                <div class="commitment-content">
-                    <div class="commitment-image">
-                        <img src="https://hitech.com.kh/wp-content/uploads/2022/03/Executive-Manager.png"
-                            alt="Lok Chumteav Khleoung Chandy">
-                        <div class="commitment-name">
-                            <p>Lok Chumteav Khleoung Chandy</p>
-                        </div>
-                    </div>
-                    <div class="commitment-text">
-                        <h2>Message from Executive Manager</h2>
-                        <p>
-                            We are delighted to serve customer our product and very happy for your continuously support of
-                            Hi-tech drinking water. We’re dedicated to maintain our standard, quality and service to our
-                            value customer.
-                        </p>
-                    </div>
-                </div>
-
-                
-            </div>
-        </div>
-    </section> --}}
-
-
     @foreach ($messages as $m)
         <section class="commitment-section">
             <div class="container">
                 <div class="commitment-container">
                     <div class="commitment-content">
                         <div class="commitment-image">
-                            <img src="{{ asset($m->img) }}" alt=" {{ $m->em_name }} ">
+                            <img src="{{ asset($m->img_founder) }}" alt="{{ $m->founder_name }}">
+                            <div class="commitment-name">
+                                <p>{{ $m->founder_name }}</p>
+                            </div>
+                        </div>
+                        <div class="commitment-image">
+                            <img src="{{ asset($m->img) }}" alt="{{ $m->em_name }}">
                             <div class="commitment-name">
                                 <p>{{ $m->em_name }}</p>
                             </div>
                         </div>
-                        <div class="commitment-text">
-                            <h2>{{ __('lang.messageem') }}</h2>
-                            @if (session()->has('user_lang') && session('user_lang') == 'en')
-                                {!! $m->message_en !!}
-                            @else
-                                {!! $m->message_kh !!}
-                            @endif
-                        </div>
+                    </div>
+                    <div class="commitment-text">
+                        <h2>{{ __('lang.messageem') }}</h2>
+                        @if (session()->has('user_lang') && session('user_lang') == 'en')
+                            {!! $m->message_en !!}
+                        @else
+                            {!! $m->message_kh !!}
+                        @endif
                     </div>
                 </div>
             </div>
         </section>
     @endforeach
-
-
 
     <!-- Vision Section -->
     <section class="vision-section">
@@ -929,8 +817,7 @@
             <div class="vision-container">
                 <div class="vision-content">
                     <div class="vision-image">
-                        <img src="{{asset('images/hi-tech-3.png')}}"
-                            alt="HI-TECH Water Bottles">
+                        <img src="{{asset('images/hi-tech-3.png')}}" alt="HI-TECH Water Bottles">
                     </div>
                     <div class="vision-text">
                         <div class="logo">
@@ -947,13 +834,11 @@
         </div>
     </section>
 
-
-
     <!-- Core Values Section -->
     <section class="core-values-section">
         <div class="core-values-container">
             <div class="core-values-content">
-                <h2> {{ __('lang.corevalue') }} </h2>
+                <h2>{{ __('lang.corevalue') }}</h2>
                 <div class="core-values-grid">
                     @foreach ($corevalues as $corevalue)
                         <div class="core-value-item">
@@ -974,36 +859,17 @@
                             </p>
                         </div>
                     @endforeach
-
-                    {{-- <div class="core-value-item teamwork">
-                        <p><strong>TEAMWORK</strong><br><br>Maximizing efficiency through collaboration and individual
-                            strengths</p>
-                    </div>
-                    <div class="core-value-item respect">
-                        <p><strong>RESPECT</strong><br><br>Valuing diversity and treating all customers with fairness and
-                            friendliness</p>
-                    </div>
-                    <div class="core-value-item excellence">
-                        <p><strong>EXCELLENCE IN SERVICE</strong><br><br>Striving for excellence and quality in everything
-                            we do</p>
-                    </div>
-                    <div class="core-value-item accountability">
-                        <p><strong>ACCOUNTABILITY</strong><br><br>Taking ownership of one’s actions</p>
-                    </div> --}}
-
                 </div>
             </div>
         </div>
     </section>
-
-
 
     <!-- Accreditation Section -->
     <section class="accreditation-section">
         <div class="container">
             <div class="accreditation-container">
                 <div class="accreditation-content">
-                    <h2> {{ __('lang.accreditation') }} </h2>
+                    <h2>{{ __('lang.accreditation') }}</h2>
                     <div class="accreditation-images">
                         @foreach ($accreditations as $acc)
                             <div class="accreditation-image">
@@ -1017,19 +883,7 @@
                                 </p>
                             </div>
                         @endforeach
-
-                        {{-- <div class="accreditation-image">
-                            <img src="https://hitech.com.kh/wp-content/uploads/2022/03/Accreditation-2.jpg"
-                                alt="Accreditation Certificate 2">
-                            <p>Certificate of FOOD QUALITY MANAGEMENT SYSTEM</p>
-                        </div>
-                        <div class="accreditation-image">
-                            <img src="https://hitech.com.kh/wp-content/uploads/2022/03/Accreditation-2.jpg"
-                                alt="Accreditation Certificate 2">
-                            <p>Certificate of FOOD QUALITY MANAGEMENT SYSTEM</p>
-                        </div> --}}
                     </div>
-
                 </div>
             </div>
         </div>

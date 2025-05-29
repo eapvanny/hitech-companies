@@ -14,6 +14,8 @@ class em_message extends Model
     protected $fillable =[
         'em_name',
         'img',
+        'img_founder',
+        'founder_name',
         'message_kh',
         'message_en',
         'active_status',

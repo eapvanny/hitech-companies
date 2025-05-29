@@ -116,7 +116,7 @@
 
         .commitment-name {
             position: absolute;
-            bottom: 40px;
+            bottom: 10px;
             left: 0; /* Start from the left of the image container */
             right: 0; /* End at the right of the image container */
             margin: 0 auto;
@@ -125,7 +125,8 @@
             font-size: clamp(1rem, 2vw, 1.2rem);
             font-weight: bold;
             padding: 8px 20px;
-            text-align: center;
+            text-align: left;
+            align-items: center;
             width: fit-content;
             max-width: 90%; /* Optional: limit to 90% of parent */
             white-space: nowrap; /* Optional: keep in one line */
@@ -133,7 +134,11 @@
             left: 50%;
             transform: translateX(-50%);
         }
-
+        .commitment-name p,
+        .commitment-name span {
+            margin: 0;
+            display: block;
+        }
 
         .commitment-text {
             max-width: 800px;
@@ -789,12 +794,14 @@
                             <img src="{{ asset($m->img_founder) }}" alt="{{ $m->founder_name }}">
                             <div class="commitment-name">
                                 <p>{{ $m->founder_name }}</p>
+                                <span style="font-size: 12px; margin: 0">{{__('Founder & CEO')}}</span>
                             </div>
                         </div>
                         <div class="commitment-image">
                             <img src="{{ asset($m->img) }}" alt="{{ $m->em_name }}">
                             <div class="commitment-name">
                                 <p>{{ $m->em_name }}</p>
+                                <span style="font-size: 12px; margin: 0">{{__('Executive Director')}}</span>
                             </div>
                         </div>
                     </div>

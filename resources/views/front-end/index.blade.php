@@ -18,8 +18,9 @@
 @section('styles')
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Hanuman:wght@100;300;400;700;900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Siemreap&display=swap');
-        
+
         /* Hero Section */
+        /* Hero section styling */
         .hero {
             height: 100vh;
             position: relative;
@@ -30,7 +31,8 @@
             color: white;
             text-align: left;
             animation: fadeIn 1s ease-out;
-            overflow: hidden; /* Prevent video overflow */
+            overflow: hidden;
+            /* Prevent video overflow */
         }
 
         .hero-video {
@@ -39,41 +41,30 @@
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Mimics background-size: cover */
-            z-index: -1; /* Place video behind all content */
-        }
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, rgba(66, 148, 255, 0.5)); /* Red gradient */
-            z-index: 1; /* Place gradient above video but below text and image */
+            object-fit: cover;
+            /* Mimics background-size: cover */
+            z-index: -1;
+            /* Place video behind all content */
         }
 
-        .hero-text, .hero-image {
+        /* .hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to bottom, rgba(66, 148, 255, 0.5));
+        z-index: 1;
+    } */
+
+        .hero-text,
+        .hero-image {
             position: relative;
-            z-index: 100; /* Ensure text and image are above video, gradient, and red overlay */
-        }
-
-        .hero-text h1 {
-            font-size: 2.5rem; /* Adjust as needed */
-            text-shadow: 0 0 10px rgba(0, 0, 0, 0.7); /* Stronger shadow for readability over red */
-        }
-
-        .hero-image img {
-            max-width: 100%; /* Ensure image scales properly */
-            /* Add any additional styling if needed */
             z-index: 100;
+            /* Ensure text and image are above video, gradient, and red overlay */
         }
 
-        /* Fade-in animation */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
         .hero-text h1 {
             font-size: 3em;
             -webkit-text-stroke: 1px #fff;
@@ -88,39 +79,6 @@
             text-shadow: 0 0 10px #8a8a8a, 0 0 20px #8a8a8a, 0 0 30px #8a8a8a;
             animation: moveUpDown 1.5s ease-in-out infinite alternate;
         }
-        @keyframes moveUpDown {
-            0% {
-                transform: translateY(0);
-            }
-            100% {
-                transform: translateY(-20px); /* Adjust this value to control the movement distance */
-            }
-        }
-
-        /* @keyframes backText {
-            100% {
-                background-position: 2000px 0;
-            }
-        } */
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        /* @keyframes slideUp {
-            from { transform: translateY(50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        } */
-
-        h1, h2, h3, h4, h5, h6 {
-            line-height: 2rem;
-            font-family: 'Poppins', 'Kantumruy', sans-serif !important;
-        }
-
-        p {
-            line-height: 2rem;
-        }
 
         .hero-image {
             position: absolute;
@@ -130,7 +88,7 @@
             height: 383px !important;
             max-width: none !important;
             max-height: none !important;
-            animation: slideIn 1s ease-out;
+            animation: slideIn 1s ease-out forwards, moveUpDown 1.5s ease-in-out infinite alternate 1s;
             overflow: hidden;
         }
 
@@ -141,16 +99,57 @@
             display: block;
         }
 
+        /* Fade-in animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Move up and down animation */
+        @keyframes moveUpDown {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(-20px);
+                /* Adjust this value to control the movement distance */
+            }
+        }
+
+        /* Slide-in animation */
         @keyframes slideIn {
             from {
                 transform: translateX(100px);
                 opacity: 0;
             }
+
             to {
                 transform: translateX(0);
                 opacity: 1;
             }
         }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            line-height: 2rem;
+            font-family: 'Poppins', 'Kantumruy', sans-serif !important;
+        }
+
+        p {
+            line-height: 2rem;
+        }
+
+
 
         /* About Section */
         .about-content {
@@ -819,6 +818,7 @@
                 font-size: 0.9rem;
             }
         }
+
         @media (max-width: 360px) {
             .hero-text h1 {
                 font-size: 1.1rem;
@@ -831,23 +831,23 @@
 
 @section('content')
     <section class="hero">
-    <video class="hero-video" autoplay muted loop playsinline>
-        <source src="{{ asset('images/main-2-video.mov') }}" type="video/mp4">
-    </video>
-    <div class="hero-text">
-        <h1 style="width: {{ session('user_lang') == 'en' ? '58%' : '53.2%' }};">
-            @if (session()->has('user_lang') && session('user_lang') == 'en')
-                {{ $slides->title_en }}
-            @else
-                {{ $slides->title_kh }}
-            @endif
-        </h1>
-    </div>
-    <div class="hero-image">
-        <img fetchpriority="high" decoding="async" src="{{ asset($slides->img) }}"
-            class="attachment-full size-full wp-image-312" alt="">
-    </div>
-</section>
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="{{ asset('images/main-2-video.mov') }}" type="video/mp4">
+        </video>
+        <div class="hero-text">
+            <h1 style="width: {{ session('user_lang') == 'en' ? '58%' : '53.2%' }};">
+                @if (session()->has('user_lang') && session('user_lang') == 'en')
+                    {{ $slides->title_en }}
+                @else
+                    {{ $slides->title_kh }}
+                @endif
+            </h1>
+        </div>
+        <div class="hero-image">
+            <img fetchpriority="high" decoding="async" src="{{ asset($slides->img) }}"
+                class="attachment-full size-full wp-image-312" alt="">
+        </div>
+    </section>
     <section class="about">
         <div class="about-content">
             <div class="about-text">
@@ -908,7 +908,7 @@
             <div class="navigation">
                 <span class="prev" id="prev-btn">
                     << {{ __('lang.prev') }}</span>
-                <span class="next" id="next-btn"> {{ __('lang.next') }} >></span>
+                        <span class="next" id="next-btn"> {{ __('lang.next') }} >></span>
             </div>
         </div>
     </section>

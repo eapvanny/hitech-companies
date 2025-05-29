@@ -334,15 +334,14 @@
                 {{ \Carbon\Carbon::parse($blog->created_at)->format('d-M-Y') }}
             </div>
 
-            <p>
-                {{-- {{ $blog->short_text }} --}}
+            {{-- <p>
 
                 @if (session()->has('user_lang') && session('user_lang') == 'en')
                     {{ $blog->short_text }}
                 @else
                     {{ $blog->short_text_kh }}
                 @endif    
-            </p>
+            </p> --}}
             <span>
                 @if (session()->has('user_lang') && session('user_lang') == 'en')
                     {{-- {{ $blog->short_text }} --}}

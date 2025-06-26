@@ -59,11 +59,11 @@
                                                 <select class="ui search dropdown" id="bottle" name="bottle">
                                                         {{-- <option ><i class="globe icon"></i> Facebook</option> --}}
                                                         {{-- <option value="">Select water bottle</option> --}}
-                                                        <option value="250ml" {{ ($social->bottle == '250ml') ? 'selected': '' }}><i class="circle icon"></i>250 ml Water bottle</option>
-                                                        <option value="350ml" {{ ($social->bottle == '350ml') ? 'selected': '' }}><i class="circle icon"></i>350 ml Water bottle</option>
-                                                        <option value="600ml" {{ ($social->bottle == '600ml') ? 'selected': '' }}><i class="circle icon"></i>600 ml Water bottle</option>
-                                                        <option value="1500ml" {{ ($social->bottle == '1500ml') ? 'selected': '' }}><i class="circle icon"></i>1500 ml Water bottle</option>
-                                                        <option value="20L" {{ ($social->bottle == '20L') ? 'selected': '' }}><i class="circle icon"></i>20 L Water</option>
+                                                        <option value="250ml" {{ ($social->bottle == '250ml') ? 'selected': '' }}><i class="circle icon"></i>250 ml Drinking Water</option>
+                                                        <option value="350ml" {{ ($social->bottle == '350ml') ? 'selected': '' }}><i class="circle icon"></i>350 ml Drinking Water</option>
+                                                        <option value="600ml" {{ ($social->bottle == '600ml') ? 'selected': '' }}><i class="circle icon"></i>600 ml Drinking Water</option>
+                                                        <option value="1500ml" {{ ($social->bottle == '1500ml') ? 'selected': '' }}><i class="circle icon"></i>1500 ml Drinking Water</option>
+                                                        <option value="20L" {{ ($social->bottle == '20L') ? 'selected': '' }}><i class="circle icon"></i>20 L Drinking Water</option>
                                                 </select>
                                             </div>
                                         </div>

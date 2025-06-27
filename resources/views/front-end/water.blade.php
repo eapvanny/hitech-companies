@@ -524,7 +524,7 @@
                     <div class="content-item">
                         <h6>Hi-TECH</h6>
 
-                        <h2> {{ $w->bottle }} Water Bottle</h2>
+                        <h2> {{ $w->bottle }} {{__('Drinking Water')}}</h2>
                         <span> {{ __('lang.water_subtitle') }} </span>
 
                         <p>

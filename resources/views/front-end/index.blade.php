@@ -42,9 +42,15 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            /* Mimics background-size: cover */
             z-index: -1;
-            /* Place video behind all content */
+            /* Add these for smoother transitions */
+            transition: opacity 0.5s ease;
+            opacity: 1;
+        }
+
+        /* Add this if you still notice a slight jump */
+        .hero-video.fading {
+            opacity: 0.8;
         }
 
         /* .hero::before {
@@ -832,7 +838,7 @@
 @section('content')
     <section class="hero">
         <video class="hero-video" autoplay muted loop playsinline>
-            <source src="{{ asset('images/main-2-video.mov') }}" type="video/mp4">
+            <source src="{{ asset('images/0712(2).mp4') }}" type="video/mp4">
         </video>
         <div class="hero-text">
             <h1 style="width: {{ session('user_lang') == 'en' ? '58%' : '53.2%' }};">
@@ -986,6 +992,25 @@
 <script src="https://cdn.jsdelivr.net/npm/grapheme-splitter@1.0.4/build/grapheme-splitter.min.js"></script>
 @push('scripts')
     <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function() {
+            const heroVideo = document.querySelector('.hero-video');
+            
+            // Smooth out the loop transition
+            heroVideo.addEventListener('timeupdate', function() {
+                // When we're 0.5 seconds from the end, start fading slightly
+                if (this.currentTime > this.duration - 0.5) {
+                    this.classList.add('fading');
+                } else {
+                    this.classList.remove('fading');
+                }
+            });
+            
+            // Ensure video is properly loaded and playing
+            heroVideo.addEventListener('loadedmetadata', function() {
+                // Sometimes needed for autoplay to work consistently
+                heroVideo.play().catch(e => console.log('Autoplay prevented:', e));
+            });
+        });
         document.addEventListener('DOMContentLoaded', function() {
             const slider = document.getElementById('water-slider');
             const items = slider.querySelectorAll('.water-item');

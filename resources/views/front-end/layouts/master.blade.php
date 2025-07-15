@@ -54,10 +54,12 @@
         .nav-item a{
             font-size: 20px;
         }
+        .nav-item-en a{
+            margin: 0 15px;
+        }
         .navbar-nav .nav-item {
             margin: 0 15px;
         }
-
         .navbar-brand {
             color: white;
             font-weight: bold;
@@ -388,6 +390,12 @@
                 margin: auto;
             }
         }
+        @media (max-width: 820px) {
+             .nav-item-en a{
+                font-size: 13px !important;
+                 margin: 0 4px;
+            }
+        }
         @media (max-width: 768px) {
 
             .decorative-banner-left,
@@ -407,7 +415,8 @@
                 font-size: 15px !important;
             }
             .nav-item-en a{
-                font-size: 14px !important;
+                font-size: 12px !important;
+                margin: 0 4px;
             }
             .navbar-nav .nav-item {
                 margin: auto;
@@ -574,6 +583,9 @@
             .nav-item a{
                 font-size: 13.81px;
             }
+            /* .nav-item-en a{
+                font-size: ;
+            } */
         }
 
         /* Default behavior for other devices (mobile) */
@@ -732,7 +744,7 @@
                     </li>
                     <li class="{{ $navClass }}">
                         <a class="nav-link {{ request()->routeIs('water') ? 'active' : '' }}"
-                            href="{{ url('/water') }}"> {{ __('lang.water') }} </a>
+                            href="{{ url('/water') }}"> {{ __('lang.product') }} </a>
                     </li>
                     {{-- <li class="{{ $navClass }}">
                         <a class="nav-link {{ request()->routeIs('event') ? 'active' : '' }}"
@@ -795,7 +807,7 @@
                     <h5> {{ __('lang.Hi-Tech Water') }} </h5>
                     <ul class="list-unstyled">
 
-                        <li><a href="{{ url('/water') }}">{{ __('lang.water') }}</a></li>
+                        <li><a href="{{ url('/water') }}">{{ __('lang.product') }}</a></li>
                         <li><a href="{{ url('/about') }}">{{ __('lang.aboutus') }}</a></li>
                         <li><a href="{{ url('/blog') }}">{{ __('lang.blog') }}</a></li>
                         <li><a href="{{ url('/career') }}">{{ __('lang.career') }}</a></li>

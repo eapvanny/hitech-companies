@@ -77,7 +77,7 @@
             -webkit-background-clip: text;
             background-position: 0 0;
             text-shadow: none;
-            margin-top: -150px;
+            /* margin-top: -150px; */
             width: 58%;
             line-height: 1.7;
             font-family: 'Poppins', 'Siemreap' !important;
@@ -145,7 +145,6 @@
         h2,
         h3,
         h4,
-        h5,
         h6 {
             line-height: 2rem;
             font-family: 'Poppins', 'Kantumruy', sans-serif !important;
@@ -832,6 +831,7 @@
                 margin-top: auto;
             }
         }
+        
     </style>
 @endsection
 

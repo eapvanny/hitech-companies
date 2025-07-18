@@ -758,10 +758,10 @@
                         <a class="nav-link {{ request()->routeIs('blog') ? 'active' : '' }}"
                             href="{{ url('/blog') }}"> {{ __('lang.blog') }} </a>
                     </li>
-                    <li class="{{ $navClass }}">
+                    {{-- <li class="{{ $navClass }}">
                         <a class="nav-link {{ request()->routeIs('career') ? 'active' : '' }}"
                             href="{{ url('/career') }}"> {{ __('lang.career') }} </a>
-                    </li>
+                    </li> --}}
                     <li class="{{ $navClass }}">
                         <a class="nav-link {{ request()->routeIs('contact') ? 'active' : '' }}"
                             href="{{ url('/contact') }}"> {{ __('lang.contactus') }} </a>

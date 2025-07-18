@@ -61,6 +61,7 @@
                                                     <option value="instagram" id="instagram" {{ ($social->social =='instagram')?'selected': '' }}><i class="instagram icon"></i>Instagram</option>
                                                     <option value="twitter" id="twitter" {{ ($social->social =='twitter')?'selected': '' }}><i class="twitter icon"></i>Twitter</option>
                                                     <option value="youtube" id="youtube" {{ ($social->social =='youtube')?'selected': '' }}><i class="youtube icon"></i>Youtube</option>
+                                                     <option value="telegram" id="telegram" {{ ($social->social =='telegram')?'selected': '' }}><i class="telegram icon"></i>Telegram</option>
                                                 </select>
 
                                                 {{-- <input type="radio" class="d-" name="social" value="facebook" id="facebook" {{ ($social->social =='facebook')?'checked': '' }}>

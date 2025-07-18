@@ -10,7 +10,7 @@ return [
     'next' => 'NEXT',
     'viewmore' => 'VIEW MORE',
     'hitech' => 'Hi-Tech Drinking Water',
-    'ourtitle' => 'Start your day with our 4 bottle sizes.',
+    'ourtitle' => 'Start your day with our 5 bottle sizes.',
     'products' => 'PRODUCTS',
     'producttitle' => 'We produce high quality water because  your health is of the utmost importance.',
     'ourcompany' => 'OUR COMPANY',

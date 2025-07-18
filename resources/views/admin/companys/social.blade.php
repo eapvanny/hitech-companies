@@ -187,6 +187,7 @@
                                                 <option value="instagram"><i class="instagram icon"></i> Instagram</option>
                                                 <option value="twitter"><i class="twitter icon"></i>Twitter</option>
                                                 <option value="youtube"><i class="youtube icon"></i> Youtube</option>
+                                                <option value="telegram"><i class="telegram icon"></i> telegram</option>
                                         </select>
                                     </div>
                                 </div>

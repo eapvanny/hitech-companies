@@ -302,9 +302,9 @@ Route::middleware('auth')->group(function () {
     
             Route::get('/blog-detail/{id}', [FronEndBlogController::class, 'detail'])->name('blog.detail');
             
-            Route::get('/career', function () {
-                return view('front-end.career');
-            })->name('career');
+            // Route::get('/career', function () {
+            //     return view('front-end.career');
+            // })->name('career');
     
             Route::get('/contact', function () {
                 $data['company'] = Companyinfo::first();

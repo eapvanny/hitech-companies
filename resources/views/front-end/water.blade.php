@@ -574,15 +574,15 @@
                     @foreach ($waters as $w)
                     <div class="water-item">
                         @if ($w->bottle == '250ml')
-                            <img src="{{ asset('hitech-bottle/waters/250ml.png') }}" alt="HI-TECH Water Bottle">
+                            <img src="{{ asset('hitech-bottle/new-image/250ml.png') }}" alt="HI-TECH Water Bottle">
                         @elseif ($w->bottle == '350ml')
-                            <img src="{{ asset('hitech-bottle/waters/bottle-350ml.png') }}" alt="HI-TECH Water Bottle">
+                            <img src="{{ asset('hitech-bottle/new-image/bottle-350ml.png') }}" alt="HI-TECH Water Bottle">
                         @elseif ($w->bottle == '600ml')
-                            <img src="{{ asset('hitech-bottle/waters/bottle-600ml.png') }}" alt="HI-TECH Water Bottle">
+                            <img src="{{ asset('hitech-bottle/new-image/bottle-600ml.png') }}" alt="HI-TECH Water Bottle">
                         @elseif ($w->bottle == '1500ml')
-                            <img src="{{ asset('hitech-bottle/waters/bottle-1500ml.png') }}" alt="HI-TECH Water Bottle">
+                            <img src="{{ asset('hitech-bottle/new-image/bottle-1500ml.png') }}" alt="HI-TECH Water Bottle">
                         @else
-                            <img src="{{ asset('hitech-bottle/waters/bottle-20L-3-2.png') }}" alt="HI-TECH Water Bottle">
+                            <img src="{{ asset('hitech-bottle/new-image/20l-old.png') }}" alt="HI-TECH Water Bottle">
                         @endif
                         {{-- <h3>
                             {{ $w->bottle }}

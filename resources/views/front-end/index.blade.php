@@ -21,7 +21,7 @@
 
         /* Hero Section */
         /* Hero section styling */
-        .hero {
+        /* .hero {
             height: 100vh;
             position: relative;
             display: flex;
@@ -32,10 +32,25 @@
             text-align: left;
             animation: fadeIn 1s ease-out;
             overflow: hidden;
-            /* Prevent video overflow */
+            Prevent video overflow
+        } */
+
+        .hero {
+            height: 100vh;
+            background: linear-gradient(to bottom, #3a3a3a4f 0%, rgba(66, 66, 66, 0.134) 30%, rgba(55, 55, 55, 0.151) 70%),
+                url({{ asset('images/bg-water.png') }}) no-repeat center center;
+            background-size: cover;
+            color: white;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding-left: 100px;
+            position: relative;
+            animation: fadeIn 1s ease-out;
         }
 
-        .hero-video {
+       /* .hero-video {
             position: absolute;
             top: 0;
             left: 0;
@@ -43,15 +58,8 @@
             height: 100%;
             object-fit: cover;
             z-index: -1;
-            /* Add these for smoother transitions */
-            transition: opacity 0.5s ease;
-            opacity: 1;
-        }
-
-        /* Add this if you still notice a slight jump */
-        .hero-video.fading {
-            opacity: 0.8;
-        }
+        } */
+         
 
         /* .hero::before {
         content: '';
@@ -837,9 +845,9 @@
 
 @section('content')
     <section class="hero">
-        <video class="hero-video" autoplay muted loop playsinline>
-            <source src="{{ asset('images/0712(2).mp4') }}" type="video/mp4">
-        </video>
+        {{-- <video class="hero-video">
+            <source src="{{ asset('images/freash-water2.jpeg') }}">
+        </video> --}}
         <div class="hero-text">
             <h1 style="width: {{ session('user_lang') == 'en' ? '58%' : '53.2%' }};">
                 @if (session()->has('user_lang') && session('user_lang') == 'en')
@@ -886,16 +894,16 @@
                     @foreach ($waters as $w)
                         <div class="water-item">
                             @if ($w->bottle == '250ml')
-                                <img src="{{ asset('hitech-bottle/waters/250ml.png') }}" alt="HI-TECH Water Bottle">
+                                <img src="{{ asset('hitech-bottle/new-image/250ml.png') }}" alt="HI-TECH Water Bottle">
                             @elseif ($w->bottle == '350ml')
-                                <img src="{{ asset('hitech-bottle/waters/bottle-350ml.png') }}" alt="HI-TECH Water Bottle">
+                                <img src="{{ asset('hitech-bottle/new-image/bottle-350ml.png') }}" alt="HI-TECH Water Bottle">
                             @elseif ($w->bottle == '600ml')
-                                <img src="{{ asset('hitech-bottle/waters/bottle-600ml.png') }}" alt="HI-TECH Water Bottle">
+                                <img src="{{ asset('hitech-bottle/new-image/bottle-600ml.png') }}" alt="HI-TECH Water Bottle">
                             @elseif ($w->bottle == '1500ml')
-                                <img src="{{ asset('hitech-bottle/waters/bottle-1500ml.png') }}"
+                                <img src="{{ asset('hitech-bottle/new-image/bottle-1500ml.png') }}"
                                     alt="HI-TECH Water Bottle">
                             @else
-                                <img src="{{ asset('hitech-bottle/waters/bottle-20L-3-2.png') }}"
+                                <img src="{{ asset('hitech-bottle/new-image/20l-old.png') }}"
                                     alt="HI-TECH Water Bottle">
                             @endif
                             <h3>
@@ -992,25 +1000,6 @@
 <script src="https://cdn.jsdelivr.net/npm/grapheme-splitter@1.0.4/build/grapheme-splitter.min.js"></script>
 @push('scripts')
     <script type="text/javascript">
-        document.addEventListener('DOMContentLoaded', function() {
-            const heroVideo = document.querySelector('.hero-video');
-            
-            // Smooth out the loop transition
-            heroVideo.addEventListener('timeupdate', function() {
-                // When we're 0.5 seconds from the end, start fading slightly
-                if (this.currentTime > this.duration - 0.5) {
-                    this.classList.add('fading');
-                } else {
-                    this.classList.remove('fading');
-                }
-            });
-            
-            // Ensure video is properly loaded and playing
-            heroVideo.addEventListener('loadedmetadata', function() {
-                // Sometimes needed for autoplay to work consistently
-                heroVideo.play().catch(e => console.log('Autoplay prevented:', e));
-            });
-        });
         document.addEventListener('DOMContentLoaded', function() {
             const slider = document.getElementById('water-slider');
             const items = slider.querySelectorAll('.water-item');

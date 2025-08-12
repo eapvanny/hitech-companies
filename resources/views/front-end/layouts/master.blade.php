@@ -68,7 +68,26 @@
 
         .navbar-nav .nav-link.active,
         .navbar-nav .nav-link.show {
-            color: #ffffff;
+            color: #1B6BA8;
+        }
+
+        /* When scrolled – override to white */
+        body.navbar-colored .navbar-nav .nav-link.active,
+        body.navbar-colored .navbar-nav .nav-link.show,
+        body.navbar-colored .nav-link {
+            color: #ffffff !important;
+        }
+
+        .logo-scrolled {
+            display: none;
+        }
+
+        body.navbar-colored .logo-default {
+            display: none;
+        }
+
+        body.navbar-colored .logo-scrolled {
+            display: inline;
         }
 
         .navbar-brand img {
@@ -76,7 +95,7 @@
         }
 
         .nav-link {
-            color: white;
+            color: #1B6BA8;
             font-weight: bold;
             text-transform: uppercase;
             text-decoration: none;
@@ -88,21 +107,25 @@
         }
 
         .nav-link:hover {
-            color: white;
+            color: #1B6BA8;
         }
 
-        .nav-link::after {
+       .nav-link::after {
             content: '';
             position: absolute;
             width: 0;
-            /* Start with 0 width */
             height: 10px;
             bottom: -5px;
             left: 50%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 10"><path d="M0 5 Q 5 0, 10 5 T 20 5 T 30 5 T 40 5 T 50 5 T 60 5" stroke="white" stroke-width="3" fill="none"/></svg>') repeat-x;
+            background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 10'><path d='M0 5 Q 5 0, 10 5 T 20 5 T 30 5 T 40 5 T 50 5 T 60 5' stroke='%231B6BA8' stroke-width='3' fill='none'/></svg>") repeat-x;
             background-size: 45px 10px;
-            /* Adjusted for a more frequent wave */
             transform: translateX(-50%);
+            transition: background 0.3s ease;
+        }
+        /* When scrolled – white stroke */
+        body.navbar-colored .nav-link::after {
+            background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 10'><path d='M0 5 Q 5 0, 10 5 T 20 5 T 30 5 T 40 5 T 50 5 T 60 5' stroke='white' stroke-width='3' fill='none'/></svg>") repeat-x;
+            background-size: 45px 10px;
         }
 
         .nav-link:hover::after{
@@ -125,7 +148,7 @@
         }
 
         .nav-link.active {
-            color: #fff;
+            color: #1B6BA8;
         }
 
         .language-switcher {
@@ -137,6 +160,15 @@
         .language-switcher img {
             height: 20px;
             margin-right: 5px;
+        }
+
+        .label-language small {
+            color: #1B6BA8;
+            transition: color 0.3s ease;
+        }
+
+        body.navbar-colored .label-language small {
+            color: #ffffff;
         }
 
         /* Footer Styles */
@@ -412,7 +444,7 @@
                 margin-left: 350px;
             }
             .nav-item a{
-                font-size: 15px !important;
+                font-size: 14px !important;
             }
             .nav-item-en a{
                 font-size: 12px !important;
@@ -504,7 +536,12 @@
             border: 1px solid #E0E0E0;
             margin-right: 6px;
         }
-
+        .dropdown-toggle::after {
+            color:#1B6BA8;
+        }
+        body.navbar-colored .dropdown-toggle::after{
+            color:#ffffff
+        }
         .dropdown-item:hover {
             background-color: #E6F0FA;
         }
@@ -515,6 +552,12 @@
         }
 
         .text-reset {
+            border: 1px solid #1B6BA8;
+            border-radius: 15px;
+            padding: 0 9px 0 2px;
+            width: 90px;
+        }
+        body.navbar-colored .text-reset {
             border: 1px solid #ffffff;
             border-radius: 15px;
             padding: 0 9px 0 2px;
@@ -621,7 +664,32 @@
                 z-index: 1000;
                 padding: 10px 0;
             }
-
+            /* Show scrolled logo by default on mobile */
+            .nav-link::after {
+                background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 10'><path d='M0 5 Q 5 0, 10 5 T 20 5 T 30 5 T 40 5 T 50 5 T 60 5' stroke='white' stroke-width='3' fill='none'/></svg>") repeat-x;
+                background-size: 45px 10px;
+            }
+            .logo-default {
+                display: none;
+            }
+            .logo-scrolled {
+                display: inline;
+            }
+            .nav-link {
+                color: #ffffff !important;
+            }
+            .label-language small {
+                color: #ffffff;
+            }   
+            .text-reset {
+                border: 1px solid #ffffff;
+                border-radius: 15px;
+                padding: 0 9px 0 2px;
+                width: 90px;
+            }
+            .dropdown-toggle::after{
+                color:#ffffff
+            }
             .nav-link:hover::after{
                 width: calc(100% - 2rem);
                 /* Subtract the padding (1rem left + 1rem right) to match the text width */
@@ -686,9 +754,15 @@
         <div class="container">
             <!-- Logo -->
             <a class="navbar-brand order-md-1" href="{{ url('/') }}">
-                {{-- <img style="width: auto;" src="{{ asset('images/Hi-Tech-Water Logo-blue.png') }}" --}}
-                <img style="width: auto;" src="{{ asset($companyInfo->logo) }}" alt="Hi-Tech Water Logo">
+                <span class="logo-default">
+                    <img style="width: auto;" src="{{ asset('images/Hi-Tech_Water_Logo.png') }}" alt="Default Logo">
+                </span>
+                <span class="logo-scrolled">
+                    <img style="width: auto;" src="{{ asset('images/Hi-Tech-Water Logo-blue.png') }}" alt="Scrolled Logo">
+                </span>
+                <!-- <img style="width: auto;" src="{{ asset($companyInfo->logo) }}" alt="Hi-Tech Water Logo"> -->
             </a>
+
 
             <!-- Language Dropdown -->
             <div class="dropdown mx-3 language order-md-3 order-1">
@@ -746,10 +820,10 @@
                         <a class="nav-link {{ request()->routeIs('water') ? 'active' : '' }}"
                             href="{{ url('/water') }}"> {{ __('lang.product') }} </a>
                     </li>
-                    {{-- <li class="{{ $navClass }}">
+                    <li class="{{ $navClass }}">
                         <a class="nav-link {{ request()->routeIs('event') ? 'active' : '' }}"
                             href="{{ url('/event') }}"> {{ __('lang.event') }} </a>
-                    </li> --}}
+                    </li>
                     <li class="{{ $navClass }}">
                         <a class="nav-link {{ request()->routeIs('about') ? 'active' : '' }}"
                             href="{{ url('/about') }}"> {{ __('lang.aboutus') }} </a>
@@ -865,10 +939,12 @@
             if (window.innerWidth > 767.98) {
                 if (window.scrollY > 100) {
                     navbar.classList.add('navbar-scrolled');
+                    document.body.classList.add('navbar-colored');
                     if (bannerLeft) bannerLeft.style.top = '75px';
                     if (bannerRight) bannerRight.style.top = '75px';
                 } else {
                     navbar.classList.remove('navbar-scrolled');
+                    document.body.classList.remove('navbar-colored');
                     if (bannerLeft) bannerLeft.style.top = '0';
                     if (bannerRight) bannerRight.style.top = '0';
                 }

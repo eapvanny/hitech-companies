@@ -89,7 +89,7 @@
             width: 58%;
             line-height: 1.7;
             font-family: 'Poppins', 'Siemreap' !important;
-            color: #e3e3e3;
+            color: #e3e3e3ff;
             text-shadow: 0 0 10px #8a8a8a, 0 0 20px #8a8a8a, 0 0 30px #8a8a8a;
             animation: moveUpDown 1.5s ease-in-out infinite alternate;
         }

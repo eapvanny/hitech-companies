@@ -37,8 +37,13 @@
 
         .hero {
             height: 100vh;
-            background: linear-gradient(to bottom, #3a3a3a4f 0%, rgba(66, 66, 66, 0.134) 30%, rgba(55, 55, 55, 0.151) 70%),
-                url({{ asset('images/bg-water.png') }}) no-repeat center center;
+            background: linear-gradient(
+                    to bottom,
+                    #3a3a3a4f 0%,
+                    rgba(66, 66, 66, 0.134) 30%,
+                    rgba(55, 55, 55, 0.151) 70%
+                ),
+                url("{{ asset('images/bg-water.png') }}") no-repeat center center;
             background-size: cover;
             color: white;
             text-align: left;
@@ -49,6 +54,7 @@
             position: relative;
             animation: fadeIn 1s ease-out;
         }
+
 
        /* .hero-video {
             position: absolute;
@@ -883,7 +889,7 @@
         </div>
     </section>
     <section class="our-water-theme"
-        @if (!empty($theme)) style="background: linear-gradient(rgba(145, 145, 145, 0.031), rgba(0, 0, 0, 0.411)), url({{ asset($theme->water_bg) }})" @endif>
+        @if (!empty($theme)) style="background: linear-gradient(rgba(145, 145, 145, 0.031), rgba(0, 0, 0, 0.411)), url('{{ asset($theme->water_bg) }}')" @endif>
         <div class="water-content">
             <h2> {{ __('lang.hitech') }} </h2>
             <p>

@@ -28,7 +28,7 @@
         /* Existing About Section Styles */
         .about-section {
             padding: 220px 0;
-            background-image: url({{asset('images/about-image-header.jpg')}});
+            background-image: url("{{ asset('images/about-image-header.jpg') }}");
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;

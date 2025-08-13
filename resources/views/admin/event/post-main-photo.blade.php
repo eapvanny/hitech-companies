@@ -133,7 +133,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <a href="{{ route('event-main-photo.index') }}" class="btn btn-label-warning btn-round btn-md hover-btn me-2">Back</a>
+                                <a href="{{ route('event.index') }}" class="btn btn-label-warning btn-round btn-md hover-btn me-2">Back</a>
                                 <button type="submit" class="btn btn-info btn-round btn-md hover-btn">Post</button>
                             </div>
                         </form>

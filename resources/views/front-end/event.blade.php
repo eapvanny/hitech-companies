@@ -19,7 +19,7 @@
             align-items: center;
             justify-content: flex-start;
             padding: 0 5%;
-            background: linear-gradient(rgba(125, 143, 161, 0.209), rgba(125, 143, 161, 0.209)), url('{{asset('images/ocean.jpg')}}') no-repeat center center;
+            background: linear-gradient(rgba(125, 143, 161, 0.209), rgba(125, 143, 161, 0.209)), url("{{asset('images/ocean.jpg')}}") no-repeat center center;
             background-size: cover;
             background-position: center;
             color: #fff;

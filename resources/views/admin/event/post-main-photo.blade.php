@@ -2,7 +2,7 @@
 
 
 @section('title')
-    <title>{{ __('Post event') }} | Hi-Tech</title>
+    <title>{{ __('Post Main Photo event') }} | Hi-Tech</title>
 @endsection
 
 @section('css')
@@ -14,7 +14,7 @@
 
     <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
         <div>
-        <h3 class="fw-bold mb-3">{{__('Add new post event')}}</h3>
+        <h3 class="fw-bold mb-3">{{__('Add new post main photo event')}}</h3>
         <h6 class="op-7 mb-2"> {{ config('app.company') }} </h6>
         </div>
 
@@ -25,7 +25,7 @@
             <div class="card card-round">
                 <div class="card-header">
                     <div class="card-head-row">
-                        <div class="card-title">{{__('New post event')}}</div>
+                        <div class="card-title">{{__('New post main photo event')}}</div>
                         <div class="card-tools">
                         {{-- <a href="#" class="btn btn-label-success btn-round btn-sm me-2">
                             <span class="btn-label">
@@ -47,7 +47,7 @@
 
                 <div class="card-body">
                     <div class="chart-container" style="min-height: auto">
-                        <form method="post" action="{{ route('event.add') }}" autocomplete="off" enctype="multipart/form-data">
+                        <form method="post" action="{{ route('event-main-photo.add') }}" autocomplete="off" enctype="multipart/form-data">
                             @csrf
                             <div class="container">
                                 <div class="row p-4">
@@ -104,7 +104,7 @@
                                         <div class="ui form">
                                             <div class="field">
                                                 <label for="description" class="fw-bold mt-2">Description <span class="text-danger">*</span></label>
-                                                <textarea rows="4"  placeholder="Description" name="description_kh">{{ old('description_kh') }}</textarea>
+                                                <textarea rows="4"  placeholder="Description" name="des_kh">{{ old('des_kh') }}</textarea>
                                             </div>
                                         </div>
         
@@ -125,41 +125,15 @@
                                         <div class="ui form">
                                             <div class="field">
                                                 <label for="description" class="fw-bold mt-2">Description <span class="text-danger">*</span></label>
-                                                <textarea rows="4"  placeholder="Description" name="description_en">{{ old('description_en') }}</textarea>
+                                                <textarea rows="4"  placeholder="Description" name="des_en">{{ old('des_en') }}</textarea>
                                             </div>
                                         </div>
-
-                                        <h5 class="ui horizontal divider mt-4 text-warning">
-                                            {{-- <i class="globe icon"></i> --}}
-                                            SEO
-                                        </h5>
-
-                                        <label for="title" class="fw-bold mt-2">SEO title</label>
-                                        <div class="ui input w-100">
-                                            {{-- <i class="i cursor icon"></i> --}}
-                                            <input type="text" placeholder="Enter SEO title" id="title" name="seo_title" value="{{ old('seo_title') }}">
-                                            {{-- <a class="ui tag label"> link </a> --}}
-                                        </div>
-        
-        
-                                        <div class="ui form">
-                                            <div class="field">
-                                                <label for="description" class="fw-bold mt-2">SEO description</label>
-                                                <textarea rows="4"  placeholder="Description" name="seo_description">{{ old('seo_description') }}</textarea>
-                                            </div>
-                                        </div>
-        
-        
-        
-                                        <div class="ui toggle checkbox px-0 mt-2">
-                                            <input type="checkbox" value="1" id="checkBox" name="active_status">
-                                            <label for="checkBox">Enable active</label>
-                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <a href="{{ route('event.index') }}" class="btn btn-label-warning btn-round btn-md hover-btn me-2">Back</a>
+                                <a href="{{ route('event-main-photo.index') }}" class="btn btn-label-warning btn-round btn-md hover-btn me-2">Back</a>
                                 <button type="submit" class="btn btn-info btn-round btn-md hover-btn">Post</button>
                             </div>
                         </form>

@@ -704,6 +704,7 @@
             }
             .about-content h1 {
                 margin-left: 5px;
+                margin-top: 5px;
             }
             .about-content p {
                 font-size: 9px;

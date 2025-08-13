@@ -5,20 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Event extends Model
+class MainEventPhoto extends Model
 {
     use HasFactory;
-    protected $table = 'events';
+
     protected $fillable = [
         'img',
         'title_kh',
         'title_en',
-        'description_kh',
-        'description_en',
-        'seo_title',
-        'seo_description',
-        'active_status',
-        'view_num'
+        'des_kh',
+        'des_en',
     ];
-
 }

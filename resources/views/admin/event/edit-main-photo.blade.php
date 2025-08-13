@@ -2,7 +2,7 @@
 
 
 @section('title')
-    <title>{{ __('Post event') }} | Hi-Tech</title>
+    <title>{{ __('Edit post main photo event') }} | Hi-Tech</title>
 @endsection
 
 @section('css')
@@ -14,7 +14,7 @@
 
     <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
         <div>
-        <h3 class="fw-bold mb-3">{{__('Add new post event')}}</h3>
+        <h3 class="fw-bold mb-3">{{__('Edit/Update post main photo event')}}</h3>
         <h6 class="op-7 mb-2"> {{ config('app.company') }} </h6>
         </div>
 
@@ -25,7 +25,7 @@
             <div class="card card-round">
                 <div class="card-header">
                     <div class="card-head-row">
-                        <div class="card-title">{{__('New post event')}}</div>
+                        <div class="card-title">{{__('Edit/Update post main photo event')}}</div>
                         <div class="card-tools">
                         {{-- <a href="#" class="btn btn-label-success btn-round btn-sm me-2">
                             <span class="btn-label">
@@ -47,13 +47,13 @@
 
                 <div class="card-body">
                     <div class="chart-container" style="min-height: auto">
-                        <form method="post" action="{{ route('event.add') }}" autocomplete="off" enctype="multipart/form-data">
-                            @csrf
+                        <form method="post" action="{{ route('event-main-photo.doEdit', ['id'=>$data->id]) }}" autocomplete="off" enctype="multipart/form-data">
                             <div class="container">
                                 <div class="row p-4">
                                     <div class="col-sm12 col-md-12 col-lg-12 col-xl-12">
                                         <div class="ui form">
                                             <div class="field">
+                                                @csrf
                                                 <label for="">Upload image <span class="text-danger">*</span></label>
                                                 <div class="row">
                                                     <div class="col-md-12">
@@ -66,14 +66,14 @@
                                                         </label> --}}
                                                         <div class="ui placeholder segment">
                                                             <div class="ui icon header">
-                                                              <i class="image outline icon" id="icon"></i>
-                                                              <img src="" id="pre_img" alt="pre_img" class="d-none mx-auto" style="width: 40%">
+                                                              <i class="image outline icon d-none" id="icon"></i>
+                                                              <img src="{{ asset($data->img) }}" id="pre_img" alt="pre_img" class="mx-auto d-block" style="width: 40%">
                                                                 Upload image for thumbnail.
                                                             </div>
                                                             <label for="img" class="ui primary button text-white">Browse to image</label>
                                                         </div>
                                                         <input type="file" id="img" name="img" class="w-50 d-none" accept="image/*">
-        
+                                                        {{-- <input type="hidden" name="old_img" value="{{ $data->img }}" class="d-"> --}}
                                                     </div>
                                                 </div>
         
@@ -95,7 +95,7 @@
                                         <label for="title" class="fw-bold mt-2">Title in Khmer<span class="text-danger">*</span></label>
                                         <div class="ui input w-100">
                                             {{-- <i class="i cursor icon"></i> --}}
-                                            <input type="text" placeholder="Enter title" id="title" name="title_kh" value="{{ old('title_kh') }}">
+                                            <input type="text" placeholder="Enter title" id="title" name="title_kh" value="{{ $data->title_kh }}">
                                             {{-- <a class="ui tag label"> link </a> --}}
                                         </div>
         
@@ -104,7 +104,7 @@
                                         <div class="ui form">
                                             <div class="field">
                                                 <label for="description" class="fw-bold mt-2">Description <span class="text-danger">*</span></label>
-                                                <textarea rows="4"  placeholder="Description" name="description_kh">{{ old('description_kh') }}</textarea>
+                                                <textarea rows="4"  placeholder="Description" name="des_kh">{{ $data->des_kh }}</textarea>
                                             </div>
                                         </div>
         
@@ -117,7 +117,7 @@
                                         <label for="title" class="fw-bold mt-2">Title in English<span class="text-danger">*</span></label>
                                         <div class="ui input w-100">
                                             {{-- <i class="i cursor icon"></i> --}}
-                                            <input type="text" placeholder="Enter title in English" id="title" name="title_en" value="{{ old('title_en') }}">
+                                            <input type="text" placeholder="Enter title in English" id="title" name="title_en" value="{{ $data->title_en }}">
                                             {{-- <a class="ui tag label"> link </a> --}}
                                         </div>
         
@@ -125,42 +125,16 @@
                                         <div class="ui form">
                                             <div class="field">
                                                 <label for="description" class="fw-bold mt-2">Description <span class="text-danger">*</span></label>
-                                                <textarea rows="4"  placeholder="Description" name="description_en">{{ old('description_en') }}</textarea>
+                                                <textarea rows="4"  placeholder="Description" name="des_en">{{ $data->des_en }}</textarea>
                                             </div>
                                         </div>
-
-                                        <h5 class="ui horizontal divider mt-4 text-warning">
-                                            {{-- <i class="globe icon"></i> --}}
-                                            SEO
-                                        </h5>
-
-                                        <label for="title" class="fw-bold mt-2">SEO title</label>
-                                        <div class="ui input w-100">
-                                            {{-- <i class="i cursor icon"></i> --}}
-                                            <input type="text" placeholder="Enter SEO title" id="title" name="seo_title" value="{{ old('seo_title') }}">
-                                            {{-- <a class="ui tag label"> link </a> --}}
-                                        </div>
-        
-        
-                                        <div class="ui form">
-                                            <div class="field">
-                                                <label for="description" class="fw-bold mt-2">SEO description</label>
-                                                <textarea rows="4"  placeholder="Description" name="seo_description">{{ old('seo_description') }}</textarea>
-                                            </div>
-                                        </div>
-        
-        
-        
-                                        <div class="ui toggle checkbox px-0 mt-2">
-                                            <input type="checkbox" value="1" id="checkBox" name="active_status">
-                                            <label for="checkBox">Enable active</label>
-                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>
                             <div class="modal-footer">
                                 <a href="{{ route('event.index') }}" class="btn btn-label-warning btn-round btn-md hover-btn me-2">Back</a>
-                                <button type="submit" class="btn btn-info btn-round btn-md hover-btn">Post</button>
+                                <button type="submit" class="btn btn-success btn-round btn-md hover-btn">Edit/Update</button>
                             </div>
                         </form>
                         
@@ -204,15 +178,15 @@
             });
         });
     </script>
-        <script>
-            $(document).ready(function(){
-                // $('#sidebar-menu li').remoeClass('active');
-                // $('#sidebar-menu li ul li').remoeClass('active collapse');
-    
-                $('#event').addClass('active');
-                $('#homepagecollapse').addClass('collapse show');
-                $('.event').addClass('active');
-    
-            });
-        </script>
+    <script>
+        $(document).ready(function(){
+            // $('#sidebar-menu li').remoeClass('active');
+            // $('#sidebar-menu li ul li').remoeClass('active collapse');
+
+            $('#event').addClass('active');
+            $('#homepagecollapse').addClass('collapse show');
+            $('.event').addClass('active');
+
+        });
+    </script>
 @endsection

@@ -107,10 +107,12 @@ $mainEvent = $mainEventPhoto->first();
 
     .news-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Flexible grid */
+        /* grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); */
+        grid-template-columns: repeat(3, 1fr); /* Always 3 columns */
         gap: 20px;
         max-width: 1400px; /* Slightly larger max-width */
         margin: 0 auto;
+        justify-items: center; /* Center items in their columns */
     }
 
     .news-card {
@@ -356,8 +358,8 @@ $mainEvent = $mainEventPhoto->first();
         <div>
             <!-- <h1>Pure Water, Pure Life</h1>
             <p>Join us for the grand launch of HiTech Drinking Water! Discover our advanced filtration technology and unwavering commitment to delivering pure, safe, and affordable water to Cambodia.</p> -->
-            <h1>{{ $main->title_en }}</h1>
-            <p>{{ $main->des_en }}</p>
+            <h1> {{ session('user_lang') == 'en' ? $main->title_en : $main->title_kh }}</h1>
+            <p> {{ session('user_lang') == 'en' ? $main->des_en : $main->des_kh }}</p>
         </div>
     @endforeach
 </section>

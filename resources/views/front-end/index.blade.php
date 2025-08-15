@@ -22,27 +22,25 @@
         /* Hero Section */
         /* Hero section styling */
         /* .hero {
-            height: 100vh;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            padding-left: 100px;
-            color: white;
-            text-align: left;
-            animation: fadeIn 1s ease-out;
-            overflow: hidden;
-            Prevent video overflow
-        } */
+                    height: 100vh;
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-start;
+                    padding-left: 100px;
+                    color: white;
+                    text-align: left;
+                    animation: fadeIn 1s ease-out;
+                    overflow: hidden;
+                    Prevent video overflow
+                } */
 
         .hero {
             height: 100vh;
-            background: linear-gradient(
-                    to bottom,
-                    #3a3a3a4f 0%,
-                    rgba(66, 66, 66, 0.134) 30%,
-                    rgba(55, 55, 55, 0.151) 70%
-                ),
+            background: linear-gradient(to bottom,
+                    #d1d1d14f 0%,
+                    rgba(159, 159, 159, 0.13) 30%,
+                    rgba(194, 194, 194, 0.15) 70%),
                 url("{{ asset('images/bg-water.png') }}") no-repeat center center;
             background-size: cover;
             color: white;
@@ -56,27 +54,27 @@
         }
 
 
-       /* .hero-video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1;
-        } */
-         
+        /* .hero-video {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    z-index: -1;
+                } */
+
 
         /* .hero::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(to bottom, rgba(66, 148, 255, 0.5));
-        z-index: 1;
-    } */
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(to bottom, rgba(66, 148, 255, 0.5));
+                z-index: 1;
+            } */
 
         .hero-text,
         .hero-image {
@@ -87,17 +85,27 @@
 
         .hero-text h1 {
             font-size: 3em;
-            -webkit-text-stroke: 1px #fff;
-            -webkit-background-clip: text;
-            background-position: 0 0;
-            text-shadow: none;
-            /* margin-top: -150px; */
+            -webkit-text-stroke: 1px #1B6BA8;
+            color: #1B6BA8;
+            /* text-shadow: 0 0 10px #8a8a8a, 0 0 20px #8a8a8a, 0 0 30px #8a8a8a; */
+            font-family: 'Poppins', 'Siemreap' !important;
             width: 58%;
             line-height: 1.7;
-            font-family: 'Poppins', 'Siemreap' !important;
-            color: #e3e3e3ff;
-            text-shadow: 0 0 10px #8a8a8a, 0 0 20px #8a8a8a, 0 0 30px #8a8a8a;
-            animation: moveUpDown 1.5s ease-in-out infinite alternate;
+            animation: slideWave 4s infinite linear;
+        }
+
+        @keyframes slideWave {
+            0% {
+                transform: translateX(0);
+            }
+
+            50% {
+                transform: translateX(20px);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
         }
 
         .hero-image {
@@ -539,7 +547,7 @@
             }
 
             .hero-text h1 {
-                font-size: 3.7em;
+                font-size: 2.5em;
                 line-height: 1.5;
                 margin-top: auto;
             }
@@ -559,7 +567,7 @@
             }
 
             .hero-text h1 {
-                font-size: 3em;
+                font-size: 2em;
                 line-height: 1.5;
                 margin-top: auto;
             }
@@ -630,7 +638,7 @@
             }
 
             .hero-text h1 {
-                font-size: 3em;
+                font-size: 2em;
                 line-height: 1.4;
                 margin-top: auto;
             }
@@ -845,7 +853,6 @@
                 margin-top: auto;
             }
         }
-        
     </style>
 @endsection
 
@@ -902,15 +909,16 @@
                             @if ($w->bottle == '250ml')
                                 <img src="{{ asset('hitech-bottle/new-image/250ml.png') }}" alt="HI-TECH Water Bottle">
                             @elseif ($w->bottle == '350ml')
-                                <img src="{{ asset('hitech-bottle/new-image/bottle-350ml.png') }}" alt="HI-TECH Water Bottle">
+                                <img src="{{ asset('hitech-bottle/new-image/bottle-350ml.png') }}"
+                                    alt="HI-TECH Water Bottle">
                             @elseif ($w->bottle == '600ml')
-                                <img src="{{ asset('hitech-bottle/new-image/bottle-600ml.png') }}" alt="HI-TECH Water Bottle">
+                                <img src="{{ asset('hitech-bottle/new-image/bottle-600ml.png') }}"
+                                    alt="HI-TECH Water Bottle">
                             @elseif ($w->bottle == '1500ml')
                                 <img src="{{ asset('hitech-bottle/new-image/bottle-1500ml.png') }}"
                                     alt="HI-TECH Water Bottle">
                             @else
-                                <img src="{{ asset('hitech-bottle/new-image/20l-old.png') }}"
-                                    alt="HI-TECH Water Bottle">
+                                <img src="{{ asset('hitech-bottle/new-image/20l-old.png') }}" alt="HI-TECH Water Bottle">
                             @endif
                             <h3>
                                 {{ $w->bottle }}

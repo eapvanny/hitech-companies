@@ -76,37 +76,66 @@
                 z-index: 1;
             } */
 
-        .hero-text,
         .hero-image {
             position: relative;
             z-index: 100;
             /* Ensure text and image are above video, gradient, and red overlay */
         }
-
-        .hero-text h1 {
-            font-size: 3em;
-            -webkit-text-stroke: 1px #1B6BA8;
-            color: #1B6BA8;
-            /* text-shadow: 0 0 10px #8a8a8a, 0 0 20px #8a8a8a, 0 0 30px #8a8a8a; */
-            font-family: 'Poppins', 'Siemreap' !important;
-            width: 58%;
+        .hero-text {
+            position: relative;
+            display: block;
+        }
+            .hero-text h1 {
+            font-size: 3.5em;
+            font-family: 'Poppins','Siemreap' !important;
             line-height: 1.7;
-            animation: slideWave 4s infinite linear;
+            position: absolute;
+            top: 0;
+            left: 0;
+            margin-top: -100px;
+            white-space: nowrap;
         }
 
-        @keyframes slideWave {
-            0% {
-                transform: translateX(0);
-            }
+        /* Stroke layer */
+        .hero-text h1:nth-child(odd) {
+            color: transparent;
+            -webkit-text-stroke: 1px #1B6BA8;
+        }
 
+        /* Gradient + wave animation layer */
+        .hero-text h1:nth-child(even) {
+            background: linear-gradient(90deg, #237ec4 20%, #bdc9da 40%, #1B6BA8 60%);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: #1B6BA8;
+            animation: waveClip 4s ease-in-out infinite, waveFlow 6s linear infinite;
+        }
+
+        /* Wave "cut" effect */
+        @keyframes waveClip {
+            0%,100% {
+                clip-path: polygon(
+                    0% 45%, 16% 44%, 33% 50%, 54% 60%, 
+                    70% 61%, 84% 59%, 100% 52%, 
+                    100% 100%, 0% 100%
+                );
+            }
             50% {
-                transform: translateX(20px);
-            }
-
-            100% {
-                transform: translateX(0);
+                clip-path: polygon(
+                    0% 60%, 15% 65%, 34% 66%, 51% 62%, 
+                    67% 50%, 84% 45%, 100% 46%, 
+                    100% 100%, 0% 100%
+                );
             }
         }
+
+        /* Gradient flowing effect */
+        @keyframes waveFlow {
+            0%   { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
 
         .hero-image {
             position: absolute;
@@ -549,7 +578,7 @@
             .hero-text h1 {
                 font-size: 2.5em;
                 line-height: 1.5;
-                margin-top: auto;
+                margin-top: -100px;
             }
         }
 
@@ -623,7 +652,22 @@
                 text-align: center;
             }
         }
-
+        @media (max-width: 912px) {
+            .hero-text h1 {
+                font-size: 2em;
+                line-height: 1.4;
+                margin-top: -70px;
+                margin-left: 25px;
+                }
+            }
+        @media (max-width: 820px) {
+            .hero-text h1 {
+                font-size: 2em;
+                line-height: 1.4;
+                margin-top: -50px;
+                margin-left: 25px;
+            }
+        }
         @media (max-width: 768px) {
             .hero-image {
                 width: 250px !important;
@@ -640,7 +684,8 @@
             .hero-text h1 {
                 font-size: 2em;
                 line-height: 1.4;
-                margin-top: auto;
+                margin-top: -50px;
+                margin-left: 25px;
             }
 
             .about-content {
@@ -845,12 +890,32 @@
                 font-size: 0.9rem;
             }
         }
-
+        @media (max-width: 430px) {
+            .hero-text h1 {
+                /* font-size: 1.1rem; */
+                line-height: 1.5;
+                margin-top: -50px;
+            }
+        }
+        @media (max-width: 414px) {
+            .hero-text h1 {
+                /* font-size: 1.1rem; */
+                line-height: 1.5;
+                margin-top: -50px;
+            }
+        }
+        @media (max-width: 390px) {
+            .hero-text h1 {
+                /* font-size: 1.1rem; */
+                line-height: 1.5;
+                margin-top: -50px;
+            }
+        }
         @media (max-width: 360px) {
             .hero-text h1 {
                 font-size: 1.1rem;
                 line-height: 1.5;
-                margin-top: auto;
+                margin-top: -50px;
             }
         }
     </style>
@@ -862,11 +927,39 @@
             <source src="{{ asset('images/freash-water2.jpeg') }}">
         </video> --}}
         <div class="hero-text">
-            <h1 style="width: {{ session('user_lang') == 'en' ? '58%' : '53.2%' }};">
+            <!-- Stroke text - First row -->
+            <h1>
                 @if (session()->has('user_lang') && session('user_lang') == 'en')
-                    {{ $slides->title_en }}
+                    {{ substr($slides->title_en, 0, strpos($slides->title_en, 'and')) }}
                 @else
-                    {{ $slides->title_kh }}
+                    {{ mb_substr($slides->title_kh, 0, mb_strpos($slides->title_kh, 'និង')) }}
+                @endif
+            </h1>
+
+            <!-- Wave gradient text - First row -->
+            <h1>
+                @if (session()->has('user_lang') && session('user_lang') == 'en')
+                    {{ substr($slides->title_en, 0, strpos($slides->title_en, 'and')) }}
+                @else
+                    {{ mb_substr($slides->title_kh, 0, mb_strpos($slides->title_kh, 'និង')) }}
+                @endif
+            </h1>
+
+            <!-- Stroke text - Second row -->
+            <h1 style="top: 2em;">
+                @if (session()->has('user_lang') && session('user_lang') == 'en')
+                    {{ substr($slides->title_en, strpos($slides->title_en, 'and')) }}
+                @else
+                    {{ mb_substr($slides->title_kh, mb_strpos($slides->title_kh, 'និង')) }}
+                @endif
+            </h1>
+
+            <!-- Wave gradient text - Second row -->
+            <h1 style="top: 2em;">
+                @if (session()->has('user_lang') && session('user_lang') == 'en')
+                    {{ substr($slides->title_en, strpos($slides->title_en, 'and')) }}
+                @else
+                    {{ mb_substr($slides->title_kh, mb_strpos($slides->title_kh, 'និង')) }}
                 @endif
             </h1>
         </div>

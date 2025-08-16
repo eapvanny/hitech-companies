@@ -40,7 +40,7 @@
         }
 
         .navbar {
-            background: transparent;
+            background: linear-gradient(90deg, rgba(26, 106, 168, 1) 0%, rgba(217, 36, 40, 1) 100%);
             /* Initial state */
             display: flex;
             flex-wrap: wrap;
@@ -68,7 +68,8 @@
 
         .navbar-nav .nav-link.active,
         .navbar-nav .nav-link.show {
-            color: #1B6BA8;
+            /* color: #1B6BA8; */
+            color: #ffffff;
         }
 
         /* When scrolled – override to white */
@@ -95,7 +96,7 @@
         }
 
         .nav-link {
-            color: #1B6BA8;
+            color: #ffffff;
             font-weight: bold;
             text-transform: uppercase;
             text-decoration: none;
@@ -107,7 +108,7 @@
         }
 
         .nav-link:hover {
-            color: #1B6BA8;
+            color: #ffffff;
         }
 
        .nav-link::after {
@@ -117,16 +118,16 @@
             height: 10px;
             bottom: -5px;
             left: 50%;
-            background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 10'><path d='M0 5 Q 5 0, 10 5 T 20 5 T 30 5 T 40 5 T 50 5 T 60 5' stroke='%231B6BA8' stroke-width='3' fill='none'/></svg>") repeat-x;
+            background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 10'><path d='M0 5 Q 5 0, 10 5 T 20 5 T 30 5 T 40 5 T 50 5 T 60 5' stroke='white' stroke-width='3' fill='none'/></svg>") repeat-x;
             background-size: 45px 10px;
             transform: translateX(-50%);
             transition: background 0.3s ease;
         }
         /* When scrolled – white stroke */
-        body.navbar-colored .nav-link::after {
+        /* body.navbar-colored .nav-link::after {
             background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 10'><path d='M0 5 Q 5 0, 10 5 T 20 5 T 30 5 T 40 5 T 50 5 T 60 5' stroke='white' stroke-width='3' fill='none'/></svg>") repeat-x;
             background-size: 45px 10px;
-        }
+        } */
 
         .nav-link:hover::after{
             width: calc(100% - 1rem);
@@ -163,7 +164,7 @@
         }
 
         .label-language small {
-            color: #1B6BA8;
+            color: #ffffff;
             transition: color 0.3s ease;
         }
 
@@ -537,7 +538,7 @@
             margin-right: 6px;
         }
         .dropdown-toggle::after {
-            color:#1B6BA8;
+            color:#ffffff;
         }
         body.navbar-colored .dropdown-toggle::after{
             color:#ffffff
@@ -552,7 +553,7 @@
         }
 
         .text-reset {
-            border: 1px solid #1B6BA8;
+            border: 1px solid #ffffff;
             border-radius: 15px;
             padding: 0 9px 0 2px;
             width: 90px;
@@ -670,7 +671,7 @@
                 background-size: 45px 10px;
             }
             .logo-default {
-                display: none;
+                display: block;
             }
             .logo-scrolled {
                 display: inline;
@@ -755,11 +756,11 @@
             <!-- Logo -->
             <a class="navbar-brand order-md-1" href="{{ url('/') }}">
                 <span class="logo-default">
-                    <img style="width: auto;" src="{{ asset('images/Hi-Tech_Water_Logo.png') }}" alt="Default Logo">
+                    <img style="width: auto;" src="{{ asset('images/Hi-Tech-Water Logo-blue.png') }}" alt="Default Logo">
                 </span>
-                <span class="logo-scrolled">
+                <!-- <span class="logo-scrolled">
                     <img style="width: auto;" src="{{ asset('images/Hi-Tech-Water Logo-blue.png') }}" alt="Scrolled Logo">
-                </span>
+                </span> -->
                 <!-- <img style="width: auto;" src="{{ asset($companyInfo->logo) }}" alt="Hi-Tech Water Logo"> -->
             </a>
 
@@ -936,7 +937,7 @@
             const bannerRight = document.querySelector('.decorative-banner-right');
 
             // Navbar and banner scroll behavior for non-mobile devices
-            if (window.innerWidth > 767.98) {
+            /*if (window.innerWidth > 767.98) {
                 if (window.scrollY > 100) {
                     navbar.classList.add('navbar-scrolled');
                     document.body.classList.add('navbar-colored');
@@ -948,7 +949,7 @@
                     if (bannerLeft) bannerLeft.style.top = '0';
                     if (bannerRight) bannerRight.style.top = '0';
                 }
-            }
+            }*/
 
             // Back-to-top visibility
             if (window.scrollY > 300) {

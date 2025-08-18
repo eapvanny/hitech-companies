@@ -41,7 +41,7 @@
                     #d1d1d14f 0%,
                     rgba(159, 159, 159, 0.13) 30%,
                     rgba(194, 194, 194, 0.15) 70%),
-                url("{{ asset('images/bg-water.png') }}") no-repeat center center;
+                url("{{ asset('images/clouds-water.jpg') }}") no-repeat center center;
             background-size: cover;
             color: white;
             text-align: left;
@@ -81,52 +81,28 @@
             z-index: 100;
             /* Ensure text and image are above video, gradient, and red overlay */
         }
-        .hero-text {
-            position: relative;
-            display: block;
-        }
-            .hero-text h1 {
+        .hero-text h1 {
             font-size: 3.5em;
-            font-family: 'Poppins','Siemreap' !important;
+            font-family: 'Poppins', 'Siemreap' !important;
             line-height: 1.7;
-            position: absolute;
-            top: 0;
-            left: 0;
-            margin-top: -100px;
-            white-space: nowrap;
-        }
-
-        /* Stroke layer */
-        .hero-text h1:nth-child(odd) {
+            width: 58%;
+            position: relative;
             color: transparent;
             -webkit-text-stroke: 1px #1B6BA8;
-        }
-
-        /* Gradient + wave animation layer */
-        .hero-text h1:nth-child(even) {
-            background: linear-gradient(90deg, #237ec4 20%, #bdc9da 40%, #1B6BA8 60%);
+            background: linear-gradient(90deg, #237ec4ff 20%, #bdc9daff 40%, #1B6BA8 60%);
             background-size: 200% 100%;
             -webkit-background-clip: text;
             background-clip: text;
-            color: #1B6BA8;
-            animation: waveClip 4s ease-in-out infinite, waveFlow 6s linear infinite;
+            animation: waveFlow 4s linear infinite;
         }
 
-        /* Wave "cut" effect */
-        @keyframes waveClip {
-            0%,100% {
-                clip-path: polygon(
-                    0% 45%, 16% 44%, 33% 50%, 54% 60%, 
-                    70% 61%, 84% 59%, 100% 52%, 
-                    100% 100%, 0% 100%
-                );
+        /* wave animation */
+        @keyframes waveFlow {
+            0% {
+                background-position: 200% 0;
             }
-            50% {
-                clip-path: polygon(
-                    0% 60%, 15% 65%, 34% 66%, 51% 62%, 
-                    67% 50%, 84% 45%, 100% 46%, 
-                    100% 100%, 0% 100%
-                );
+            100% {
+                background-position: -200% 0;
             }
         }
 
@@ -890,23 +866,20 @@
                 font-size: 0.9rem;
             }
         }
-        @media (max-width: 430px) {
+        /* @media (max-width: 430px) {
             .hero-text h1 {
-                /* font-size: 1.1rem; */
                 line-height: 1.5;
                 margin-top: -50px;
             }
         }
         @media (max-width: 414px) {
             .hero-text h1 {
-                /* font-size: 1.1rem; */
                 line-height: 1.5;
                 margin-top: -50px;
             }
         }
         @media (max-width: 390px) {
             .hero-text h1 {
-                /* font-size: 1.1rem; */
                 line-height: 1.5;
                 margin-top: -50px;
             }
@@ -917,7 +890,7 @@
                 line-height: 1.5;
                 margin-top: -50px;
             }
-        }
+        } */
     </style>
 @endsection
 
@@ -927,39 +900,11 @@
             <source src="{{ asset('images/freash-water2.jpeg') }}">
         </video> --}}
         <div class="hero-text">
-            <!-- Stroke text - First row -->
-            <h1>
+            <h1 style="width: {{ session('user_lang') == 'en' ? '58%' : '53.2%' }};">
                 @if (session()->has('user_lang') && session('user_lang') == 'en')
-                    {{ substr($slides->title_en, 0, strpos($slides->title_en, 'and')) }}
+                    {{ $slides->title_en }}
                 @else
-                    {{ mb_substr($slides->title_kh, 0, mb_strpos($slides->title_kh, 'និង')) }}
-                @endif
-            </h1>
-
-            <!-- Wave gradient text - First row -->
-            <h1>
-                @if (session()->has('user_lang') && session('user_lang') == 'en')
-                    {{ substr($slides->title_en, 0, strpos($slides->title_en, 'and')) }}
-                @else
-                    {{ mb_substr($slides->title_kh, 0, mb_strpos($slides->title_kh, 'និង')) }}
-                @endif
-            </h1>
-
-            <!-- Stroke text - Second row -->
-            <h1 style="top: 2em;">
-                @if (session()->has('user_lang') && session('user_lang') == 'en')
-                    {{ substr($slides->title_en, strpos($slides->title_en, 'and')) }}
-                @else
-                    {{ mb_substr($slides->title_kh, mb_strpos($slides->title_kh, 'និង')) }}
-                @endif
-            </h1>
-
-            <!-- Wave gradient text - Second row -->
-            <h1 style="top: 2em;">
-                @if (session()->has('user_lang') && session('user_lang') == 'en')
-                    {{ substr($slides->title_en, strpos($slides->title_en, 'and')) }}
-                @else
-                    {{ mb_substr($slides->title_kh, mb_strpos($slides->title_kh, 'និង')) }}
+                    {{ $slides->title_kh }}
                 @endif
             </h1>
         </div>

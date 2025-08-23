@@ -22,151 +22,133 @@
         /* Hero Section */
         /* Hero section styling */
         /* .hero {
-                    height: 100vh;
-                    position: relative;
-                    display: flex;
-                    align-items: center;
-                    justify-content: flex-start;
-                    padding-left: 100px;
-                    color: white;
-                    text-align: left;
-                    animation: fadeIn 1s ease-out;
-                    overflow: hidden;
-                    Prevent video overflow
-                } */
+                                height: 100vh;
+                                position: relative;
+                                display: flex;
+                                align-items: center;
+                                justify-content: flex-start;
+                                padding-left: 100px;
+                                color: white;
+                                text-align: left;
+                                animation: fadeIn 1s ease-out;
+                                overflow: hidden;
+                                Prevent video overflow
+                            } */
 
         .hero {
+            position: relative;
             height: 100vh;
-            background: linear-gradient(to bottom,
-                    #d1d1d14f 0%,
-                    rgba(159, 159, 159, 0.13) 30%,
-                    rgba(194, 194, 194, 0.15) 70%),
-                url("{{ asset('images/clouds-water.jpg') }}") no-repeat center center;
-            background-size: cover;
-            color: white;
-            text-align: left;
             display: flex;
             align-items: center;
-            justify-content: flex-start;
-            padding-left: 100px;
-            position: relative;
-            animation: fadeIn 1s ease-out;
-        }
-
-
-        /* .hero-video {
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                    z-index: -1;
-                } */
-
-
-        /* .hero::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: linear-gradient(to bottom, rgba(66, 148, 255, 0.5));
-                z-index: 1;
-            } */
-
-        .hero-image {
-            position: relative;
-            z-index: 100;
-            /* Ensure text and image are above video, gradient, and red overlay */
-        }
-        .hero-text h1 {
-            font-size: 3.5em;
-            font-family: 'Poppins', 'Siemreap' !important;
-            line-height: 1.7;
-            width: 58%;
-            position: relative;
-            color: transparent;
-            -webkit-text-stroke: 1px #1B6BA8;
-            background: linear-gradient(90deg, #237ec4ff 20%, #bdc9daff 40%, #1B6BA8 60%);
-            background-size: 200% 100%;
-            -webkit-background-clip: text;
-            background-clip: text;
-            animation: waveFlow 4s linear infinite;
-        }
-
-        /* wave animation */
-        @keyframes waveFlow {
-            0% {
-                background-position: 200% 0;
-            }
-            100% {
-                background-position: -200% 0;
-            }
-        }
-
-        /* Gradient flowing effect */
-        @keyframes waveFlow {
-            0%   { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
-        }
-
-
-        .hero-image {
-            position: absolute;
-            right: 100px;
-            bottom: 50px;
-            width: 460px !important;
-            height: 383px !important;
-            max-width: none !important;
-            max-height: none !important;
-            animation: slideIn 1s ease-out forwards, moveUpDown 1.5s ease-in-out infinite alternate 1s;
+            justify-content: space-between;
+            background: url('{{ asset('images/artwork_website1.jpeg') }}') center/cover no-repeat;
             overflow: hidden;
+            padding: 0 8%;
+        }
+
+        /* Gradient overlay */
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* background: linear-gradient(to right, rgba(27,107,168,0.7), rgba(255,255,255,0.2)); */
+            z-index: 1;
+        }
+
+        /* Text Content */
+        .hero-content {
+            position: absolute;
+            top: 50%;
+            right: 6%;
+            /* distance from the right edge */
+            transform: translateY(-50%);
+            /* vertical center */
+            z-index: 2;
+            color: #fff;
+            text-align: right;
+            /* right-align inner text & button */
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            font-family: 'Poppins', 'Siemreap', sans-serif;
+            line-height: 1.3;
+            background: linear-gradient(90deg, #1B6BA8, #1B6BA8, #1B6BA8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientFlow 5s ease-in-out infinite;
+        }
+
+        .subtitle {
+            font-size: 1.3em;
+            margin: 20px 0;
+            color: #1B6BA8;
+            opacity: 0.9;
+            text-align: right;
+        }
+
+        /* CTA Button */
+        .cta-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            font-size: 1.1em;
+            color: #fff;
+            background: #1B6BA8;
+            border-radius: 30px;
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            transition: 0.3s ease;
+        }
+
+        .cta-btn:hover {
+            background: #14507c;
+            transform: translateY(-3px);
+        }
+
+
+        /* Product Image */
+        .hero-image {
+            position: relative;
+            z-index: 2;
+            width: 420px;
+            top: 150px;
+            animation: float 3s ease-in-out infinite;
         }
 
         .hero-image img {
-            width: 100% !important;
-            height: 100% !important;
-            object-fit: contain;
-            display: block;
+            width: 100%;
+            filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.3));
         }
 
-        /* Fade-in animation */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
 
-            to {
-                opacity: 1;
-            }
-        }
 
-        /* Move up and down animation */
-        @keyframes moveUpDown {
-            0% {
-                transform: translateY(0);
-            }
 
-            100% {
-                transform: translateY(-20px);
-                /* Adjust this value to control the movement distance */
-            }
-        }
+        /* .hero-video {
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                width: 100%;
+                                height: 100%;
+                                object-fit: cover;
+                                z-index: -1;
+                            } */
 
-        /* Slide-in animation */
-        @keyframes slideIn {
-            from {
-                transform: translateX(100px);
-                opacity: 0;
-            }
 
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
+        /* .hero::before {
+                            content: '';
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            background: linear-gradient(to bottom, rgba(66, 148, 255, 0.5));
+                            z-index: 1;
+                        } */
+
+
 
         h1,
         h2,
@@ -542,7 +524,7 @@
         /* Responsive Adjustments */
         @media (max-width: 1200px) {
             .hero {
-                height: 50vh;
+                height: 39vh;
             }
 
             .hero-image {
@@ -551,10 +533,10 @@
                 right: 50px;
             }
 
-            .hero-text h1 {
-                font-size: 2.5em;
+            .hero-content h1 {
+                font-size: 2.3rem;
                 line-height: 1.5;
-                margin-top: -100px;
+                /* margin-top: -100px; */
             }
         }
 
@@ -628,22 +610,52 @@
                 text-align: center;
             }
         }
+
         @media (max-width: 912px) {
-            .hero-text h1 {
-                font-size: 2em;
-                line-height: 1.4;
-                margin-top: -70px;
-                margin-left: 25px;
-                }
+            .hero {
+                height: 35vh;
             }
-        @media (max-width: 820px) {
-            .hero-text h1 {
-                font-size: 2em;
+            .hero-content h1 {
+                font-size: 1.9em;
                 line-height: 1.4;
-                margin-top: -50px;
-                margin-left: 25px;
+            }
+             .subtitle {
+                font-size: 1em;
+                margin: 10px 0;
+            }
+
+            /* CTA Button */
+            .cta-btn {
+                font-size: .9em;
+                padding: 5px 12px;
+
             }
         }
+
+        @media (max-width: 820px) {
+            .hero {
+                height: 36vh;
+            }
+
+            .hero-content h1 {
+                font-size: 1.7rem;
+                line-height: 1.3;
+                /* margin-top: -100px; */
+            }
+
+            .subtitle {
+                font-size: 1.1em;
+                margin: 10px 0;
+            }
+
+            /* CTA Button */
+            .cta-btn {
+                font-size: 1.1em;
+                padding: 10px 28px;
+
+            }
+        }
+
         @media (max-width: 768px) {
             .hero-image {
                 width: 250px !important;
@@ -654,14 +666,7 @@
 
             .hero {
                 padding-left: 30px;
-                height: 50vh;
-            }
-
-            .hero-text h1 {
-                font-size: 2em;
-                line-height: 1.4;
-                margin-top: -50px;
-                margin-left: 25px;
+                height: 39vh;
             }
 
             .about-content {
@@ -866,51 +871,127 @@
                 font-size: 0.9rem;
             }
         }
-        /* @media (max-width: 430px) {
-            .hero-text h1 {
-                line-height: 1.5;
-                margin-top: -50px;
+        @media (max-width: 540px) {
+            .hero {
+                height: 40vh;
+                margin: 60px 0 0 0;
+            }
+            .hero-content h1 {
+                font-size: 1.2rem;
+            }
+            .subtitle {
+                font-size: .7em;
+                line-height: 1.2em
+                /* margin: 10px 0; */
+            }
+
+            /* CTA Button */
+            .cta-btn {
+                font-size: .7em;
+                padding: 4px 8px;
+
             }
         }
+        @media (max-width: 430px) {
+            .hero {
+                height: 24vh;
+                margin: 60px 0 0 0;
+                /* top: 60px; */
+            }
+            .hero-content h1 {
+                font-size: .9rem;
+            }
+            .subtitle {
+                font-size: .6em;
+                line-height: 1.2em
+                /* margin: 10px 0; */
+            }
+
+            /* CTA Button */
+            .cta-btn {
+                font-size: .6em;
+                padding: 4px 8px;
+
+            }
+        }
+
         @media (max-width: 414px) {
-            .hero-text h1 {
-                line-height: 1.5;
-                margin-top: -50px;
+            .hero {
+                height: 24vh;
+                margin: 60px 0 0 0;
+                /* top: 60px; */
+            }
+            .hero-content h1 {
+                font-size: .9rem;
+            }
+            .subtitle {
+                font-size: .6em;
+                line-height: 1.2em
+                /* margin: 10px 0; */
+            }
+
+            /* CTA Button */
+            .cta-btn {
+                font-size: .6em;
+                padding: 4px 8px;
+
             }
         }
+
         @media (max-width: 390px) {
-            .hero-text h1 {
-                line-height: 1.5;
-                margin-top: -50px;
+            .hero-content h1 {
+                font-size: .8rem;
             }
         }
+
         @media (max-width: 360px) {
             .hero-text h1 {
                 font-size: 1.1rem;
                 line-height: 1.5;
                 margin-top: -50px;
             }
-        } */
+        }
+         @media (max-width: 344px) {
+            .hero {
+                height: 20vh;
+                margin: 60px 0 0 0;
+                /* top: 60px; */
+            }
+            .hero-content h1 {
+                font-size: .7rem;
+            }
+            .subtitle {
+                font-size: .45em;
+            }
+
+            /* CTA Button */
+            .cta-btn {
+                font-size: .45em;
+                padding: 4px 8px;
+
+            }
+        }
     </style>
 @endsection
 
 @section('content')
     <section class="hero">
-        {{-- <video class="hero-video">
-            <source src="{{ asset('images/freash-water2.jpeg') }}">
-        </video> --}}
-        <div class="hero-text">
-            <h1 style="width: {{ session('user_lang') == 'en' ? '58%' : '53.2%' }};">
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content" style="width: {{ session('user_lang') == 'en' ? '40.5%' : '35%' }};">
+            <h1>
                 @if (session()->has('user_lang') && session('user_lang') == 'en')
                     {{ $slides->title_en }}
                 @else
                     {{ $slides->title_kh }}
                 @endif
             </h1>
+            <p class="subtitle">សុខភាពចាប់ផ្តើមពីទឹកស្អាត</p>
+            <a href="#contact" class="cta-btn">Order Now</a>
         </div>
+
         <div class="hero-image">
-            <img fetchpriority="high" decoding="async" src="{{ asset($slides->img) }}"
-                class="attachment-full size-full wp-image-312" alt="">
+            <!-- <img src="{{ asset($slides->img) }}" alt="Hi-Tech Water"> -->
         </div>
     </section>
     <section class="about">

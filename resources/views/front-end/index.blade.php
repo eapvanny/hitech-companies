@@ -93,7 +93,7 @@
         /* CTA Button */
         .cta-btn {
             display: inline-block;
-            padding: 12px 30px;
+            padding: 10px 23px;
             font-size: 1.1em;
             color: #fff;
             background: #1B6BA8;
@@ -101,6 +101,7 @@
             text-decoration: none;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
             transition: 0.3s ease;
+            margin-top: 10px;
         }
 
         .cta-btn:hover {
@@ -651,7 +652,7 @@
             /* CTA Button */
             .cta-btn {
                 font-size: 1.1em;
-                padding: 10px 28px;
+                padding: 5px 12px;
 
             }
         }
@@ -667,6 +668,13 @@
             .hero {
                 padding-left: 30px;
                 height: 39vh;
+            }
+
+            /* CTA Button */
+            .cta-btn {
+                font-size: .9em;
+                padding: 5px 12px;
+
             }
 
             .about-content {
@@ -986,8 +994,7 @@
                     {{ $slides->title_kh }}
                 @endif
             </h1>
-            <p class="subtitle">សុខភាពចាប់ផ្តើមពីទឹកស្អាត</p>
-            <a href="#contact" class="cta-btn">Order Now</a>
+            <a href="https://t.me/+85570212400" class="cta-btn" target="_blank"> <i class="bi bi-telegram"></i> {{__('lang.contactus')}}</a>
         </div>
 
         <div class="hero-image">

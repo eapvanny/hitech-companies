@@ -119,7 +119,7 @@ class SocietyController extends Controller
             return redirect()->back()->with('error', 'Field are required.');
         }
 
-        $old_img = $result->img;
+        $old_img = $check->img;
 
 
         if($r->hasFile('img')){

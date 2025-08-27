@@ -43,4 +43,5 @@ return [
     'Terms & Policies' => 'លក្ខខណ្ឌ និងគោលការណ៍',
     'SOCIETY' => 'ការចូលរួមការងារសង្គម',
     'QUALITY AWARD-MONDE SELECTION' => 'ពានរង្វាន់គុណភាព Monde Selection',
+    "Our Events" => "ព្រឹត្តិការណ៍របស់យើង",
 ];

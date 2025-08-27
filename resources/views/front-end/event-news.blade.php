@@ -20,6 +20,7 @@ $mainEvent = $mainEventPhoto->first();
 
 @section('styles')
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Hanuman:wght@100;300;400;700;900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Siemreap&display=swap');
     /* Global Reset and Font */
     /* * {
         margin: 0;
@@ -100,6 +101,7 @@ $mainEvent = $mainEventPhoto->first();
     .news-section h2 {
         text-align: center;
         font-size: clamp(1.8rem, 4vw, 2.5rem); /* Adjusted for better scaling */
+        font-family: 'Poppins', 'Siemreap', sans-serif;
         font-weight: 800;
         margin-bottom: 30px;
         color: #1a6aa8;
@@ -365,7 +367,7 @@ $mainEvent = $mainEventPhoto->first();
 </section>
 
 <section class="news-section">
-    <h2>Our Event</h2>
+    <h2>{{__('lang.Our Events')}}</h2>
     <div class="news-grid">
         @foreach ($events as $event)
         <div class="news-card">

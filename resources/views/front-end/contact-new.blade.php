@@ -549,7 +549,7 @@
                     </div>
                     <div class="form-group">
                         <label for="subject"> {{ __('lang.subject') }} </label>
-                        <input type="text" id="subject" name="subject" placeholder="UI/UX Design" value="{{ old('subject') }}">
+                        <input type="text" id="subject" name="subject" placeholder="Subject" value="{{ old('subject') }}">
                     </div>
                     <div class="form-group">
                         <label for="phone"> {{ __('lang.yourphone') }} </label>
@@ -574,7 +574,7 @@
                     </div>
                     <div class="form-group">
                         <label for="subject"> {{ __('lang.subject') }} </label>
-                        <input type="text" id="subject" name="subject" placeholder="UI/UX Design" value="{{ old('subject') }}">
+                        <input type="text" id="subject" name="subject" placeholder="Subject" value="{{ old('subject') }}">
                     </div>
                     <div class="form-group">
                         <label for="phone"> {{ __('lang.yourphone') }} </label>

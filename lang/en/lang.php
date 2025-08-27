@@ -44,4 +44,6 @@ return [
     'QUALITY AWARD-MONDE SELECTION' => 'QUALITY AWARD MONDE SELECTION',
     'Connect with Us' => 'Connect with Us',
     'SOCIETY' => 'CORPORATE SOCIAL RESPONSIBILITY',
+    "Our Events" => "Our Events",
+
 ];

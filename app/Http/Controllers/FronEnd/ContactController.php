@@ -5,10 +5,15 @@ namespace App\Http\Controllers\FronEnd;
 use App\Http\Controllers\Controller;
 use App\Models\User_contact;
 use Illuminate\Http\Request;
+use App\Models\Companyinfo;
 use Illuminate\Support\Facades\Validator;
 
 class ContactController extends Controller
 {
+    public function index(){
+        $data['company'] = Companyinfo::first();
+        return view('front-end.contact-new', $data);
+    }
     public function save(Request $r){
         // dd($r->input());
 

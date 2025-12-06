@@ -38,6 +38,34 @@
             overflow-x: hidden;
             background-color: #f5f5f5;
         }
+        #snow {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            color: #fff;
+            user-select: none;
+            pointer-events: none;
+            font-size: 1em;
+            opacity: 0.9;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-10vh) translateX(0) rotate(0deg);
+            }
+            100% {
+                transform: translateY(110vh) translateX(var(--drift)) rotate(360deg);
+            }
+        }
 
         .navbar {
             background: transparent;
@@ -346,10 +374,13 @@
         .decorative-banner-center,
         .decorative-banner-right {
             position: fixed;
-            z-index: 1000;
-            width: 300px;
-            height: auto;
+            width: 350px; /* Fixed width */
+            height: auto; /* Maintain aspect ratio */
+            max-height: 100vh; /* Don't exceed viewport height */
+            object-fit: contain; /* Maintain aspect ratio without distortion */
             transition: all 0.3s ease;
+            z-index: 9999;
+            pointer-events: none; /* Allow clicking through if needed */
         }
 
         .decorative-banner-left {
@@ -359,18 +390,15 @@
 
         .decorative-banner-center {
             left: 50%;
-            top: -100%;
-            /* Initially hidden above the viewport */
-            transform: translateX(-50%);
-            /* Center horizontally */
+            top: 50%; /* Center vertically */
+            transform: translate(-50%, -50%);
             opacity: 0;
-            /* Start invisible */
         }
 
         .decorative-banner-right {
             right: 0;
             top: 0;
-            transform: scaleX(1);
+            transform: scaleX(-1);
         }
 
         .decorative-banner-center.visible {
@@ -749,18 +777,28 @@
             loading="lazy">
     @endif
 
+    <div id="snow"></div>
 
     <!-- Header -->
     <nav class="navbar navbar-expand-md fixed-top">
         <div class="container">
             <!-- Logo -->
             <a class="navbar-brand order-md-1" href="{{ url('/') }}">
-                <span class="logo-default">
-                    <img style="width: auto;" src="{{ asset('images/Hi-Tech_Water_Logo.png') }}" alt="Default Logo">
-                </span>
-                <span class="logo-scrolled">
-                    <img style="width: auto;" src="{{ asset('images/Hi-Tech-Water Logo-blue.png') }}" alt="Scrolled Logo">
-                </span>
+                @if (!empty(@$theme->decor))
+                    <span class="logo-default">
+                        <img style="width: auto;" src="{{ asset('images/Logo-01.png') }}" alt="Default Logo">
+                    </span>
+                    <span class="logo-scrolled">
+                        <img style="width: auto;" src="{{ asset('images/Logo-02.png') }}" alt="Scrolled Logo">
+                    </span>
+                @else
+                    <span class="logo-default">
+                        <img style="width: auto;" src="{{ asset('images/Hi-Tech_Water_Logo.png') }}" alt="Default Logo">
+                    </span>
+                    <span class="logo-scrolled">
+                        <img style="width: auto;" src="{{ asset('images/Hi-Tech-Water Logo-blue.png') }}" alt="Scrolled Logo">
+                    </span>
+                @endif
                 <!-- <img style="width: auto;" src="{{ asset($companyInfo->logo) }}" alt="Hi-Tech Water Logo"> -->
             </a>
 
@@ -854,9 +892,9 @@
 
     <footer class="footer"
         @if (!empty(@$theme->footer_decor)) style="background-image: url({{ asset(@$theme->footer_decor) }})" @endif>
+        {{-- <div class="waves"></div>
         <div class="waves"></div>
-        <div class="waves"></div>
-        <div class="waves"></div>
+        <div class="waves"></div> --}}
         <div class="container">
             <div class="row">
                 <div class="col-md-5 col-sm-5 col-lg-5">
@@ -941,13 +979,13 @@
                 if (window.scrollY > 100) {
                     navbar.classList.add('navbar-scrolled');
                     document.body.classList.add('navbar-colored');
-                    if (bannerLeft) bannerLeft.style.top = '75px';
-                    if (bannerRight) bannerRight.style.top = '75px';
+                    // if (bannerLeft) bannerLeft.style.top = '75px';
+                    // if (bannerRight) bannerRight.style.top = '75px';
                 } else {
                     navbar.classList.remove('navbar-scrolled');
                     document.body.classList.remove('navbar-colored');
-                    if (bannerLeft) bannerLeft.style.top = '0';
-                    if (bannerRight) bannerRight.style.top = '0';
+                    // if (bannerLeft) bannerLeft.style.top = '0';
+                    // if (bannerRight) bannerRight.style.top = '0';
                 }
             }
 
@@ -973,6 +1011,39 @@
                 alert('clicked');
             });
         });
+        // Snow Falling Effect
+            function createSnowflake() {
+            const el = document.createElement('div');
+            el.classList.add('snowflake');
+            el.innerHTML = ['.','❅', '❆', '❄'][Math.floor(Math.random() * 4)];
+
+            // Position and animation settings
+            el.style.left = Math.random() * 100 + 'vw';
+            el.style.fontSize = (Math.random() * 1 + 0.7) + 'em';
+            const duration = Math.random() * 5 + 8; // 8s - 13s
+            el.style.animationDuration = duration + 's';
+            el.style.setProperty('--drift', (Math.random() * 100 - 50) + 'px');
+
+            document.getElementById('snow').appendChild(el);
+
+            // Remove after falling to avoid memory
+            setTimeout(() => el.remove(), duration * 1000);
+        }
+
+        // Smooth animation every 200ms
+        let snowInterval = setInterval(createSnowflake, 200);
+
+        // Stop after 2 minutes
+        setTimeout(() => {
+            clearInterval(snowInterval);
+            console.log("Snowfall stopped after 2 minutes.");
+        }, 120000); // 120,000 ms = 2 minutes
+
+        // Nice initial effect
+        for (let i = 0; i < 20; i++) {
+            setTimeout(createSnowflake, i * 100);
+        }
+
     </script>
     @stack('scripts')
 </body>

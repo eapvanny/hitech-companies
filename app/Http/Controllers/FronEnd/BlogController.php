@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
+    public function index(){
+        $data['blogs'] = Blog::where('active_status', 1)->get();
+        return view('front-end.blog', $data);
+    }
     public function detail($id){
         $check = Blog::findOrFail($id);
         if($check){

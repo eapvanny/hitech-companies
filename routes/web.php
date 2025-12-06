@@ -34,6 +34,9 @@ use App\Http\Controllers\VisionmissionController;
 use App\Http\Controllers\FronEnd\BlogController as FronEndBlogController;
 use App\Http\Controllers\FronEnd\ContactController as FronEndContactController;
 use App\Http\Controllers\FronEnd\EventController as FronEndEventController;
+use App\Http\Controllers\FronEnd\EventsController as FronEndEventsController;
+use App\Http\Controllers\FronEnd\AboutController as FronEndAboutController;
+use App\Http\Controllers\FronEnd\WaterController as FronEndWaterController;
 use App\Http\Controllers\MainPhotoEventController;
 use App\Http\Controllers\ThemesettingController;
 use App\Models\Event;
@@ -260,82 +263,58 @@ Route::middleware('auth')->group(function () {
 
 
 
-        Route::get('/', [HomController::class, 'index'])->name('user.home');
+        // Route::get('/', [HomController::class, 'index'])->name('user.home');
 
-        Route::get('/services', function () {
-            return view('front-end.service');
-        })->name('services');
+        // Route::get('/services', function () {
+        //     return view('front-end.service');
+        // })->name('services');
 
-        Route::get('/contact', function () {
-            return view('front-end.contact');
-        })->name('contact');
+        // Route::get('/contact', function () {
+        //     return view('front-end.contact');
+        // })->name('contact');
 
-        Route::get('/water', function () {
-            $data['waters'] = Our_water::where('active_status', 1)->get();
-            return view('front-end.water', $data);
-        })->name('water');
-
-        Route::get('/about', function () {
+        // Route::get('/water', function () {
+        //     $data['waters'] = Our_water::where('active_status', 1)->get();
+        //     return view('front-end.water', $data);
+        // })->name('water');
+        // Route::get('/about', function () {
             
-            $data['ourcomapny'] = Ourcompany::where('active_status', 1)->first();
-            $data['messages'] = em_message::where('active_status', 1)->get();
-            $data['missionvision' ] = Vissionmission::where('active_status', 1)->first();
-            $data['corevalues'] = Corevalue::where('active_status',1)->get();
-            $data['accreditations'] = Accreditation::where('active_status', 1)->get();
-            return view('front-end.about', $data);
-        })->name('about');
+        //     $data['ourcomapny'] = Ourcompany::where('active_status', 1)->first();
+        //     $data['messages'] = em_message::where('active_status', 1)->get();
+        //     $data['missionvision' ] = Vissionmission::where('active_status', 1)->first();
+        //     $data['corevalues'] = Corevalue::where('active_status',1)->get();
+        //     $data['accreditations'] = Accreditation::where('active_status', 1)->get();
+        //     return view('front-end.about', $data);
+        // })->name('about');
 
         Route::middleware('setlanguage')->group(function(){
 
             Route::get('/', [HomController::class, 'index'])->name('user.home');
     
-            Route::get('/services', function () {
-                return view('front-end.service');
-            })->name('services');
+            // Route::get('/services', function () {
+            //     return view('front-end.service');
+            // })->name('services');
     
-            Route::get('/contact', function () {
-                return view('front-end.contact');
-            })->name('contact');
-    
-            Route::get('/water', function () {
-                $data['waters'] = Our_water::where('active_status', 1)->get();
-                return view('front-end.water', $data);
-            })->name('water');
-
-            Route::get('/event', function () {
-                $data['events'] = Event::where('active_status', 1)->get();
-                $data['mainEventPhoto'] = MainEventPhoto::all();
-                return view('front-end.event-news',$data);
-            })->name('event');
-
+            // Route::get('/contact', function () {
+            //     return view('front-end.contact');
+            // })->name('contact');
+            Route::get('/water',[FronEndWaterController::class, 'index'])->name('water');
+            Route::get('/event',[FronEndEventsController::class, 'index'])->name('event');
             Route::get('/event-detail/{id}', [FronEndEventController::class, 'detail'])->name('event.detail');
-            
-            Route::get('/about', function () {
-                
-                $data['ourcomapny'] = Ourcompany::where('active_status', 1)->first();
-                $data['messages'] = em_message::where('active_status', 1)->get();
-                $data['missionvision' ] = Vissionmission::where('active_status', 1)->first();
-                $data['corevalues'] = Corevalue::where('active_status',1)->get();
-                $data['accreditations'] = Accreditation::where('active_status', 1)->get();
-                return view('front-end.about', $data);
-            })->name('about');
-    
-            Route::get('/blog', function () {
-                $data['blogs'] = Blog::where('active_status', 1)->get();
-                return view('front-end.blog', $data);
-            })->name('blog');
-    
+            Route::get('/about',[FronEndAboutController::class, 'index'])->name('about');
+            Route::get('/blog',[FronEndBlogController::class, 'index'])->name('blog');
             Route::get('/blog-detail/{id}', [FronEndBlogController::class, 'detail'])->name('blog.detail');
+            Route::get('/contact', [FronEndContactController::class, 'index'])->name('contact');
             
             // Route::get('/career', function () {
             //     return view('front-end.career');
             // })->name('career');
     
-            Route::get('/contact', function () {
-                $data['company'] = Companyinfo::first();
+            // Route::get('/contact', function () {
+            //     $data['company'] = Companyinfo::first();
     
-                return view('front-end.contact-new', $data);
-            })->name('contact');
+            //     return view('front-end.contact-new', $data);
+            // })->name('contact');
     
             Route::post('/contact/save', [FronEndContactController::class, 'save'])->name('contact.save');
             Route::get('/set-lang/{lang}', [HomController::class, 'setLanguage'])->name('user.set_lang');

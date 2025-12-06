@@ -1037,7 +1037,7 @@
         </div>
     </section>
     <section class="our-water-theme"
-        @if (!empty($theme)) style="background: linear-gradient(rgba(145, 145, 145, 0.031), rgba(0, 0, 0, 0.411)), url('{{ asset($theme->water_bg) }}')" @endif>
+        @if (!empty($theme)) style="background: url('{{ asset($theme->water_bg) }}')" @endif>
         <div class="water-content">
             <h2> {{ __('lang.hitech') }} </h2>
             <p>

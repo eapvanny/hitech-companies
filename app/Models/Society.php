@@ -20,4 +20,8 @@ class Society extends Model
         'seo_description',
         'active_status',
     ];
+    public function scopeActive($query)
+    {
+        return $query->where('active_status', 1);
+    }
 }

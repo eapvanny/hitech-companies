@@ -60,7 +60,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label for="img" class="text-center p-2 label-image">
-                                                <img src="{{ asset($accreditation->logo) }}" id="pre_img" alt="" class="m-auto">
+                                                <img src="{{ asset('storage/'.$accreditation->logo) }}" id="pre_img" alt="" class="m-auto">
                                                 <div class="hover-bg">
                                                     <i class="fas fa-plus-circle fs-1"></i>
                                                 </div>

@@ -31,7 +31,9 @@ class EventController extends Controller
         ]);
 
         if($r->hasFile('img')){
-            $data['img'] = $r->file('img')->store('/uploads/images', 'custom');
+            $uploadPath = 'uploads'; // storage/app/public/uploads
+            $data = [];
+            $data['img'] = $r->file('img')->store($uploadPath, 'public');
         }
         $data['title_kh'] = $r->title_kh;
         $data['title_en'] = $r->title_en;
@@ -68,8 +70,8 @@ class EventController extends Controller
         $post = $data->title_en;
         if($data == true){
             $img = $data->img;
-            if(File::exists($img)){
-                File::delete($img);
+            if(File::exists(storage_path('app/public/' . $img))){
+                File::delete(storage_path('app/public/' . $img));
             }
             $delete = $check->delete();
 
@@ -122,19 +124,23 @@ class EventController extends Controller
         }
 
         $old_img = $result->img;
+        $uploadPath = 'uploads'; // storage/app/public/uploads
+        $data       = [];
 
+        // HANDLE IMAGE UPLOAD
+        // --------------------
+        if ($r->hasFile('img')) {
 
-        if($r->hasFile('img')){
-
-            if(File::exists($old_img)){
-                File::delete($old_img);
+            // Delete old image (if exists)
+            if ($old_img && File::exists(storage_path('app/public/' . $old_img))) {
+                File::delete(storage_path('app/public/' . $old_img));
             }
 
-            // $data['img'] = $r->file('img')->store('/uploads/images', 'custom');
-            $data['img'] = $r->file('img')->store('/uploads/images', 'custom');
+            // Store new image
+            $data['img'] = $r->file('img')->store($uploadPath, 'public');
 
-        }else{
-            $data['img'] = $old_img;
+        } else {
+            $data['img'] = $old_img; // keep old
         }
 
         $data['title_kh'] = $r->title_kh;

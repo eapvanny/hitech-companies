@@ -63,6 +63,11 @@ body {
 .navbar-scrolled {
     /* background: linear-gradient(90deg, rgba(89, 176, 242, 0.47) 0%, rgba(217, 36, 40, 1) 100%); */
     background: rgba(26, 106, 168, 1);
+    /* background: rgb(196, 17, 17); */
+    /* background-image: url("../../images/nav-bar\ \(1\).jpg"); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 
 .nav-item a {
@@ -368,11 +373,14 @@ hr {
 .decorative-banner-center,
 .decorative-banner-right {
     position: fixed;
-    width: 350px;
+    width: 150px;
+    /* width: 350px; */
     /* Fixed width */
     height: auto;
     /* Maintain aspect ratio */
-    max-height: 100vh;
+    max-height: 50vh;
+    /* margin-top: -11px; */
+    /* max-height: 100vh; */
     /* Don't exceed viewport height */
     object-fit: contain;
     /* Maintain aspect ratio without distortion */

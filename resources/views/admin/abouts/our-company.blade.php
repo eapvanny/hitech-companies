@@ -108,7 +108,7 @@
 
                                 <div class="card me-4">
                                     <div class="image w-100">
-                                        <img src="{{ asset($message->img) }}" width="100%">
+                                        <img src="{{ asset('storage/'.$message->img) }}" width="100%">
                                     </div>
                                     <div class="content">
                                         <div class="header fs-6 fw-bold">{{ $message->em_name }}</div>
@@ -459,7 +459,7 @@
 
                                 <div class="card me-4">
                                     <div class="image w-100">
-                                        <img src="{{ asset($accreditation->logo) }}" width="100%">
+                                        <img src="{{ asset('storage/'.$accreditation->logo) }}" width="100%">
                                     </div>
                                     <div class="content">
                                         <div class="header fs-6 fw-bold">{{ $accreditation->name_kh }}</div>

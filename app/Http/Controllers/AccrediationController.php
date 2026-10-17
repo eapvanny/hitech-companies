@@ -32,7 +32,8 @@ class AccrediationController extends Controller
         $data['name_en'] = $r->name_en;
 
         if($r->hasFile('logo')){
-            $data['logo'] = $r->file('logo')->store('uploads/images/accreditations', 'custom');
+            $uploadPath = 'uploads/accreditations'; // storage/app/public/uploads
+            $data['logo'] = $r->file('logo')->store($uploadPath, 'public');
         }
 
         
@@ -50,8 +51,9 @@ class AccrediationController extends Controller
         // dd($id);
         $check = Accreditation::findOrFail($id);
 
-        if(File::exists($check->logo)){
-            File::delete($check->logo);
+        $img = $check->logo;
+        if(File::exists(storage_path('app/public/' . $img))){
+            File::delete(storage_path('app/public/' . $img));
         }
 
         $delete = $check->delete();
@@ -68,7 +70,7 @@ class AccrediationController extends Controller
     public function doEdit(Request $r, $id){
         // dd($r->input());
         $check = Accreditation::findOrFail($id);
-
+        $old_logo = $check->logo;
         $validate = Validator::make($r->all(),[
             'name_kh' => 'required',
             'name_en' => 'required',
@@ -77,19 +79,34 @@ class AccrediationController extends Controller
         if($validate->fails()){
             return redirect()->back()->with('error', 'Field are required.')->withInput();
         }
+        $uploadPath = 'uploads/accreditations';
+        $data       = [];
         $data['name_kh'] = $r->name_kh;
         $data['name_en'] = $r->name_en;
+        // ---------- IMG ----------
+        if ($r->hasFile('logo')) {
 
-        if($r->hasFile('logo')){
-
-            if(File::exists($check->logo)){
-                File::delete($check->logo);
+            // delete old image
+            if ($old_logo && File::exists(storage_path('app/public/' . $old_logo))) {
+                File::delete(storage_path('app/public/' . $old_logo));
             }
 
-            $data['logo'] = $r->file('logo')->store('uploads/images/accreditations', 'custom');
-        }else{
-            $data['logo'] = $r->old_logo;
+            // store new
+            $data['logo'] = $r->file('logo')->store($uploadPath, 'public');
+
+        } else {
+            $data['logo'] = $old_logo;
         }
+        // if($r->hasFile('logo')){
+
+        //     if(File::exists($check->logo)){
+        //         File::delete($check->logo);
+        //     }
+
+        //     $data['logo'] = $r->file('logo')->store('uploads/images/accreditations', 'custom');
+        // }else{
+        //     $data['logo'] = $r->old_logo;
+        // }
 
         if(! empty($r->active_status)) $data['active_status'] = 1;
         else $data['active_status'] = 0;

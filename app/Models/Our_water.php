@@ -19,4 +19,8 @@ class Our_water extends Model
         'description_kh',
         'active_status',
     ];
+    public function scopeActive($query)
+    {
+        return $query->where('active_status', 1);
+    }
 }

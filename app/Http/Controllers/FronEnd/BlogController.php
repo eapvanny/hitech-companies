@@ -8,18 +8,27 @@ use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
-    public function index(){
-        $data['blogs'] = Blog::where('active_status', 1)->get();
+    public function index()
+    {
+        // Load only necessary fields
+        $data['blogs'] = Blog::select(
+            'id', 'title', 'title_kh', 'short_text', 'short_text_kh',
+            'img', 'created_at'
+        )
+        ->where('active_status', 1)
+        ->orderByDesc('id')
+        ->paginate(9); // FAST loading
+
         return view('front-end.blog', $data);
     }
-    public function detail($id){
-        $check = Blog::findOrFail($id);
-        if($check){
-            $data['blog'] = $check;
-            return view('front-end.blog-detail', $data);
 
-        }else{
-            return redirect()->back();
-        }
+    public function detail($id)
+    {
+        $blog = Blog::findOrFail($id);
+
+        return view('front-end.blog-detail', [
+            'blog' => $blog
+        ]);
     }
 }
+

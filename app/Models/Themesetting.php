@@ -13,4 +13,8 @@ class Themesetting extends Model
         'decor',
         'footer_decor',
     ];
+    public function scopeActive($q)
+    {
+        return $q->where('active_status', 1);
+    }
 }

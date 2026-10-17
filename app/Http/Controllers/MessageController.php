@@ -90,47 +90,71 @@ class MessageController extends Controller
         return view('admin.abouts.edit-message', $data);
     }
 
-    public function doEdit(Request $r, $id){
-        // dd($r->input());
-        $message = em_message::findOrFail($id);
-        $validate = Validator::make($r->all(),[
-            'founder_name' => 'required|max:255',
-            'em_name' => 'required|max:255',
-            'message_kh' => 'required',
-            'message_en' => 'required',
-        ]);
-        if($validate->fails()){
-            return redirect()->back()->with('error', 'Field are required.');
-        }
+    public function doEdit(Request $r, $id)
+{
+    $message = em_message::findOrFail($id);
 
+    $old_img = $message->img;
+    $old_img_founder = $message->img_founder;
 
-        if($r->hasFile('img')){
-            if(File::exists($message->img)){
-                File::delete($message->img);
-            }
-            $data['img'] = $r->file('img')->store('/uploads/images/execute-managers', 'custom');
-        }else{
-            $data['img'] = $r->old_img;
-        }
+    $validate = Validator::make($r->all(), [
+        'founder_name' => 'required|max:255',
+        'em_name'      => 'required|max:255',
+        'message_kh'   => 'required',
+        'message_en'   => 'required',
+    ]);
 
-        if($r->hasFile('img_founder')){
-            if(File::exists($message->img_founder)){
-                File::delete($message->img_founder);
-            }
-            $data['img_founder'] = $r->file('img_founder')->store('/uploads/images/execute-managers', 'custom');
-        }else{
-            $data['img_founder'] = $r->old_img_founder;
-        }
-        $data['founder_name'] = $r->founder_name;
-        $data['em_name'] = $r->em_name;
-        $data['message_kh'] = $r->message_kh;
-        $data['message_en'] = $r->message_en;
-
-        $update = $message->update($data);
-        if($update == true){
-            return redirect()->route('about.company')->with('success', 'Update message from '. $message->em_name .' successfully.');
-        }else{
-            return redirect()->back()->with('error', 'Failed to update massage.');
-        }
+    if ($validate->fails()) {
+        return redirect()->back()->with('error', 'Field are required.');
     }
+
+    $uploadPath = 'uploads/execute-managers';
+    $data       = [];
+
+    // ---------- IMG ----------
+    if ($r->hasFile('img')) {
+
+        // delete old image
+        if ($old_img && File::exists(storage_path('app/public/' . $old_img))) {
+            File::delete(storage_path('app/public/' . $old_img));
+        }
+
+        // store new
+        $data['img'] = $r->file('img')->store($uploadPath, 'public');
+
+    } else {
+        $data['img'] = $old_img;
+    }
+
+    // ---------- IMG FOUNDER ----------
+    if ($r->hasFile('img_founder')) {
+
+        if ($old_img_founder && File::exists(storage_path('app/public/' . $old_img_founder))) {
+            File::delete(storage_path('app/public/' . $old_img_founder));
+        }
+
+        $data['img_founder'] = $r->file('img_founder')->store($uploadPath, 'public');
+
+    } else {
+        $data['img_founder'] = $old_img_founder;
+    }
+
+    // other fields
+    $data['founder_name'] = $r->founder_name;
+    $data['em_name']      = $r->em_name;
+    $data['message_kh']   = $r->message_kh;
+    $data['message_en']   = $r->message_en;
+
+    // update
+    $update = $message->update($data);
+
+    if ($update) {
+        return redirect()
+            ->route('about.company')
+            ->with('success', 'Update message from ' . $message->em_name . ' successfully.');
+    }
+
+    return redirect()->back()->with('error', 'Failed to update message.');
+}
+
 }

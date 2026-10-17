@@ -71,7 +71,7 @@
                                                             @else
                                                                 <i class="image icon d-none" id="icon1"></i>
                                                             @endif
-                                                            <img src="{{ $images[0] ? asset($images[0]) : '' }}" id="pre_img1" alt="preview" class="{{ $images[0] ? '' : 'd-none' }} mx-auto" style="width: 100%;">
+                                                            <img src="{{ $images[0] ? asset('storage/'.$images[0]) : '' }}" id="pre_img1" alt="preview" class="{{ $images[0] ? '' : 'd-none' }} mx-auto" style="width: 100%;">
                                                             Upload image 1 for thumbnail.
                                                         </div>
                                                         <label for="img1" class="ui primary button text-white">Browse Image 1</label>
@@ -85,7 +85,7 @@
                                                             @else
                                                                 <i class="image icon d-none" id="icon2"></i>
                                                             @endif
-                                                            <img src="{{ $images[1] ? asset($images[1]) : '' }}" id="pre_img2" alt="preview" class="{{ $images[1] ? '' : 'd-none' }} mx-auto" style="width: 100%;">
+                                                            <img src="{{ $images[1] ? asset('storage/'.$images[1]) : '' }}" id="pre_img2" alt="preview" class="{{ $images[1] ? '' : 'd-none' }} mx-auto" style="width: 100%;">
                                                             Upload image 2 for thumbnail.
                                                         </div>
                                                         <label for="img2" class="ui primary button text-white">Browse Image 2</label>
@@ -99,7 +99,7 @@
                                                             @else
                                                                 <i class="image icon d-none" id="icon3"></i>
                                                             @endif
-                                                            <img src="{{ $images[2] ? asset($images[2]) : '' }}" id="pre_img3" alt="preview" class="{{ $images[2] ? '' : 'd-none' }} mx-auto" style="width: 100%;">
+                                                            <img src="{{ $images[2] ? asset('storage/'.$images[2]) : '' }}" id="pre_img3" alt="preview" class="{{ $images[2] ? '' : 'd-none' }} mx-auto" style="width: 100%;">
                                                             Upload image 3 for thumbnail.
                                                         </div>
                                                         <label for="img3" class="ui primary button text-white">Browse Image 3</label>
@@ -113,7 +113,7 @@
                                                             @else
                                                                 <i class="image icon d-none" id="icon4"></i>
                                                             @endif
-                                                            <img src="{{ $images[3] ? asset($images[3]) : '' }}" id="pre_img4" alt="preview" class="{{ $images[3] ? '' : 'd-none' }} mx-auto" style="width: 100%;">
+                                                            <img src="{{ $images[3] ? asset('storage/'.$images[3]) : '' }}" id="pre_img4" alt="preview" class="{{ $images[3] ? '' : 'd-none' }} mx-auto" style="width: 100%;">
                                                             Upload image 4 for thumbnail.
                                                         </div>
                                                         <label for="img4" class="ui primary button text-white">Browse Image 4</label>

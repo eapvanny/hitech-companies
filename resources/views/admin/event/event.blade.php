@@ -67,7 +67,7 @@
                                             {{ $i++ }}
                                         </td>
                                         <td style="width: 100px">
-                                            <img src="{{ asset($mainEvent->img) }}" width="100px" alt="">
+                                            <img src="{{ asset('storage/'.$mainEvent->img) }}" width="100px" alt="">
                                         </td>
                                         <td>
                                             {{$mainEvent->title_en}}
@@ -209,7 +209,7 @@
                                             {{ $i++ }}
                                         </td>
                                         <td style="width: 100px">
-                                            <img src="{{ asset($event->img) }}" width="100px" alt="">
+                                            <img src="{{ asset('storage/'.$event->img) }}" width="100px" alt="">
                                         </td>
                                         <td>
                                             {{$event->title_en}}

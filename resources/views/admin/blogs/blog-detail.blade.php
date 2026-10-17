@@ -46,7 +46,7 @@
                     </div>                  
                                 
                     <div class="chart-container mt-3" style="min-height: auto;">                          
-                        <div class="bg-title" style="background-image: url('{{ asset($blog->img) }}')">
+                        <div class="bg-title" style="background-image: url('{{ asset('storage/'.$blog->img) }}')">
 
                         </div>
                         <div class="row title_blog shadow-sm">

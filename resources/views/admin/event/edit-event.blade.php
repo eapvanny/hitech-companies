@@ -67,7 +67,7 @@
                                                         <div class="ui placeholder segment">
                                                             <div class="ui icon header">
                                                               <i class="image outline icon d-none" id="icon"></i>
-                                                              <img src="{{ asset($data->img) }}" id="pre_img" alt="pre_img" class="mx-auto d-block" style="width: 40%">
+                                                              <img src="{{ asset('storage/'.$data->img) }}" id="pre_img" alt="pre_img" class="mx-auto d-block" style="width: 40%">
                                                                 Upload image for thumbnail.
                                                             </div>
                                                             <label for="img" class="ui primary button text-white">Browse to image</label>

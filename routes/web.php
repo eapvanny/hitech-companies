@@ -302,8 +302,10 @@ Route::middleware('auth')->group(function () {
             Route::get('/event',[FronEndEventsController::class, 'index'])->name('event');
             Route::get('/event-detail/{id}', [FronEndEventController::class, 'detail'])->name('event.detail');
             Route::get('/about',[FronEndAboutController::class, 'index'])->name('about');
-            Route::get('/blog',[FronEndBlogController::class, 'index'])->name('blog');
-            Route::get('/blog-detail/{id}', [FronEndBlogController::class, 'detail'])->name('blog.detail');
+            Route::get('/blog', [FronEndBlogController::class, 'index'])->name('blog');
+            Route::get('/blog-detail/{id}', [FronEndBlogController::class, 'detail'])
+                ->name('blog.detail');
+
             Route::get('/contact', [FronEndContactController::class, 'index'])->name('contact');
             
             // Route::get('/career', function () {

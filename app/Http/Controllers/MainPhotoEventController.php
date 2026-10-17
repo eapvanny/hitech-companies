@@ -29,7 +29,9 @@ class MainPhotoEventController extends Controller
         ]);
 
         if($r->hasFile('img')){
-            $data['img'] = $r->file('img')->store('/uploads/images', 'custom');
+            $uploadPath = 'uploads'; // storage/app/public/uploads
+            $data = [];
+            $data['img'] = $r->file('img')->store($uploadPath, 'public');
         }
         $data['title_kh'] = $r->title_kh;
         $data['title_en'] = $r->title_en;
@@ -57,13 +59,16 @@ class MainPhotoEventController extends Controller
         $post = $data->title_en;
         if($data == true){
             $img = $data->img;
-            if(File::exists($img)){
-                File::delete($img);
+            if(File::exists(storage_path('app/public/' . $img))){
+                File::delete(storage_path('app/public/' . $img));
             }
             $delete = $check->delete();
 
-            if($delete == true) return redirect()->back()->with('success', 'Delete '. $post .' has successfully.');
-            else return redirect()->back()->with('error', 'Failed to delete'. $post .'.');
+            if($delete == true){
+                return redirect()->route('event.index')->with('success', 'Delete post on Event has successfully.');
+            }else{
+                return redirect()->back()->with('error', 'Fialed to delete post.');
+            }
         }
     }
 
@@ -92,19 +97,22 @@ class MainPhotoEventController extends Controller
         }
 
         $old_img = $result->img;
+        $uploadPath = 'uploads'; // storage/app/public/uploads
+        $data       = [];
 
+        // HANDLE IMAGE UPLOAD
+        // --------------------
+        if ($r->hasFile('img')) {
 
-        if($r->hasFile('img')){
-
-            if(File::exists($old_img)){
-                File::delete($old_img);
+            // Delete old image (if exists)
+            if ($old_img && File::exists(storage_path('app/public/' . $old_img))) {
+                File::delete(storage_path('app/public/' . $old_img));
             }
+            // Store new image
+            $data['img'] = $r->file('img')->store($uploadPath, 'public');
 
-            // $data['img'] = $r->file('img')->store('/uploads/images', 'custom');
-            $data['img'] = $r->file('img')->store('/uploads/images', 'custom');
-
-        }else{
-            $data['img'] = $old_img;
+        } else {
+            $data['img'] = $old_img; // keep old
         }
 
         $data['title_kh'] = $r->title_kh;

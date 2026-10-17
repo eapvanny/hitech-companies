@@ -70,7 +70,7 @@
                                             {{ $i++ }}
                                         </td>
                                         <td style="width: 100px">
-                                            <img src="{{ asset($social->img) }}" width="100px" alt="">
+                                            <img src="{{ asset('storage/' . $social->img) }}" width="100px" alt="">
                                         </td>
                                         <td>
                                             {{$social->title_en}}

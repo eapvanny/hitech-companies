@@ -18,46 +18,55 @@ class SocietyController extends Controller
         return view('admin.societies.post-society');
     }
     
-    public function add(Request $r){
-
-        $validate = Validator::make($r->all(),[
-            'img' => 'required|file|image',
-            'title_kh' => 'required|max:255',
-            'title_en' => 'required|max:255',
-            'description_kh' => 'required|max:600',
-            'description_en' => 'required|max:600',
+    public function add(Request $r)
+    {
+        // Validation
+        $validate = Validator::make($r->all(), [
+            'img'             => 'required|file|image',
+            'title_kh'        => 'required|max:255',
+            'title_en'        => 'required|max:255',
+            'description_kh'  => 'required|max:600',
+            'description_en'  => 'required|max:600',
         ]);
 
-        if($r->hasFile('img')){
-            $data['img'] = $r->file('img')->store('/uploads/images', 'custom');
+        if ($validate->fails()) {
+            return redirect()->back()
+                ->with('error', 'Fields are required.')
+                ->withErrors($validate)
+                ->withInput();
         }
-        $data['title_kh'] = $r->title_kh;
-        $data['title_en'] = $r->title_en;
-        $data['description_kh'] = $r->description_kh;
-        $data['description_en'] = $r->description_en;
 
-        $data['seo_title'] = $r->seo_title;
+        $data = [];
+        $uploadPath = 'uploads'; // stored inside storage/app/public/uploads
+
+        // Store image  
+        if ($r->hasFile('img')) {
+            // Save file in storage/app/public/uploads/images
+            // DB will save: uploads/images/filename.png
+            $data['img'] = $r->file('img')->store($uploadPath, 'public');
+        }
+
+        // Fill text fields
+        $data['title_kh']        = $r->title_kh;
+        $data['title_en']        = $r->title_en;
+        $data['description_kh']  = $r->description_kh;
+        $data['description_en']  = $r->description_en;
+        $data['seo_title']       = $r->seo_title;
         $data['seo_description'] = $r->seo_description;
 
-        if(! empty($r->active_status)){
-            $data['active_status'] = 1;
-        }else{
-            $data['active_status'] = 0;
-        }
+        // Active Status
+        $data['active_status'] = $r->has('active_status') ? 1 : 0;
 
-        if($validate->fails()){
-            return redirect()->back()->with('error', 'Field are required.')->withInput();
-        }
-
+        // Save to DB
         $post = Society::create($data);
-        if($post == true){
-            return redirect()->back()->with('success', 'Add new post on Society has successfully.');
-        }else{
-            return redirect()->back()->with('error', 'Fialed to add new post.')->withInput();
-        }
 
-        // dd($r->input());
+        if ($post) {
+            return redirect()->back()->with('success', 'Added new post successfully.');
+        } else {
+            return redirect()->back()->with('error', 'Failed to add new post.')->withInput();
+        }
     }
+
 
     public function delete($id){
 
@@ -102,60 +111,71 @@ class SocietyController extends Controller
         return view('admin.societies.edit-society', $data);
     }
     
-    public function doEdit(Request $r, $id){
+    public function doEdit(Request $r, $id)
+    {
         $check = Society::findOrFail($id);
-        $result = $check->get()->first();
 
-
-        $validate = Validator::make($r->all(),[
-            'img' => 'file|image',
-            'title_kh' => 'required|max:255',
-            'title_en' => 'required|max:255',
-            'description_kh' => 'required|max:600',
-            'description_en' => 'required|max:600',
+        // Validate fields
+        $validate = Validator::make($r->all(), [
+            'img'             => 'nullable|file|image',
+            'title_kh'        => 'required|max:255',
+            'title_en'        => 'required|max:255',
+            'description_kh'  => 'required|max:600',
+            'description_en'  => 'required|max:600',
         ]);
 
-        if($validate->fails()){
-            return redirect()->back()->with('error', 'Field are required.');
+        if ($validate->fails()) {
+            return redirect()->back()
+                ->with('error', 'Fields are required.')
+                ->withErrors($validate)
+                ->withInput();
         }
 
-        $old_img = $check->img;
+        $uploadPath = 'uploads'; // storage/app/public/uploads
+        $old_img    = $check->img;
+        $data       = [];
 
+        // --------------------
+        // HANDLE IMAGE UPLOAD
+        // --------------------
+        if ($r->hasFile('img')) {
 
-        if($r->hasFile('img')){
-
-            if(File::exists($old_img)){
-                File::delete($old_img);
+            // Delete old image (if exists)
+            if ($old_img && File::exists(storage_path('app/public/' . $old_img))) {
+                File::delete(storage_path('app/public/' . $old_img));
             }
 
-            // $data['img'] = $r->file('img')->store('/uploads/images', 'custom');
-            $data['img'] = $r->file('img')->store('/uploads/images', 'custom');
+            // Store new image
+            $data['img'] = $r->file('img')->store($uploadPath, 'public');
 
-        }else{
-            $data['img'] = $old_img;
+        } else {
+            $data['img'] = $old_img; // keep old
         }
 
-        $data['title_kh'] = $r->title_kh;
-        $data['title_en'] = $r->title_en;
-        $data['description_kh'] = $r->description_kh;
-        $data['description_en'] = $r->description_en;
-
-        $data['seo_title'] = $r->seo_title;
+        // --------------------
+        // UPDATE OTHER FIELDS
+        // --------------------
+        $data['title_kh']        = $r->title_kh;
+        $data['title_en']        = $r->title_en;
+        $data['description_kh']  = $r->description_kh;
+        $data['description_en']  = $r->description_en;
+        $data['seo_title']       = $r->seo_title;
         $data['seo_description'] = $r->seo_description;
 
-        if(! empty($r->active_status)){
-            $data['active_status'] = 1;
-        }else{
-            $data['active_status'] = 0;
-        }
+        $data['active_status'] = $r->has('active_status') ? 1 : 0;
 
+        // --------------------
+        // SAVE TO DATABASE
+        // --------------------
         $edit = $check->update($data);
 
-        if($edit == true){
-            return redirect()->route('home.society')->with('success', 'Edit post on Society has successfully.');
-        }else{
-            return redirect()->back()->with('error', 'Fialed to edit post.');
+        if ($edit) {
+            return redirect()
+                ->route('home.society')
+                ->with('success', 'Edit post on Society has been updated successfully.');
         }
 
+        return redirect()->back()->with('error', 'Failed to edit post.');
     }
+
 }

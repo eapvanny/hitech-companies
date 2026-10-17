@@ -60,7 +60,8 @@ class BlogController extends Controller
         }
 
         if($r->hasFile('img')){
-            $data['img'] = $r->file('img')->store('/uploads/images/blogs', 'custom');
+            $uploadPath = 'uploads/blogs'; // storage/app/public/uploads
+            $data['img'] = $r->file('img')->store($uploadPath, 'public');
         }
 
 
@@ -143,9 +144,13 @@ class BlogController extends Controller
 
     public function delete($id){
         $check =  Blog::findOrFail($id);
-        $delete = $check->delete();
+        
+        $img = $check->img;
+        if(File::exists(storage_path('app/public/' . $img))){
+            File::delete(storage_path('app/public/' . $img));
+        }
 
-        if(File::exists($check->img)) File::delete($check->img);
+        $delete = $check->delete();
 
         if($delete == true) return redirect()->back()->with('success', 'Blog from '. $check->author .' has delete successfully.');
         else return redirect()->back()->with('error', 'Failed to delete blog')->withInput();
@@ -179,7 +184,9 @@ class BlogController extends Controller
 
     public function doEdit(Request $r, $id){
         $check =  Blog::findOrFail($id);
-
+        $old_img = $check->img;
+        $uploadPath = 'uploads/blogs'; // storage/app/public/uploads
+        $data       = [];
         $validate = Validator::make($r->all(),[
             'author' => 'required',
             
@@ -215,11 +222,17 @@ class BlogController extends Controller
             $data['active_status'] = 0;
         }
 
-        if($r->hasFile('img')){
-            if(File::exists($check->img)) File::delete($check->img);
-            $data['img'] = $r->file('img')->store('/uploads/images/blogs', 'custom');
-        }else{
-            $data['img'] = $check->img;
+        if ($r->hasFile('img')) {
+            // Delete old image (if exists)
+            if ($old_img && File::exists(storage_path('app/public/' . $old_img))) {
+                File::delete(storage_path('app/public/' . $old_img));
+            }
+
+            // Store new image
+            $data['img'] = $r->file('img')->store($uploadPath, 'public');
+
+        } else {
+            $data['img'] = $old_img; // keep old
         }
 
         $dom = new DOMDocument();

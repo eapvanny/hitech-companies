@@ -28,15 +28,28 @@
 </head>
 
 <body>
+    {{-- <div id="popupEvent" class="cny-overlay">
+    <div class="cny-popup" id="cnyPopup">
+      <h2>Gong Xi Fa Cai!</h2>
+      <div class="year">Happy Chinese New Year 2026</div>
+      <div class="emoji sparkle">🐎</div>
+      <p><strong>Year of the Fire Horse</strong><br>
+         Wishing you strength, energy,<br>success and good fortune!</p>
+      <button class="close-btn" onclick="closePopup()">Close</button>
+    </div>
+  </div> --}}
+
+
+
     <!-- Decorative Banners -->
     @if (!empty(@$theme->decor))
-        <img src="{{ asset(@$theme->decor) }}" alt="Decorative Banner Left" class="decorative-banner-left"
+        <img src="{{ asset('storage/' . $theme->decor) }}" alt="Decorative Banner Left" class="decorative-banner-left"
             loading="lazy">
-        <img src="{{ asset(@$theme->decor) }}" alt="Decorative Banner Right" class="decorative-banner-right"
+        <img src="{{ asset('storage/' . $theme->decor) }}" alt="Decorative Banner Right" class="decorative-banner-right"
             loading="lazy">
     @endif
 
-    <div id="snow"></div>
+    {{-- <div id="snow"></div> --}}
 
     <!-- Header -->
     <nav class="navbar navbar-expand-md fixed-top">
@@ -45,10 +58,10 @@
             <a class="navbar-brand order-md-1" href="{{ url('/') }}">
                 @if (!empty(@$theme->decor))
                     <span class="logo-default">
-                        <img style="width: auto;" src="{{ asset('images/Logo-01.png') }}" alt="Default Logo">
+                        <img style="width: auto;" src="{{ asset('images/Hi-Tech_Water_Logo.png') }}" alt="Default Logo">
                     </span>
                     <span class="logo-scrolled">
-                        <img style="width: auto;" src="{{ asset('images/Logo-02.png') }}" alt="Scrolled Logo">
+                        <img style="width: auto;" src="{{ asset('images/Hi-Tech-Water Logo-blue.png') }}" alt="Scrolled Logo">
                     </span>
                 @else
                     <span class="logo-default">
@@ -150,7 +163,7 @@
     <!-- Footer -->
 
     <footer class="footer"
-        @if (!empty(@$theme->footer_decor)) style="background-image: url({{ asset(@$theme->footer_decor) }})" @endif>
+        @if (!empty(@$theme->footer_decor)) style="background-image: url({{ asset('storage/' . $theme->footer_decor) }})" @endif>
         {{-- <div class="waves"></div>
         <div class="waves"></div>
         <div class="waves"></div> --}}

@@ -70,11 +70,22 @@ class AwardController extends Controller
 
             // Handle image uploads and store paths in an array
             $images = [];
-            foreach (['img1', 'img2', 'img3', 'img4'] as $imageField) {
-                if ($request->hasFile($imageField)) {
-                    // Store the image on the custom disk and get the path
-                    $path = $request->file($imageField)->store('uploads/images', 'custom');
-                    $images[] = $path;
+            // foreach (['img1', 'img2', 'img3', 'img4'] as $imageField) {
+            //     if ($request->hasFile($imageField)) {
+            //         // Store the image on the custom disk and get the path
+            //         $path = $request->file($imageField)->store('uploads/images', 'custom');
+            //         $images[] = $path;
+            //     }
+            // }
+
+            $uploadPath = 'uploads'; // storage/app/public/uploads
+
+            /** HANDLE IMAGE UPLOADS (img1 - img4) **/
+            foreach (['img1', 'img2', 'img3', 'img4'] as $index => $fieldName) {
+
+                if ($request->hasFile($fieldName)) {
+                    // Upload new image to public storage
+                    $images[$index] = $request->file($fieldName)->store($uploadPath, 'public');
                 }
             }
 
@@ -97,11 +108,10 @@ class AwardController extends Controller
     
             // Delete the associated image
             if ($award->img) {
-                // Handle case where img might be an array
-                $imagePath = is_array($award->img) ? $award->img[0] : $award->img;
-    
-                if ($imagePath && Storage::disk('custom')->exists($imagePath)) {
-                    Storage::disk('custom')->delete($imagePath);
+                foreach ($award->img as $imagePath) {
+                    if (Storage::disk('public')->exists($imagePath)) {
+                        Storage::disk('public')->delete($imagePath);
+                    }
                 }
             }
     
@@ -138,7 +148,7 @@ class AwardController extends Controller
     public function doEdit(Request $request, $id)
     {
         $award = Award::findOrFail($id);
-    
+
         // Validate the request
         $validator = Validator::make($request->all(), [
             'img1' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -151,72 +161,62 @@ class AwardController extends Controller
             'description_en' => 'required|string|max:1500',
             'seo_title' => 'nullable|string|max:255',
             'seo_description' => 'nullable|string|max:1500',
-        ], [
-            'img1.image' => 'The first image must be an image.',
-            'img1.mimes' => 'The first image must be a JPEG, PNG, JPG, or GIF.',
-            'img1.max' => 'The first image size must not exceed 2MB.',
-            'img2.image' => 'The second image must be an image.',
-            'img2.mimes' => 'The second image must be a JPEG, PNG, JPG, or GIF.',
-            'img2.max' => 'The second image size must not exceed 2MB.',
-            'img3.image' => 'The third image must be an image.',
-            'img3.mimes' => 'The third image must be a JPEG, PNG, JPG, or GIF.',
-            'img3.max' => 'The third image size must not exceed 2MB.',
-            'img4.image' => 'The fourth image must be an image.',
-            'img4.mimes' => 'The fourth image must be a JPEG, PNG, JPG, or GIF.',
-            'img4.max' => 'The fourth image size must not exceed 2MB.',
-            'title_kh.required' => 'The Khmer title is required.',
-            'title_en.required' => 'The English title is required.',
-            'description_kh.required' => 'The Khmer description is required.',
-            'description_en.required' => 'The English description is required.',
         ]);
-    
-        // If validation fails, return with errors
+
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-    
+
         try {
-            // Prepare data for the update
+
             $data = [
-                'title_kh' => $request->title_kh,
-                'title_en' => $request->title_en,
-                'description_kh' => $request->description_kh,
-                'description_en' => $request->description_en,
-                'seo_title' => $request->seo_title,
+                'title_kh'        => $request->title_kh,
+                'title_en'        => $request->title_en,
+                'description_kh'  => $request->description_kh,
+                'description_en'  => $request->description_en,
+                'seo_title'       => $request->seo_title,
                 'seo_description' => $request->seo_description,
-                'active_status' => $request->has('active_status') ? 1 : 0,
+                'active_status'   => $request->has('active_status') ? 1 : 0,
             ];
-    
-            // Get current images if any
-            $images = $award->img ?? [];
-    
-            // Ensure the images array has at least 4 elements
-            $images = array_pad($images, 4, '');
-    
-            // Handle image uploads for img1, img2, img3, img4
-            foreach (['img1', 'img2', 'img3', 'img4'] as $index => $imageField) {
-                // Check if the field has a file upload
-                if ($request->hasFile($imageField)) {
-                    // If an image already exists, delete the old one
-                    if (!empty($images[$index]) && Storage::disk('custom')->exists($images[$index])) {
-                        Storage::disk('custom')->delete($images[$index]);
+
+            /** CURRENT IMAGES **/
+            $images = is_array($award->img) ? $award->img : [];
+            $images = array_pad($images, 4, null); // ensure 4 positions
+
+            /** UPLOAD PATH **/
+            $uploadPath = 'uploads'; // storage/app/public/uploads
+
+            /** HANDLE IMAGE UPLOADS (img1 - img4) **/
+            foreach (['img1', 'img2', 'img3', 'img4'] as $index => $fieldName) {
+
+                if ($request->hasFile($fieldName)) {
+
+                    // Delete old image from correct path
+                    if (!empty($images[$index]) && Storage::disk('public')->exists($images[$index])) {
+                        Storage::disk('public')->delete($images[$index]);
                     }
-    
-                    // Store the new image and add it to the images array
-                    $images[$index] = $request->file($imageField)->store('uploads/images', 'custom');
+
+                    // Upload new image to public storage
+                    $images[$index] = $request->file($fieldName)->store($uploadPath, 'public');
                 }
             }
-    
-            // Update the images data
-            $data['img'] = !empty(array_filter($images)) ? $images : null;
-    
-            // Update the award post with the new data
+
+            /** UPDATE IMAGES ARRAY **/
+            $filteredImages = array_filter($images); // remove null/empty
+            $data['img'] = !empty($filteredImages) ? $images : null;
+
+            /** UPDATE DATABASE **/
             $award->update($data);
-    
+
             return redirect()->route('home.award')->with('success', 'Award post updated successfully.');
+
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Failed to update post: ' . $e->getMessage())->withInput();
+
+            return redirect()->back()
+                ->with('error', 'Failed to update post: ' . $e->getMessage())
+                ->withInput();
         }
     }
+
 
 }

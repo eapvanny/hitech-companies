@@ -20,4 +20,8 @@ class About extends Model
         // 'description_en',
         'active_status'
     ];
+    public function scopeActive($query)
+    {
+        return $query->where('active_status', 1);
+    }
 }

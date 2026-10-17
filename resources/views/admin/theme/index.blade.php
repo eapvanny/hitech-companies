@@ -51,16 +51,23 @@
 
                 <div class="card-body">
                     <div class="chart-container" style="min-height: auto">
+                        
                         <h3>Theme decor</h3>
-                        <img src="{{ asset(@$theme->decor) }}" alt="Theme decor image" width="50%">
+                        <img src="{{ asset('storage/' . @$theme->decor) }}" 
+                            alt="Theme decor image" width="50%">
+
                         <h3>Background water bottle</h3>
-                        <img src="{{ asset(@$theme->water_bg) }}" alt="Theme decor image" width="50%">
+                        <img src="{{ asset('storage/' . @$theme->water_bg) }}" 
+                            alt="Background image" width="50%">
+
                         <h3>Footer decor</h3>
-                        <img src="{{ asset(@$theme->footer_decor) }}" alt="Theme decor image" width="50%">
+                        <img src="{{ asset('storage/' . @$theme->footer_decor) }}" 
+                            alt="Footer decor image" width="50%">
 
                     </div>
                     <div id="myChartLegend"></div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -95,7 +102,11 @@
                                                 <div class="ui placeholder segment">
                                                     <div class="ui icon header">
                                                       <i class="image outline icon d-none" id="icon1"></i>
-                                                      <img src="{{ asset(@$theme->decor) }}" id="decor_pre" alt="pre_img" class="mx-auto d-block" style="width: 40%">
+                                                     <img src="{{ $theme->decor ? asset('storage/' . $theme->decor) : asset('images/avatar.png') }}"
+                                                        id="decor_pre"
+                                                        alt="pre_img"
+                                                        class="mx-auto d-block"
+                                                        style="width: 40%">
                                                         Upload image as PNG.
                                                     </div>
                                                     <label for="decor" class="ui primary button text-white">Browse to image</label>
@@ -118,7 +129,7 @@
                                                 <div class="ui placeholder segment">
                                                     <div class="ui icon header">
                                                       <i class="image outline icon d-none" id="icon3"></i>
-                                                      <img src="{{ asset(@$theme->water_bg) }}" id="water_bg_pre" alt="pre_img" class="mx-auto d-block" style="width: 40%">
+                                                      <img src="{{ $theme->water_bg ? asset('storage/' . $theme->water_bg) : asset('images/avatar.png') }}" id="water_bg_pre" alt="pre_img" class="mx-auto d-block" style="width: 40%">
                                                         Upload image as PNG.
                                                     </div>
                                                     <label for="water_bg" class="ui primary button text-white">Browse to image</label>
@@ -141,7 +152,7 @@
                                                 <div class="ui placeholder segment">
                                                     <div class="ui icon header">
                                                       <i class="image outline icon d-none" id="icon2"></i>
-                                                      <img src="{{ asset(@$theme->footer_decor) }}" id="footer_theme_pre" alt="pre_img" class="mx-auto d-block" style="width: 40%">
+                                                      <img src="{{ $theme->footer_decor ? asset('storage/' . $theme->footer_decor) : asset('images/avatar.png') }}" id="footer_theme_pre" alt="pre_img" class="mx-auto d-block" style="width: 40%">
                                                         Upload image.
                                                     </div>
                                                     <label for="footer_theme" class="ui primary button text-white">Browse to image</label>

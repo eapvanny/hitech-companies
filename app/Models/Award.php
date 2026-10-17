@@ -20,4 +20,8 @@ class Award extends Model
     protected $casts = [
         'img' => 'array', // Cast the img field as an array
     ];
+    public function scopeActive($query)
+    {
+        return $query->where('active_status', 1);
+    }
 }

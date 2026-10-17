@@ -72,7 +72,7 @@
                                 </td>
                                 <td style="width: 100px">
                                     @if (!empty($social->img) && is_array($social->img) && isset($social->img[0]))
-                                    <img src="{{ asset($social->img[0]) }}" width="100px" alt="ads Image">
+                                    <img src="{{ asset('storage/'.$social->img[0]) }}" width="100px" alt="ads Image">
                                     @else
                                     <img src="{{ asset('images/placeholder.jpg') }}" width="100px" alt="No Image">
                                     @endif

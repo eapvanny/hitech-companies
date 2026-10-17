@@ -17,4 +17,9 @@ class Slide extends Model
         'title_en',
         'active_status',
     ];
+
+    public function scopeActive($query)
+    {
+        return $query->where('active_status', 1);
+    }
 }

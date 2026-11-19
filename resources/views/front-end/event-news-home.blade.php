@@ -59,7 +59,11 @@ $mainEvent = $mainEventPhoto->first();
         <div class="news-card">
             <div class="news-card-image">
                 <a href="{{ route('event.detail', ['id' => $event->id]) }}">
-                    <img loading="lazy" src="{{ asset('storage/'.$event->img) }}" alt="Water Filtration Technology">
+                    <img loading="lazy" src="{{ asset('storage/'.$event->img) }}" 
+                        alt="{{ session('user_lang') == 'en'
+                        ? $event->title_en
+                        : $event->title_kh }}"
+                    >
                 </a>
             </div>
             <div class="news-card-content">

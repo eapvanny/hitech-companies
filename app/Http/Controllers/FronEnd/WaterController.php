@@ -9,12 +9,18 @@ class WaterController extends Controller
 {
     public function index()
     {
-        $waters = cache()->remember('waters_active', 3600, function () {
-            return Our_water::select('bottle', 'description', 'description_kh', 'active_status')
-                ->where('active_status', 1)
-                ->orderBy('id', 'asc')
-                ->get();
-        });
+        // Always get fresh data from database
+        $waters = Our_water::select(
+                'id',
+                'bottle',
+                'description',
+                'description_kh',
+                'active_status',
+                'updated_at'
+            )
+            ->where('active_status', 1)
+            ->orderBy('id', 'asc')
+            ->get();
 
         return view('front-end.water', compact('waters'));
     }

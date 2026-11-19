@@ -6,6 +6,8 @@ use App\Models\Event;
 use App\Models\MainEventPhoto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class EventController extends Controller
@@ -20,48 +22,63 @@ class EventController extends Controller
         return view('admin.event.post-event');
     }
     
-    public function add(Request $r){
-
-        $validate = Validator::make($r->all(),[
-            'img' => 'required|file|image',
-            'title_kh' => 'required|max:500',
-            'title_en' => 'required|max:500',
-            'description_kh' => 'required|max:1200',
-            'description_en' => 'required|max:1200',
+    
+    public function add(Request $r)
+    {
+        $validate = Validator::make($r->all(), [
+            'img'             => 'required|image|mimes:jpg,jpeg,png,webp|max:5120',
+            'title_kh'        => 'required|max:500',
+            'title_en'        => 'required|max:500',
+            'description_kh'  => 'required|max:1200',
+            'description_en'  => 'required|max:1200',
         ]);
 
-        if($r->hasFile('img')){
-            $uploadPath = 'uploads'; // storage/app/public/uploads
-            $data = [];
-            $data['img'] = $r->file('img')->store($uploadPath, 'public');
-        }
-        $data['title_kh'] = $r->title_kh;
-        $data['title_en'] = $r->title_en;
-        $data['description_kh'] = $r->description_kh;
-        $data['description_en'] = $r->description_en;
-
-        $data['seo_title'] = $r->seo_title;
-        $data['seo_description'] = $r->seo_description;
-
-        if(! empty($r->active_status)){
-            $data['active_status'] = 1;
-        }else{
-            $data['active_status'] = 0;
+        if ($validate->fails()) {
+            return redirect()->back()
+                ->withErrors($validate)
+                ->withInput();
         }
 
-        if($validate->fails()){
-            return redirect()->back()->with('error', 'Field are required.')->withInput();
-        }
+        $image = null;
 
-        $post = Event::create($data);
-        if($post == true){
-            return redirect()->route('event.index')->with('success', 'Add new post on Event has successfully.');
-        }else{
-            return redirect()->back()->with('error', 'Fialed to add new post.')->withInput();
-        }
+        try {
 
-        // dd($r->input());
+            $image = $r->file('img')->store('uploads', 'public');
+
+            if (!$image) {
+                throw new \Exception('Image upload failed.');
+            }
+
+            $data = [
+                'img'             => $image,
+                'title_kh'        => $r->title_kh,
+                'title_en'        => $r->title_en,
+                'description_kh'  => $r->description_kh,
+                'description_en'  => $r->description_en,
+                'seo_title'       => $r->seo_title,
+                'seo_description' => $r->seo_description,
+                'active_status'   => $r->filled('active_status') ? 1 : 0,
+            ];
+
+            Event::create($data);
+
+            return redirect()->route('event.index')
+                ->with('success', 'Event created successfully.');
+
+        } catch (\Throwable $e) {
+
+            if ($image) {
+                Storage::disk('public')->delete($image);
+            }
+
+            Log::error('Event creation failed: ' . $e->getMessage());
+
+            return redirect()->back()
+                ->with('error', 'Failed to create event.')
+                ->withInput();
+        }
     }
+
 
     public function delete($id){
 
@@ -106,64 +123,74 @@ class EventController extends Controller
         return view('admin.event.edit-event', $data);
     }
     
-    public function doEdit(Request $r, $id){
-        $check = Event::findOrFail($id);
-        $result = $check->get()->first();
+   public function doEdit(Request $r, $id)
+    {
+        $event = Event::findOrFail($id);
 
-
-        $validate = Validator::make($r->all(),[
-            'img' => 'file|image',
-            'title_kh' => 'required|max:255',
-            'title_en' => 'required|max:255',
-            'description_kh' => 'required|max:600',
-            'description_en' => 'required|max:600',
+        $validate = Validator::make($r->all(), [
+            'img'             => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120',
+            'title_kh'        => 'required|max:255',
+            'title_en'        => 'required|max:255',
+            'description_kh'  => 'required|max:600',
+            'description_en'  => 'required|max:600',
         ]);
 
-        if($validate->fails()){
-            return redirect()->back()->with('error', 'Field are required.');
+        if ($validate->fails()) {
+            return redirect()->back()
+                ->withErrors($validate)
+                ->withInput();
         }
 
-        $old_img = $result->img;
-        $uploadPath = 'uploads'; // storage/app/public/uploads
-        $data       = [];
+        $data = [
+            'title_kh'        => $r->title_kh,
+            'title_en'        => $r->title_en,
+            'description_kh'  => $r->description_kh,
+            'description_en'  => $r->description_en,
+            'seo_title'       => $r->seo_title,
+            'seo_description' => $r->seo_description,
+            'active_status'   => $r->filled('active_status') ? 1 : 0,
+        ];
 
-        // HANDLE IMAGE UPLOAD
-        // --------------------
-        if ($r->hasFile('img')) {
+        $oldImage = $event->img;
+        $newImage = null;
 
-            // Delete old image (if exists)
-            if ($old_img && File::exists(storage_path('app/public/' . $old_img))) {
-                File::delete(storage_path('app/public/' . $old_img));
+        try {
+
+            // Upload new image
+            if ($r->hasFile('img')) {
+
+                $newImage = $r->file('img')->store('uploads', 'public');
+
+                if (!$newImage) {
+                    throw new \Exception('Image upload failed.');
+                }
+
+                $data['img'] = $newImage;
             }
 
-            // Store new image
-            $data['img'] = $r->file('img')->store($uploadPath, 'public');
+            // Update database
+            $event->update($data);
 
-        } else {
-            $data['img'] = $old_img; // keep old
+            // Delete old image only after successful update
+            if ($newImage && $oldImage) {
+                Storage::disk('public')->delete($oldImage);
+            }
+
+            return redirect()->route('event.index')
+                ->with('success', 'Event updated successfully.');
+
+        } catch (\Throwable $e) {
+
+            // Remove newly uploaded image if update fails
+            if ($newImage) {
+                Storage::disk('public')->delete($newImage);
+            }
+
+            Log::error('Event update failed: ' . $e->getMessage());
+
+            return redirect()->back()
+                ->with('error', 'Failed to update event.')
+                ->withInput();
         }
-
-        $data['title_kh'] = $r->title_kh;
-        $data['title_en'] = $r->title_en;
-        $data['description_kh'] = $r->description_kh;
-        $data['description_en'] = $r->description_en;
-
-        $data['seo_title'] = $r->seo_title;
-        $data['seo_description'] = $r->seo_description;
-
-        if(! empty($r->active_status)){
-            $data['active_status'] = 1;
-        }else{
-            $data['active_status'] = 0;
-        }
-
-        $edit = $check->update($data);
-
-        if($edit == true){
-            return redirect()->route('event.index')->with('success', 'Edit post on Event has successfully.');
-        }else{
-            return redirect()->back()->with('error', 'Fialed to edit post.');
-        }
-
     }
 }

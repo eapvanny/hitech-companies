@@ -59,7 +59,8 @@
             width: 100%;
             height: 100%;
             position: fixed;
-            background-image: url("{{ asset('uploads/images/logins/Hi-Tech-AE-Prepare-Same-Res-but-15MB.gif') }}");
+            /* background-image: url("{{ asset('uploads/images/logins/Hi-Tech-AE-Prepare-Same-Res-but-15MB.gif') }}"); */
+            background-image: url("{{ asset('storage/uploads/logins/Hi-Tech-AE-Prepare-Same-Res-but-15MB.gif') }}");
             background-position: 0;
             background-size: 62%;
             background-repeat: repeat-x;
@@ -130,7 +131,8 @@
                 @else
                   
                 @endif --}}
-                <img src="{{ asset('uploads/images/logos/tK3sf8NmyaDEKcEsidTMLUzBftNQerANNR55XECW.png') }}" alt="logo">
+                {{-- <img src="{{ asset('uploads/images/logos/logo.png') }}" alt="logo"> --}}
+                <img src="{{ asset('storage/uploads/logos/logo.png') }}" alt="logo">
               </div>
                 @if (session('invalid'))
                   <div class="ui negative message">

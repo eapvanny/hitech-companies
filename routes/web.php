@@ -85,9 +85,9 @@ Route::middleware('auth')->group(function () {
 
 
         // Route::resource('permissions', [PermissionController::class,]);
-        // Route::resource('permissions', PermissionController::class);
-        Route::post('/permissions/{id}/delete', [PermissionController::class, 'destroy']);
-        Route::post('/permissions/{id}/update', [PermissionController::class, 'update']);
+        Route::resource('permissions', PermissionController::class);
+        // Route::post('/permissions/{id}/delete', [PermissionController::class, 'destroy']);
+        // Route::post('/permissions/{id}/update', [PermissionController::class, 'update']);
 
 
         Route::get('/', [DashboardController::class, 'index'])->name('/');
